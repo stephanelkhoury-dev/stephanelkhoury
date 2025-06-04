@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -12,6 +12,11 @@ import {
 import { AnimatedLink } from './animations';
 
 const Footer: React.FC = () => {
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
   return (
     <footer className="bg-[#0B001F] py-12 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">
@@ -59,7 +64,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-white/10 pt-8 text-center text-gray-400">
-          <p>© {new Date().getFullYear()} Stephan El Khoury. All rights reserved.</p>
+          <p>© {currentYear || '2024'} Stephan El Khoury. All rights reserved.</p>
         </div>
       </div>
     </footer>

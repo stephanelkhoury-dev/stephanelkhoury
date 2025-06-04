@@ -1,6 +1,30 @@
 {
   "version": 4,
   "routes": {
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/favicon.ico": {
       "initialHeaders": {
         "cache-control": "public, max-age=0, must-revalidate",
@@ -29,37 +53,13 @@
         "x-next-revalidated-tags",
         "x-next-revalidate-tag-token"
       ]
-    },
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
     }
   },
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "9349d58e58c36366cdd3ef664f4ce8b9",
-    "previewModeSigningKey": "84d4d0822851bd36ba9de74ecc332742d0aaa6d8e9a8c4091efe2a928fa73b23",
-    "previewModeEncryptionKey": "e3dc4cddf80426877c830af6b6e796add85bf8e736101a1e1a35961cbf009ed2"
+    "previewModeId": "33579d9ba62f58dacabd08e195878a41",
+    "previewModeSigningKey": "df9dd8c125a2efe626148a2671110e49d7c60a5982452a58f0c149c2228e6356",
+    "previewModeEncryptionKey": "406a6e8eb45c941501bb600e9c07e371acc52e3809551be1bcb025c7793f2fe7"
   }
 }

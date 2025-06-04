@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { AnimatedButton, TextReveal, ScrollReveal } from '@/components/animations';
 import Navbar from '@/components/Navbar';
 import About from '@/components/About';
@@ -46,24 +47,22 @@ export default function Home() {
           <ScrollReveal direction="up" delay={0.2}>
             <motion.div
               className="relative mb-8"
+              whileHover={{ 
+                scale: 1.1,
+                filter: 'blur(2px) brightness(1.1)'
+              }}
+              transition={{
+                duration: 0.3,
+                ease: "easeInOut"
+              }}
             >
-              <motion.img
+              <Image
                 src="/logo-multigraphic.lb.png"
                 alt="Multigraphic.lb Logo"
+                width={160}
+                height={160}
                 className="w-40 h-40"
-                whileHover={{ scale: 1.2, rotate: 15 }}
-                animate={{
-                  filter: [
-                    'brightness(1) blur(0px)',
-                    'brightness(1.2) blur(4px)',
-                    'brightness(1) blur(0px)',
-                  ],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                }}
+                priority
               />
             </motion.div>
           </ScrollReveal>

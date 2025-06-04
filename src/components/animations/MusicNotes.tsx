@@ -1,13 +1,18 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const MusicNotes: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
   
   useEffect(() => {
-    if (!containerRef.current) return;
+    setIsClient(true);
+  }, []);
+  
+  useEffect(() => {
+    if (!containerRef.current || !isClient) return;
     
     const notes = ['♪', '♫', '♬', '♩'];
     const container = containerRef.current;
@@ -40,7 +45,7 @@ const MusicNotes: React.FC = () => {
     
     const interval = setInterval(createNote, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isClient]);
   
   return (
     <div
