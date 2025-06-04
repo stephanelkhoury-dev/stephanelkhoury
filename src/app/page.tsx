@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { AnimatedSection, AnimatedButton } from '@/components/animations';
 import GradientText from '@/components/animations/GradientText';
@@ -11,16 +11,40 @@ import Experience from '@/components/Experience';
 import Blog from '@/components/Blog';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
+  const parallaxRef = useRef(null);
+
+  useEffect(() => {
+    if (parallaxRef.current) {
+      gsap.to(parallaxRef.current, {
+        yPercent: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: parallaxRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
       <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative flex flex-col items-center justify-center min-h-screen px-6 overflow-hidden">
+        <section
+          ref={parallaxRef}
+          className="relative flex flex-col items-center justify-center min-h-screen px-6 overflow-hidden"
+        >
           {/* Logo Animation */}
-            <motion.div
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
@@ -28,26 +52,26 @@ export default function Home() {
               ease: [0.6, -0.05, 0.01, 0.99],
             }}
             className="relative mb-8"
-            >
+          >
             <motion.img
               src="/logo-multigraphic.lb.png"
               alt="Multigraphic.lb Logo"
               className="w-40 h-40"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.2, rotate: 15 }}
               animate={{
-              filter: [
-                'brightness(1) blur(0px)',
-                'brightness(1.2) blur(4px)',
-                'brightness(1) blur(0px)',
-              ],
+                filter: [
+                  'brightness(1) blur(0px)',
+                  'brightness(1.2) blur(4px)',
+                  'brightness(1) blur(0px)',
+                ],
               }}
               transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatType: 'reverse',
+                duration: 3,
+                repeat: Infinity,
+                repeatType: 'reverse',
               }}
             />
-            </motion.div>
+          </motion.div>
 
           {/* Name and Title */}
           <GradientText
@@ -55,7 +79,7 @@ export default function Home() {
             className="text-4xl md:text-6xl font-bold mb-4"
             delay={0.3}
           />
-          
+
           <AnimatedSection delay={0.5}>
             <h2 className="text-xl md:text-2xl text-gray-300 mb-2">
               Computer Engineer | Full Stack Developer | Musician
@@ -63,7 +87,7 @@ export default function Home() {
             <p className="text-lg text-gray-400 max-w-2xl text-center mb-8">
               Innovating at the intersection of code, creativity, and sound
             </p>
-            
+
             <AnimatedButton>
               Explore My Work
             </AnimatedButton>

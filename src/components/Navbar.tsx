@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
             whileTap={{ scale: 0.95 }}
           >
             <span className="bg-gradient-to-r from-[#00E1FF] via-[#C13CFF] to-[#FF8A00] text-transparent bg-clip-text">
-              SE
+              Stephan El Khoury
             </span>
           </motion.a>
 
