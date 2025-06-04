@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { 
   faLinkedin, 
   faGithub, 
@@ -65,7 +66,7 @@ const Footer: React.FC = () => {
   );
 };
 
-const SocialIcon: React.FC<{ href: string; icon: any; label: string }> = ({
+const SocialIcon: React.FC<{ href: string; icon: IconDefinition; label: string }> = ({
   href,
   icon,
   label

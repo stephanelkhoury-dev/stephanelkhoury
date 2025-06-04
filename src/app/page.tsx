@@ -2,8 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { AnimatedSection, AnimatedButton, TextReveal, ScrollReveal } from '@/components/animations';
-import GradientText from '@/components/animations/GradientText';
+import { AnimatedButton, TextReveal, ScrollReveal } from '@/components/animations';
 import Navbar from '@/components/Navbar';
 import About from '@/components/About';
 import Projects from '@/components/Projects';

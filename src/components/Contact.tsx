@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { 
   faEnvelope, 
   faPhone, 
@@ -18,7 +19,6 @@ import {
   faFacebook, 
   faXTwitter 
 } from '@fortawesome/free-brands-svg-icons';
-import GradientText from './animations/GradientText';
 import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
 
 const Contact: React.FC = () => {
@@ -63,13 +63,13 @@ const Contact: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <TextReveal 
-              text="Let's Create Something Amazing Together"
+              text="Let&apos;s Create Something Amazing Together"
               className="text-4xl font-bold mb-6"
             />
             <ScrollReveal delay={0.3}>
               <p className="text-gray-300 text-xl leading-relaxed max-w-3xl mx-auto">
-                Ready to bring your vision to life? Whether it's a cutting-edge web application, 
-                innovative music tech, or strategic digital transformation, let's collaborate.
+                Ready to bring your vision to life? Whether it&apos;s a cutting-edge web application, 
+                innovative music tech, or strategic digital transformation, let&apos;s collaborate.
               </p>
             </ScrollReveal>
           </div>
@@ -272,7 +272,7 @@ const Contact: React.FC = () => {
 };
 
 const ContactInfo: React.FC<{
-  icon: any;
+  icon: IconDefinition;
   label: string;
   value: string;
   href?: string;
@@ -311,7 +311,7 @@ const ContactInfo: React.FC<{
 
 const SocialLink: React.FC<{ 
   href: string; 
-  icon: any; 
+  icon: IconDefinition; 
   color: string;
   delay: number;
 }> = ({ href, icon, color, delay }) => (

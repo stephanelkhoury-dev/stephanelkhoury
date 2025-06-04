@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import GradientText from './animations/GradientText';
+import { motion } from 'framer-motion';
 import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
 
 interface Experience {
@@ -242,7 +241,7 @@ const Experience: React.FC = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              Let's Work Together
+              Let&apos;s Work Together
             </motion.a>
           </motion.div>
         </ScrollReveal>

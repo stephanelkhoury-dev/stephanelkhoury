@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import GradientText from './animations/GradientText';
 import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
 
 const About: React.FC = () => {

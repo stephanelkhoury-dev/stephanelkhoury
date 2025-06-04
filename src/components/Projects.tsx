@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import GradientText from './animations/GradientText';
-import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
+import { AnimatedSection, ScrollReveal } from './animations';
 
 interface Project {
   title: string;
