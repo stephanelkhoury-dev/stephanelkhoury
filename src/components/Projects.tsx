@@ -99,27 +99,11 @@ const projects: Project[] = [
     category: 'WordPress',
   },
   {
-    title: 'Crypto Engineers LMS Platform',
-    description: 'Learning Management System for cryptocurrency courses using Tutor LMS and BuddyBoss. Community-driven learning with course progression tracking.',
-    image: '/projects/crypto-engineers.jpg',
-    technologies: ['WordPress', 'Tutor LMS', 'BuddyBoss', 'Community Features', 'Course Management'],
-    live: 'https://cryptoengineers.com',
-    category: 'E-Learning',
-  },
-  {
     title: 'Hi-YU Lebanon Web Strategy',
     description: 'Complete website rebuild strategy and development proposal. Full-stack approach with modern design principles and performance optimization.',
     image: '/projects/hi-yu-lebanon.jpg',
     technologies: ['Strategy', 'Full-Stack Development', 'Performance Optimization', 'Modern Design'],
     category: 'Strategy',
-  },
-  {
-    title: 'Chord Dictionary Visual Tool',
-    description: 'Interactive chord dictionary with visual representations. Working on mobile app version using Flutter for chord extraction and music education.',
-    image: '/projects/chord-dictionary.jpg',
-    technologies: ['Flutter', 'Mobile Development', 'Music Education', 'Interactive Design'],
-    github: 'https://github.com/stephanelkhoury/chord-dictionary',
-    category: 'Music Tech',
   },
   {
     title: 'Saudi Dates Documentation',
@@ -129,14 +113,6 @@ const projects: Project[] = [
     github: 'https://github.com/stephanelkhoury/saudi-dates-docs',
     category: 'Documentation',
   },
-  {
-    title: 'ERP System Project',
-    description: 'Enterprise Resource Planning system developed during Software Engineering studies. Includes modules for report generation, user access control, and data flow management.',
-    image: '/projects/erp-system.jpg',
-    technologies: ['Java', 'Database Design', 'Report Generation', 'User Management', 'Enterprise'],
-    github: 'https://github.com/stephanelkhoury/erp-system',
-    category: 'Enterprise',
-  }
 ];
 
 const Projects: React.FC = () => {
@@ -189,7 +165,7 @@ const Projects: React.FC = () => {
           {filteredProjects.map((project, index) => (
             <ScrollReveal key={index} delay={index * 0.1} direction="up">
               <motion.div
-                className="group relative bg-gradient-to-br from-[#00E1FF10] to-[#FF8A0010] rounded-xl overflow-hidden border border-white/10 hover-glow glass shimmer cursor-pointer"
+                className="group relative bg-gradient-to-br from-[#00E1FF10] to-[#FF8A0010] rounded-xl overflow-hidden border border-white/10 hover-glow glass shimmer cursor-pointer h-full flex flex-col"
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
                 onClick={() => handleProjectClick(project)}
@@ -225,14 +201,14 @@ const Projects: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="relative p-6">
+                <div className="relative p-6 flex-1 flex flex-col">
                   <motion.h3 
-                    className="text-xl font-semibold mb-2 group-hover:text-[#00E1FF] transition-colors duration-300 "
+                    className="text-xl font-semibold mb-2 group-hover:text-[#00E1FF] transition-colors duration-300"
                     whileHover={{ scale: 1.05 }}
                   >
                     {project.title}
                   </motion.h3>
-                  <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+                  <p className="text-gray-300 mb-4 text-sm leading-relaxed flex-1">
                     {project.description}
                   </p>
                   
@@ -258,7 +234,7 @@ const Projects: React.FC = () => {
                 </div>
                 
                 {/* Links */}
-                <div className="flex gap-3">
+                <div className="flex gap-3 mt-auto">
                   {project.github && (
                     <a
                       href={project.github}
