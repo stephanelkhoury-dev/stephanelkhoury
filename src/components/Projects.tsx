@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import GradientText from './animations/GradientText';
 import { AnimatedSection, ScrollReveal } from './animations';
+import ProjectModal from './ProjectModal';
 
 interface Project {
   title: string;
@@ -16,6 +17,10 @@ interface Project {
   github?: string;
   live?: string;
   category: string;
+  fullDescription?: string;
+  features?: string[];
+  challenges?: string[];
+  date?: string;
 }
 
 const projects: Project[] = [
@@ -23,11 +28,27 @@ const projects: Project[] = [
   {
     title: 'Harmonix: AI-Powered Music Analysis Platform',
     description: 'Real-time chord detection from MP3 files, tempo detection, instrument tuner, and lyric extractor. Built as Final Year Project at Antonine University with full documentation and testing.',
+    fullDescription: 'Harmonix is a comprehensive AI-powered music analysis platform that revolutionizes how musicians and producers interact with audio content. The platform uses advanced machine learning algorithms to provide real-time chord detection from MP3 files, accurate tempo detection, and intelligent lyric extraction.',
     image: '/projects/harmonix.jpg',
     technologies: ['React', 'FastAPI', 'Python', 'Machine Learning', 'Audio Processing'],
     github: 'https://github.com/stephanelkhoury/harmonix',
     live: 'https://harmonix.ai',
     category: 'AI & Machine Learning',
+    date: 'December 2024',
+    features: [
+      'Real-time chord detection with 95% accuracy',
+      'Automatic tempo and BPM detection',
+      'AI-powered lyric extraction and synchronization',
+      'Interactive chord visualization',
+      'Multi-format audio support (MP3, WAV, FLAC)',
+      'Instrument tuner with multiple tuning systems'
+    ],
+    challenges: [
+      'Optimizing real-time audio processing for web browsers',
+      'Training ML models with diverse musical genres',
+      'Implementing accurate chord recognition algorithms',
+      'Creating responsive audio visualization components'
+    ]
   },
   {
     title: 'Sancta Maria Choir Website',
@@ -119,13 +140,25 @@ const projects: Project[] = [
 ];
 
 const Projects: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = React.useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];
   
   const filteredProjects = selectedCategory === 'All' 
     ? projects 
     : projects.filter(p => p.category === selectedCategory);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   return (
     <section id="projects" className="py-20 px-6 md:px-20">
@@ -156,9 +189,10 @@ const Projects: React.FC = () => {
           {filteredProjects.map((project, index) => (
             <ScrollReveal key={index} delay={index * 0.1} direction="up">
               <motion.div
-                className="group relative bg-gradient-to-br from-[#00E1FF10] to-[#FF8A0010] rounded-xl overflow-hidden border border-white/10 hover-glow glass shimmer"
+                className="group relative bg-gradient-to-br from-[#00E1FF10] to-[#FF8A0010] rounded-xl overflow-hidden border border-white/10 hover-glow glass shimmer cursor-pointer"
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
+                onClick={() => handleProjectClick(project)}
               >
                 <div className="aspect-w-16 aspect-h-9 h-48 relative overflow-hidden">
                   <motion.div
@@ -178,6 +212,17 @@ const Projects: React.FC = () => {
                       {project.category}
                     </span>
                   </motion.div>
+
+                  {/* Click to view overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileHover={{ scale: 1 }}
+                      className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white font-medium"
+                    >
+                      Click to view details
+                    </motion.div>
+                  </div>
                 </div>
                 
                 <div className="relative p-6">
@@ -219,6 +264,7 @@ const Projects: React.FC = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition-colors duration-300"
                     >
                       <FontAwesomeIcon icon={faGithub} />
@@ -230,6 +276,7 @@ const Projects: React.FC = () => {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black rounded-lg text-sm font-medium hover:opacity-90 transition-opacity duration-300"
                     >
                       <FontAwesomeIcon icon={faExternalLinkAlt} />
@@ -249,6 +296,13 @@ const Projects: React.FC = () => {
           </div>
         )}
       </AnimatedSection>
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 };

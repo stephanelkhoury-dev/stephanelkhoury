@@ -75,6 +75,32 @@ html.lenis {
   scrollbar-width: none;  /* Firefox */
 }
 
+/* Custom scrollbar styles for modals */
+.modal-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Firefox scrollbar styling */
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -114,7 +140,6 @@ body {
   content: '';
   position: absolute;
   inset: -2px;
-  background: ;
   border-radius: inherit;
   opacity: 0;
   z-index: -1;

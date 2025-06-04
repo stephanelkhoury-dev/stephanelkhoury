@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
+import BlogModal from './BlogModal';
 
 interface BlogPost {
   title: string;
@@ -13,24 +14,36 @@ interface BlogPost {
   category: string;
   image: string;
   link: string;
+  fullContent?: string;
+  readTime?: string;
+  tags?: string[];
+  author?: string;
 }
 
 const blogPosts: BlogPost[] = [
   {
     title: 'The Future of AI in Music Production',
     excerpt: 'Exploring how artificial intelligence is revolutionizing the way we create and produce music, from automated composition to intelligent mixing.',
+    fullContent: 'Artificial Intelligence is transforming the music industry in unprecedented ways. From AI-powered composition tools to intelligent mixing algorithms, technology is reshaping how we create, produce, and consume music.\n\nMachine learning models can now analyze thousands of songs to understand patterns in melody, harmony, and rhythm. This enables AI systems to generate original compositions that sound remarkably human-like. Tools like OpenAI\'s MuseNet and Google\'s Magenta project are pushing the boundaries of what\'s possible.\n\nIn my work on Harmonix, I\'ve seen firsthand how AI can enhance the creative process without replacing human creativity. The key is finding the right balance between technological assistance and artistic expression.',
     date: 'May 28, 2025',
     category: 'AI & Music',
     image: '/blog/ai-music.jpg',
     link: '/blog/ai-music-production',
+    readTime: '8 min read',
+    tags: ['AI', 'Music Production', 'Machine Learning', 'Creative Technology'],
+    author: 'Stephan El Khoury'
   },
   {
     title: 'Building Modern Web Applications with Next.js',
     excerpt: 'A comprehensive guide to creating fast, SEO-friendly web applications using Next.js 13+ with App Router and TypeScript.',
+    fullContent: 'Next.js has revolutionized React development with its powerful features and developer experience. The introduction of the App Router in Next.js 13+ brings server components, improved routing, and better performance optimization.\n\nIn this portfolio project, I\'ve leveraged Next.js to create a fast, SEO-friendly website with server-side rendering, static site generation, and optimized image loading. The App Router provides a more intuitive file-based routing system while maintaining backward compatibility.\n\nKey benefits include automatic code splitting, built-in CSS support, and excellent TypeScript integration. These features make Next.js an ideal choice for modern web applications that need to be both performant and maintainable.',
     date: 'May 15, 2025',
     category: 'Web Development',
     image: '/blog/nextjs.jpg',
     link: '/blog/nextjs-modern-apps',
+    readTime: '12 min read',
+    tags: ['Next.js', 'React', 'TypeScript', 'Web Development', 'SSR'],
+    author: 'Stephan El Khoury'
   },
   {
     title: 'The Intersection of Music and Code',
@@ -67,10 +80,22 @@ const blogPosts: BlogPost[] = [
 ];
 
 const Blog: React.FC = () => {
-  const [showAllArticles, setShowAllArticles] = React.useState(false);
-  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+  const [showAllArticles, setShowAllArticles] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   const displayedPosts = showAllArticles ? blogPosts : blogPosts.slice(0, 3);
+
+  const handlePostClick = (post: BlogPost) => {
+    setSelectedPost(post);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedPost(null);
+  };
 
   return (
     <section id="blog" className="py-20 px-6 md:px-20 bg-[#0B001F]/30 relative overflow-hidden">
@@ -102,6 +127,7 @@ const Blog: React.FC = () => {
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 onHoverStart={() => setHoveredIndex(index)}
                 onHoverEnd={() => setHoveredIndex(null)}
+                onClick={() => handlePostClick(post)}
               >
                 <motion.div 
                   className="glass rounded-xl overflow-hidden h-full hover-glow magnetic"
@@ -257,6 +283,13 @@ const Blog: React.FC = () => {
           </div>
         </ScrollReveal>
       </AnimatedSection>
+
+      {/* Blog Modal */}
+      <BlogModal
+        post={selectedPost}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 };
