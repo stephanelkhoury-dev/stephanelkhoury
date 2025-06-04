@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { AnimatedButton, TextReveal, ScrollReveal } from '@/components/animations';
 import Navbar from '@/components/Navbar';
 import About from '@/components/About';
