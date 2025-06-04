@@ -41,7 +41,6 @@ __turbopack_context__.s({
     "AnimatedLink": (()=>AnimatedLink),
     "AnimatedSection": (()=>AnimatedSection),
     "AnimationProvider": (()=>AnimationProvider),
-    "CursorTrail": (()=>CursorTrail),
     "FloatingParticles": (()=>FloatingParticles),
     "GradientText": (()=>GradientText),
     "ScrollReveal": (()=>ScrollReveal),
@@ -61,9 +60,6 @@ const AnimatedSection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node
 const AnimationProvider = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2d$edge$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
     throw new Error("Attempted to call AnimationProvider() from the server but AnimationProvider is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
 }, "[project]/src/components/animations/index.tsx <module evaluation>", "AnimationProvider");
-const CursorTrail = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2d$edge$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
-    throw new Error("Attempted to call CursorTrail() from the server but CursorTrail is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
-}, "[project]/src/components/animations/index.tsx <module evaluation>", "CursorTrail");
 const FloatingParticles = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2d$edge$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
     throw new Error("Attempted to call FloatingParticles() from the server but FloatingParticles is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
 }, "[project]/src/components/animations/index.tsx <module evaluation>", "FloatingParticles");
@@ -87,7 +83,6 @@ __turbopack_context__.s({
     "AnimatedLink": (()=>AnimatedLink),
     "AnimatedSection": (()=>AnimatedSection),
     "AnimationProvider": (()=>AnimationProvider),
-    "CursorTrail": (()=>CursorTrail),
     "FloatingParticles": (()=>FloatingParticles),
     "GradientText": (()=>GradientText),
     "ScrollReveal": (()=>ScrollReveal),
@@ -107,9 +102,6 @@ const AnimatedSection = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node
 const AnimationProvider = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2d$edge$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
     throw new Error("Attempted to call AnimationProvider() from the server but AnimationProvider is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
 }, "[project]/src/components/animations/index.tsx", "AnimationProvider");
-const CursorTrail = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2d$edge$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
-    throw new Error("Attempted to call CursorTrail() from the server but CursorTrail is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
-}, "[project]/src/components/animations/index.tsx", "CursorTrail");
 const FloatingParticles = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$server$2d$dom$2d$turbopack$2d$server$2d$edge$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerClientReference"])(function() {
     throw new Error("Attempted to call FloatingParticles() from the server but FloatingParticles is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.");
 }, "[project]/src/components/animations/index.tsx", "FloatingParticles");

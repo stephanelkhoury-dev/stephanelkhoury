@@ -471,11 +471,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animati
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$TextReveal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/TextReveal.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$ScrollReveal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/ScrollReveal.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$GradientText$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/GradientText.tsx [app-ssr] (ecmascript)");
-(()=>{
-    const e = new Error("Cannot find module './CursorTrail'");
-    e.code = 'MODULE_NOT_FOUND';
-    throw e;
-})();
 'use client';
 ;
 ;
@@ -596,7 +591,6 @@ const AnimationProvider = ({ children })=>{
 ;
 ;
 ;
-;
 }}),
 "[project]/src/components/animations/index.tsx [app-ssr] (ecmascript) <module evaluation>": ((__turbopack_context__) => {
 "use strict";
@@ -612,11 +606,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animati
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$TextReveal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/TextReveal.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$ScrollReveal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/ScrollReveal.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$GradientText$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/GradientText.tsx [app-ssr] (ecmascript)");
-(()=>{
-    const e = new Error("Cannot find module './CursorTrail'");
-    e.code = 'MODULE_NOT_FOUND';
-    throw e;
-})();
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/src/components/animations/index.tsx [app-ssr] (ecmascript) <locals>");
 }}),
 "[project]/src/components/animations/index.tsx [app-ssr] (ecmascript) <exports>": ((__turbopack_context__) => {
@@ -638,11 +627,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animati
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$ScrollReveal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/ScrollReveal.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$GradientText$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/GradientText.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$FloatingParticles$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/animations/FloatingParticles.tsx [app-ssr] (ecmascript)");
-(()=>{
-    const e = new Error("Cannot find module './CursorTrail'");
-    e.code = 'MODULE_NOT_FOUND';
-    throw e;
-})();
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/src/components/animations/index.tsx [app-ssr] (ecmascript) <locals>");
 }}),
 "[project]/src/components/animations/index.tsx [app-ssr] (ecmascript)": ((__turbopack_context__) => {
@@ -655,7 +639,6 @@ __turbopack_context__.s({
     "AnimatedLink": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$exports$3e$__["AnimatedLink"]),
     "AnimatedSection": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$exports$3e$__["AnimatedSection"]),
     "AnimationProvider": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$exports$3e$__["AnimationProvider"]),
-    "CursorTrail": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$exports$3e$__["CursorTrail"]),
     "FloatingParticles": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$exports$3e$__["FloatingParticles"]),
     "GradientText": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$exports$3e$__["GradientText"]),
     "ScrollReveal": (()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$exports$3e$__["ScrollReveal"]),

@@ -95,4 +95,3 @@ export { default as TextReveal } from './TextReveal';
 export { default as ScrollReveal } from './ScrollReveal';
 export { default as GradientText } from './GradientText';
 export { default as FloatingParticles } from './FloatingParticles';
-export { default as CursorTrail } from './CursorTrail';
