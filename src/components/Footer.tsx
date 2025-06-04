@@ -2,6 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faLinkedin, 
+  faGithub, 
+  faTwitter 
+} from '@fortawesome/free-brands-svg-icons';
 import { AnimatedLink } from './animations';
 
 const Footer: React.FC = () => {
@@ -44,9 +50,9 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">Connect</h4>
             <div className="flex space-x-4">
-              <SocialIcon href="https://github.com/stephanelkhoury" icon="github" label="GitHub" />
-              <SocialIcon href="https://www.linkedin.com/in/stephanelkhoury/" icon="linkedin" label="LinkedIn" />
-              <SocialIcon href="https://twitter.com/stephanelkhoury" icon="twitter" label="Twitter" />
+              <SocialIcon href="https://github.com/stephanelkhoury" icon={faGithub} label="GitHub" />
+              <SocialIcon href="https://www.linkedin.com/in/stephanelkhoury/" icon={faLinkedin} label="LinkedIn" />
+              <SocialIcon href="https://twitter.com/stephanelkhoury" icon={faTwitter} label="Twitter" />
             </div>
           </div>
         </div>
@@ -59,7 +65,7 @@ const Footer: React.FC = () => {
   );
 };
 
-const SocialIcon: React.FC<{ href: string; icon: string; label: string }> = ({
+const SocialIcon: React.FC<{ href: string; icon: any; label: string }> = ({
   href,
   icon,
   label
@@ -72,7 +78,7 @@ const SocialIcon: React.FC<{ href: string; icon: string; label: string }> = ({
     className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
     aria-label={label}
   >
-    <i className={`fab fa-${icon} text-lg`} />
+    <FontAwesomeIcon icon={icon} className="text-lg" />
   </motion.a>
 );
 

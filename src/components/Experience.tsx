@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import GradientText from './animations/GradientText';
-import { AnimatedSection } from './animations';
+import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
 
 interface Experience {
   title: string;
@@ -100,52 +100,152 @@ const experiences: Experience[] = [
 ];
 
 const Experience: React.FC = () => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  
   return (
-    <section id="experience" className="py-20 px-6 md:px-20 bg-[#0B001F]/30">
+    <section id="experience" className="py-20 px-6 md:px-20 bg-[#0B001F]/30 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#00E1FF]/20 rounded-full blur-3xl floating" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#FF8A00]/15 rounded-full blur-3xl floating" style={{ animationDelay: '2s' }} />
+      </div>
+      
       <AnimatedSection>
-        <GradientText
-          text="Experience"
-          className="text-3xl font-semibold mb-12"
+        <TextReveal 
+          text="Experience & Journey"
+          className="text-4xl font-bold mb-4 text-center"
         />
-        <div className="space-y-12">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="relative"
-            >
-              <div className="flex flex-col md:flex-row md:items-center gap-4">
-                <div className="md:w-1/3">
-                  <h3 className="text-xl font-semibold text-white">{exp.title}</h3>
-                  <p className="text-[#00E1FF]">{exp.company}</p>
-                  <p className="text-gray-400">{exp.period}</p>
-                </div>
-                <div className="md:w-2/3">
-                  <ul className="list-disc list-inside space-y-2 text-gray-300 mb-4">
-                    {exp.description.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1 text-sm bg-white/10 rounded-full"
+        <ScrollReveal delay={0.3}>
+          <p className="text-gray-300 text-center mb-16 max-w-2xl mx-auto">
+            From creative studio founder to enterprise developer, my journey spans across technologies and industries
+          </p>
+        </ScrollReveal>
+        
+        <div ref={containerRef} className="relative">
+          {/* Timeline Line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#00E1FF] via-[#C13CFF] to-[#FF8A00] transform md:-translate-x-px" />
+          
+          <div className="space-y-16">
+            {experiences.map((exp, index) => (
+              <ScrollReveal key={index} delay={index * 0.2} direction={index % 2 === 0 ? 'left' : 'right'}>
+                <motion.div
+                  className={`relative flex items-center ${
+                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  } flex-col md:gap-16`}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Timeline Dot */}
+                  <motion.div 
+                    className="absolute left-4 md:left-1/2 w-4 h-4 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] rounded-full transform -translate-x-2 md:-translate-x-2 z-10 pulse"
+                    whileHover={{ scale: 1.5 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {/* Content Card */}
+                  <motion.div 
+                    className={`md:w-5/12 ml-8 md:ml-0 glass p-6 rounded-xl hover-glow magnetic ${
+                      index % 2 === 0 ? 'md:text-right' : 'md:text-left'
+                    }`}
+                    whileHover={{ y: -8 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.3, duration: 0.5 }}
+                    >
+                      <motion.h3 
+                        className="text-2xl font-bold mb-2  hover-lift"
+                        whileHover={{ scale: 1.05 }}
                       >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              {index !== experiences.length - 1 && (
-                <div className="absolute left-0 bottom-0 w-full h-px bg-gradient-to-r from-transparent via-[#C13CFF40] to-transparent" />
-              )}
-            </motion.div>
-          ))}
+                        {exp.title}
+                      </motion.h3>
+                      <motion.p 
+                        className="text-[#00E1FF] font-semibold mb-1 text-lg"
+                        whileHover={{ color: '#FF8A00' }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {exp.company}
+                      </motion.p>
+                      <p className="text-gray-400 mb-4 font-medium shimmer">{exp.period}</p>
+                      
+                      <motion.ul 
+                        className={`space-y-2 text-gray-300 mb-6 ${
+                          index % 2 === 0 ? 'md:text-right' : 'md:text-left'
+                        }`}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.5, staggerChildren: 0.1 }}
+                      >
+                        {exp.description.map((item, i) => (
+                          <motion.li 
+                            key={i} 
+                            className="relative pl-4 border-l-2 border-[#00E1FF]/30 hover:border-[#00E1FF] transition-colors duration-300"
+                            initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                            whileHover={{ x: index % 2 === 0 ? -5 : 5 }}
+                          >
+                            {item}
+                          </motion.li>
+                        ))}
+                      </motion.ul>
+                      
+                      <div className={`flex flex-wrap gap-2 ${
+                        index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'
+                      }`}>
+                        {exp.technologies.map((tech, i) => (
+                          <motion.span
+                            key={i}
+                            className="px-3 py-1 text-sm bg-gradient-to-r from-[#00E1FF]/20 to-[#FF8A00]/20 border border-white/10 rounded-full hover-lift magnetic liquid-bg"
+                            whileHover={{ 
+                              scale: 1.1, 
+                              backgroundColor: 'rgba(0, 225, 255, 0.3)',
+                              borderColor: 'rgba(0, 225, 255, 0.5)'
+                            }}
+                            initial={{ opacity: 0, scale: 0 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.7 + i * 0.05, duration: 0.3 }}
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                  
+                  {/* Spacer for the other side */}
+                  <div className="hidden md:block md:w-5/12" />
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
+        
+        {/* Call to Action */}
+        <ScrollReveal delay={0.5}>
+          <motion.div 
+            className="text-center mt-16"
+            whileHover={{ scale: 1.02 }}
+          >
+            <motion.p 
+              className="text-gray-300 mb-6 text-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              Ready to bring your next project to life?
+            </motion.p>
+            <motion.a
+              href="#contact"
+              className="inline-block px-8 py-3 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black font-semibold rounded-full hover-glow magnetic liquid-bg"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Let's Work Together
+            </motion.a>
+          </motion.div>
+        </ScrollReveal>
       </AnimatedSection>
     </section>
   );

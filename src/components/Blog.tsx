@@ -1,9 +1,11 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import GradientText from './animations/GradientText';
-import { AnimatedSection } from './animations';
+import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
 
 interface BlogPost {
   title: string;
@@ -67,83 +69,194 @@ const blogPosts: BlogPost[] = [
 
 const Blog: React.FC = () => {
   const [showAllArticles, setShowAllArticles] = React.useState(false);
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
   
   const displayedPosts = showAllArticles ? blogPosts : blogPosts.slice(0, 3);
 
   return (
-    <section id="blog" className="py-20 px-6 md:px-20 bg-[#0B001F]/30">
+    <section id="blog" className="py-20 px-6 md:px-20 bg-[#0B001F]/30 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-32 right-20 w-64 h-64 bg-[#C13CFF]/20 rounded-full blur-3xl floating" />
+        <div className="absolute bottom-40 left-16 w-80 h-80 bg-[#00E1FF]/15 rounded-full blur-3xl floating" style={{ animationDelay: '3s' }} />
+      </div>
+      
       <AnimatedSection>
-        <div className="text-center mb-12">
-          <GradientText
-            text="Latest Articles"
-            className="text-3xl font-semibold mb-4"
+        <div className="text-center mb-16">
+          <TextReveal 
+            text="Latest Articles & Thoughts"
+            className="text-4xl font-bold mb-6"
           />
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Thoughts, insights, and experiences from my journey in technology,
-            music, and entrepreneurship.
-          </p>
+          <ScrollReveal delay={0.3}>
+            <p className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
+              Exploring the intersection of technology, music, and innovation through detailed articles and personal insights
+            </p>
+          </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {displayedPosts.map((post, index) => (
-            <motion.article
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group cursor-pointer"
-              whileHover={{ y: -5 }}
-            >
-              <div className="bg-gradient-to-br from-[#00E1FF05] to-[#FF8A0005] p-6 rounded-xl border border-white/10 h-full">
-                <div className="relative aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
-                  <motion.div
-                    className="absolute inset-0 bg-cover bg-center h-48"
-                    style={{ backgroundImage: `url(${post.image})` }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-300" />
+            <ScrollReveal key={index} delay={index * 0.1} direction="up">
+              <motion.article
+                className={`group cursor-pointer h-full ${index === 0 && !showAllArticles ? 'lg:col-span-2 lg:row-span-1' : ''}`}
+                whileHover={{ y: -12, scale: 1.02 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                onHoverStart={() => setHoveredIndex(index)}
+                onHoverEnd={() => setHoveredIndex(null)}
+              >
+                <motion.div 
+                  className="glass rounded-xl overflow-hidden h-full hover-glow magnetic"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className={`relative overflow-hidden ${index === 0 && !showAllArticles ? 'h-64 lg:h-80' : 'h-48'}`}>
+                    <motion.div
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ backgroundImage: `url(${post.image})` }}
+                      whileHover={{ scale: 1.15 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/60 transition-all duration-500" />
+                    
+                    {/* Category Badge */}
+                    <motion.div 
+                      className="absolute top-4 left-4"
+                      whileHover={{ scale: 1.1, rotate: 2 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <span className="px-3 py-1 text-xs bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black rounded-full font-semibold liquid-bg">
+                        {post.category}
+                      </span>
+                    </motion.div>
+                    
+                    {/* Featured Badge for first article */}
+                    {index === 0 && !showAllArticles && (
+                      <motion.div 
+                        className="absolute top-4 right-4"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5, duration: 0.3 }}
+                      >
+                        <span className="px-3 py-1 text-xs bg-gradient-to-r from-[#C13CFF] to-[#FF8A00] text-white rounded-full font-semibold pulse">
+                          Featured
+                        </span>
+                      </motion.div>
+                    )}
+                    
+                    {/* Hover Arrow Icon */}
+                    <motion.div
+                      className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center"
+                      initial={{ opacity: 0, scale: 0, rotate: -45 }}
+                      animate={{ 
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        scale: hoveredIndex === index ? 1 : 0,
+                        rotate: hoveredIndex === index ? 0 : -45
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FontAwesomeIcon icon={faArrowRight} className="text-white text-sm" />
+                    </motion.div>
+                  </div>
                   
-                  {/* Category Badge */}
-                  <div className="absolute top-3 left-3">
-                    <span className="px-2 py-1 text-xs bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black rounded-full font-medium">
-                      {post.category}
-                    </span>
+                  <div className="p-6 relative">
+                    <motion.div 
+                      className="flex items-center text-sm text-gray-400 mb-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3, duration: 0.4 }}
+                    >
+                      <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-[#00E1FF]" />
+                      <span className="shimmer">{post.date}</span>
+                    </motion.div>
+                    
+                    <motion.h3 
+                      className={`font-bold mb-3 group-hover:text-[#00E1FF] transition-colors duration-400  ${
+                        index === 0 && !showAllArticles ? 'text-2xl lg:text-3xl' : 'text-xl'
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {post.title}
+                    </motion.h3>
+                    
+                    <motion.p 
+                      className={`text-gray-300 leading-relaxed mb-4 ${
+                        index === 0 && !showAllArticles ? 'text-base lg:text-lg' : 'text-sm'
+                      }`}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 0.4 }}
+                    >
+                      {post.excerpt}
+                    </motion.p>
+                    
+                    <motion.div 
+                      className="flex items-center justify-between"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7, duration: 0.4 }}
+                    >
+                      <motion.span 
+                        className="text-[#00E1FF] font-semibold group-hover:text-[#FF8A00] transition-colors duration-300 flex items-center gap-2"
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        Read More
+                        <motion.div
+                          animate={{ x: hoveredIndex === index ? 5 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <FontAwesomeIcon icon={faArrowRight} className="text-sm" />
+                        </motion.div>
+                      </motion.span>
+                      
+                      <motion.div
+                        className="w-8 h-1 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: 32 }}
+                        transition={{ delay: 0.8, duration: 0.5 }}
+                      />
+                    </motion.div>
                   </div>
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-400">
-                    <i className="far fa-calendar-alt mr-2"></i>
-                    <span>{post.date}</span>
-                  </div>
-                  <h3 className="text-lg font-semibold group-hover:text-[#00E1FF] transition-colors duration-300 line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <div className="pt-2">
-                    <span className="text-[#00E1FF] text-sm font-medium group-hover:underline">
-                      Read More →
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+                </motion.div>
+              </motion.article>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="text-center">
-          <motion.button
-            onClick={() => setShowAllArticles(!showAllArticles)}
-            className="px-8 py-3 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black font-semibold rounded-full hover:opacity-90 transition-opacity duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {showAllArticles ? 'Show Less Articles' : 'View All Articles'}
-          </motion.button>
-        </div>
+        <ScrollReveal delay={0.3}>
+          <div className="text-center">
+            <motion.button
+              onClick={() => setShowAllArticles(!showAllArticles)}
+              className="group px-8 py-4 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black font-bold rounded-full hover-glow magnetic liquid-bg relative overflow-hidden"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+            >
+              <motion.span
+                className="relative z-10 flex items-center gap-3"
+                whileHover={{ x: 2 }}
+              >
+                {showAllArticles ? 'Show Featured Articles' : 'Explore All Articles'}
+                <motion.div
+                  animate={{ rotate: showAllArticles ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <FontAwesomeIcon icon={faArrowRight} />
+                </motion.div>
+              </motion.span>
+              
+              {/* Button shine effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '100%' }}
+                transition={{ duration: 0.6 }}
+              />
+            </motion.button>
+          </div>
+        </ScrollReveal>
       </AnimatedSection>
     </section>
   );

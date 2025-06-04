@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { AnimatedSection, AnimatedButton } from '@/components/animations';
+import { AnimatedSection, AnimatedButton, TextReveal, ScrollReveal } from '@/components/animations';
 import GradientText from '@/components/animations/GradientText';
 import Navbar from '@/components/Navbar';
 import About from '@/components/About';
@@ -44,72 +44,84 @@ export default function Home() {
           className="relative flex flex-col items-center justify-center min-h-screen px-6 overflow-hidden"
         >
           {/* Logo Animation */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 1,
-              ease: [0.6, -0.05, 0.01, 0.99],
-            }}
-            className="relative mb-8"
-          >
-            <motion.img
-              src="/logo-multigraphic.lb.png"
-              alt="Multigraphic.lb Logo"
-              className="w-40 h-40"
-              whileHover={{ scale: 1.2, rotate: 15 }}
-              animate={{
-                filter: [
-                  'brightness(1) blur(0px)',
-                  'brightness(1.2) blur(4px)',
-                  'brightness(1) blur(0px)',
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: 'reverse',
-              }}
-            />
-          </motion.div>
+          <ScrollReveal direction="up" delay={0.2}>
+            <motion.div
+              className="relative mb-8"
+            >
+              <motion.img
+                src="/logo-multigraphic.lb.png"
+                alt="Multigraphic.lb Logo"
+                className="w-40 h-40"
+                whileHover={{ scale: 1.2, rotate: 15 }}
+                animate={{
+                  filter: [
+                    'brightness(1) blur(0px)',
+                    'brightness(1.2) blur(4px)',
+                    'brightness(1) blur(0px)',
+                  ],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: 'reverse',
+                }}
+              />
+            </motion.div>
+          </ScrollReveal>
 
-          {/* Name and Title */}
-          <GradientText
+          {/* Name and Title with Text Reveal */}
+          <TextReveal
             text="Stephan El Khoury"
             className="text-4xl md:text-6xl font-bold mb-4"
-            delay={0.3}
+            delay={0.5}
+            staggerDelay={0.1}
           />
 
-          <AnimatedSection delay={0.5}>
+          <ScrollReveal direction="up" delay={0.8}>
             <h2 className="text-xl md:text-2xl text-gray-300 mb-2">
               Computer Engineer | Full Stack Developer | Musician
             </h2>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={1.0}>
             <p className="text-lg text-gray-400 max-w-2xl text-center mb-8">
               Innovating at the intersection of code, creativity, and sound
             </p>
+          </ScrollReveal>
 
+          <ScrollReveal direction="up" delay={1.2}>
             <AnimatedButton>
               Explore My Work
             </AnimatedButton>
-          </AnimatedSection>
+          </ScrollReveal>
 
           {/* Background Gradient */}
           <div className="absolute inset-0 bg-gradient-radial from-[#0B001F] via-[#0B001F] to-black opacity-50 -z-10" />
         </section>
 
-        <About />
+        <ScrollReveal direction="up">
+          <About />
+        </ScrollReveal>
 
         {/* Projects Section */}
-        <Projects />
+        <ScrollReveal direction="left">
+          <Projects />
+        </ScrollReveal>
 
         {/* Experience Section */}
-        <Experience />
+        <ScrollReveal direction="right">
+          <Experience />
+        </ScrollReveal>
 
         {/* Blog Section */}
-        <Blog />
+        <ScrollReveal direction="up">
+          <Blog />
+        </ScrollReveal>
 
         {/* Contact Section */}
-        <Contact />
+        <ScrollReveal direction="up">
+          <Contact />
+        </ScrollReveal>
       </main>
       <Footer />
     </>

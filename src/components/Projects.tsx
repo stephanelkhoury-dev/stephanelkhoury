@@ -2,8 +2,11 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import GradientText from './animations/GradientText';
-import { AnimatedSection } from './animations';
+import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
 
 interface Project {
   title: string;
@@ -151,54 +154,62 @@ const Projects: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="group relative bg-gradient-to-br from-[#00E1FF10] to-[#FF8A0010] rounded-xl overflow-hidden border border-white/10"
-              whileHover={{ y: -8 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-            >
-              <div className="aspect-w-16 aspect-h-9 h-48">
-                <motion.div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${project.image})` }}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300" />
-                
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 text-xs bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black rounded-full font-medium">
-                    {project.category}
-                  </span>
+            <ScrollReveal key={index} delay={index * 0.1} direction="up">
+              <motion.div
+                className="group relative bg-gradient-to-br from-[#00E1FF10] to-[#FF8A0010] rounded-xl overflow-hidden border border-white/10 hover-glow glass shimmer"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="aspect-w-16 aspect-h-9 h-48 relative overflow-hidden">
+                  <motion.div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${project.image})` }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300" />
+                  
+                  {/* Category Badge */}
+                  <motion.div 
+                    className="absolute top-4 left-4"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    <span className="px-3 py-1 text-xs bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black rounded-full font-medium liquid-bg">
+                      {project.category}
+                    </span>
+                  </motion.div>
                 </div>
-              </div>
-              
-              <div className="relative p-6">
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-[#00E1FF] transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-gray-300 mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
                 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-2 py-1 text-xs bg-white/10 rounded-full text-gray-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <span className="px-2 py-1 text-xs bg-white/10 rounded-full text-gray-400">
-                      +{project.technologies.length - 4} more
-                    </span>
-                  )}
+                <div className="relative p-6">
+                  <motion.h3 
+                    className="text-xl font-semibold mb-2 group-hover:text-[#00E1FF] transition-colors duration-300 "
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {project.title}
+                  </motion.h3>
+                  <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                  
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                      <motion.span
+                        key={techIndex}
+                        className="px-2 py-1 text-xs bg-white/10 rounded-full text-gray-300 hover-lift magnetic"
+                        whileHover={{ scale: 1.1, backgroundColor: 'rgba(0, 225, 255, 0.2)' }}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: techIndex * 0.1, duration: 0.3 }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <span className="px-2 py-1 text-xs bg-white/10 rounded-full text-gray-400">
+                        +{project.technologies.length - 4} more
+                      </span>
+                    )}
                 </div>
                 
                 {/* Links */}
@@ -210,7 +221,7 @@ const Projects: React.FC = () => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm transition-colors duration-300"
                     >
-                      <i className="fab fa-github"></i>
+                      <FontAwesomeIcon icon={faGithub} />
                       Code
                     </a>
                   )}
@@ -221,13 +232,14 @@ const Projects: React.FC = () => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black rounded-lg text-sm font-medium hover:opacity-90 transition-opacity duration-300"
                     >
-                      <i className="fas fa-external-link-alt"></i>
+                      <FontAwesomeIcon icon={faExternalLinkAlt} />
                       Live Demo
                     </a>
                   )}
                 </div>
               </div>
             </motion.div>
+            </ScrollReveal>
           ))}
         </div>
         
