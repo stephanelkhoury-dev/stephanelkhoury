@@ -71,7 +71,7 @@ const blogPosts: BlogPost[] = [
   },
   {
     title: 'From Dream Project to Real-World Application',
-    excerpt: 'The journey of transforming Harmonix from a final year project into a production-ready music analysis platform.',
+    excerpt: 'The journey of transforming Harmonix from a dream project into a production-ready music analysis platform.',
     date: 'March 25, 2025',
     category: 'Startup',
     image: '/blog/dream-to-production.jpg',
