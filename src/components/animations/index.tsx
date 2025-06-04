@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import MusicNotes from './MusicNotes';
 import FloatingParticles from './FloatingParticles';
-import CursorTrail from './CursorTrail';
 import useSmoothScroll from './useSmoothScroll';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -84,7 +83,6 @@ const AnimationProvider: React.FC<{ children: React.ReactNode }> = ({ children }
 
   return (
     <>
-      <CursorTrail />
       <FloatingParticles />
       <MusicNotes />
       {children}
