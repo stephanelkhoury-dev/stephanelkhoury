@@ -1,0 +1,1 @@
+cd /Users/stephanelkhoury/Documents/GitHub/stephan-portfolio && npm run dev

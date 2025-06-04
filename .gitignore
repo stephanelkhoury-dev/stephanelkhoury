@@ -1,1 +1,3 @@
 .vercel
+# Ignore .node files
+*.node
