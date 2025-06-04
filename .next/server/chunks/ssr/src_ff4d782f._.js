@@ -918,7 +918,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Certifi
 const About = ()=>{
     const education = [
         {
-            school: 'Antonine dream Baabda',
+            school: 'Antonine University Baabda',
             degree: 'Computer and Telecommunications Faculty of Engineering - Multimedia',
             period: '2017 - 2022'
         },

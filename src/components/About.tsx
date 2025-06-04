@@ -8,7 +8,7 @@ import CertificateCarousel from './CertificateCarousel';
 const About: React.FC = () => {
   const education = [
     {
-      school: 'Antonine dream Baabda',
+      school: 'Antonine University Baabda',
       degree: 'Computer and Telecommunications Faculty of Engineering - Multimedia',
       period: '2017 - 2022',
     },
