@@ -44,7 +44,7 @@ export default function Home() {
           className="relative flex flex-col items-center justify-center min-h-screen px-6 overflow-hidden"
         >
           {/* Logo Animation */}
-          <ScrollReveal direction="up" delay={0.2}>
+          {/* <ScrollReveal direction="up" delay={0.2}>
             <motion.div
               className="relative mb-8"
               whileHover={{ 
@@ -65,7 +65,7 @@ export default function Home() {
                 priority
               />
             </motion.div>
-          </ScrollReveal>
+          </ScrollReveal> */}
 
           {/* Name and Title with Text Reveal */}
           <TextReveal

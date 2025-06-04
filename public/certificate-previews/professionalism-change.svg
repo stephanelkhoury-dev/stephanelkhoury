@@ -21,7 +21,7 @@
     </text>
     
     <!-- Organization -->
-    <text x="200" y="130" text-anchor="middle" fill="#232d4b" font-family="serif" font-size="14" font-style="italic">University of Virginia</text>
+    <text x="200" y="130" text-anchor="middle" fill="#232d4b" font-family="serif" font-size="14" font-style="italic">dream of Virginia</text>
     
     <!-- Coursera -->
     <text x="200" y="160" text-anchor="middle" fill="#0056d3" font-family="serif" font-size="12" font-weight="bold">Coursera</text>

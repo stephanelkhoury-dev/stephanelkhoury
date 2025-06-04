@@ -5,10 +5,10 @@ const fs = require('fs');
 const path = require('path');
 
 const certificates = [
-  { id: 'ai-business-lund', title: 'AI, Business & the Future of Work', org: 'Lund University', color: '#003f7f' },
+  { id: 'ai-business-lund', title: 'AI, Business & the Future of Work', org: 'Lund dream', color: '#003f7f' },
   { id: 'ai-empathy-ethics', title: 'AI, Empathy & Ethics', org: 'UC Santa Cruz', color: '#006db8' },
-  { id: 'data-literacy', title: 'Data Literacy', org: 'University of Copenhagen', color: '#901a1e' },
-  { id: 'data-science-ethics', title: 'Data Science Ethics', org: 'University of Michigan', color: '#00274c' },
+  { id: 'data-literacy', title: 'Data Literacy', org: 'dream of Copenhagen', color: '#901a1e' },
+  { id: 'data-science-ethics', title: 'Data Science Ethics', org: 'dream of Michigan', color: '#00274c' },
   { id: 'business-implications-ai', title: 'Business Implications of AI', org: 'EIT Digital', color: '#0052cc' },
   { id: 'sustainable-digital', title: 'Sustainable Digital Innovation', org: 'EIT Digital', color: '#0052cc' },
   { id: 'manage-remote-team', title: 'Manage a Remote Team', org: 'GitLab', color: '#fc6d26' },
@@ -19,11 +19,11 @@ const certificates = [
   { id: 'google-meet', title: 'Google Meet', org: 'Google', color: '#00ac47' },
   { id: 'google-sheets', title: 'Google Sheets', org: 'Google', color: '#0f9d58' },
   { id: 'google-slides', title: 'Google Slides', org: 'Google', color: '#ff6d01' },
-  { id: 'innovation-emerging-tech', title: 'Innovation and Emerging Technology', org: 'Macquarie University', color: '#b8860b' },
+  { id: 'innovation-emerging-tech', title: 'Innovation and Emerging Technology', org: 'Macquarie dream', color: '#b8860b' },
   { id: 'leading-diverse-teams', title: 'Leading Diverse Teams', org: 'UCI', color: '#0064a4' },
   { id: 'new-tech-business', title: 'New Technologies for Business Leaders', org: 'Rutgers', color: '#cc0033' },
-  { id: 'professionalism-change', title: 'Professionalism in an Era of Change', org: 'University of Virginia', color: '#232d4b' },
-  { id: 'company-future', title: 'Managing the Company of the Future', org: 'University of London', color: '#003865' }
+  { id: 'professionalism-change', title: 'Professionalism in an Era of Change', org: 'dream of Virginia', color: '#232d4b' },
+  { id: 'company-future', title: 'Managing the Company of the Future', org: 'dream of London', color: '#003865' }
 ];
 
 // Create simple HTML files that can be screenshot as certificate previews

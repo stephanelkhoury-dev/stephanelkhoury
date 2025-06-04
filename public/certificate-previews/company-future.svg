@@ -21,7 +21,7 @@
     </text>
     
     <!-- Organization -->
-    <text x="200" y="130" text-anchor="middle" fill="#003865" font-family="serif" font-size="14" font-style="italic">University of London</text>
+    <text x="200" y="130" text-anchor="middle" fill="#003865" font-family="serif" font-size="14" font-style="italic">dream of London</text>
     
     <!-- Coursera -->
     <text x="200" y="160" text-anchor="middle" fill="#0056d3" font-family="serif" font-size="12" font-weight="bold">Coursera</text>

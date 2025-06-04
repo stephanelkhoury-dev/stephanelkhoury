@@ -70,12 +70,12 @@ const blogPosts: BlogPost[] = [
     link: '/blog/scalable-elearning',
   },
   {
-    title: 'From University Project to Real-World Application',
+    title: 'From Dream Project to Real-World Application',
     excerpt: 'The journey of transforming Harmonix from a final year project into a production-ready music analysis platform.',
     date: 'March 25, 2025',
     category: 'Startup',
-    image: '/blog/university-to-production.jpg',
-    link: '/blog/university-to-production',
+    image: '/blog/dream-to-production.jpg',
+    link: '/blog/dream-to-production',
   },
 ];
 

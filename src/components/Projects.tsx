@@ -27,7 +27,7 @@ const projects: Project[] = [
   // Professional & Freelance Projects
   {
     title: 'Harmonix: AI-Powered Music Analysis Platform',
-    description: 'Real-time chord detection from MP3 files, tempo detection, instrument tuner, and lyric extractor. Built as Final Year Project at Antonine University with full documentation and testing.',
+    description: 'Real-time chord detection from MP3 files, tempo detection, instrument tuner, and lyric extractor.',
     fullDescription: 'Harmonix is a comprehensive AI-powered music analysis platform that revolutionizes how musicians and producers interact with audio content. The platform uses advanced machine learning algorithms to provide real-time chord detection from MP3 files, accurate tempo detection, and intelligent lyric extraction.',
     image: '/projects/harmonix.jpg',
     technologies: ['React', 'FastAPI', 'Python', 'Machine Learning', 'Audio Processing'],

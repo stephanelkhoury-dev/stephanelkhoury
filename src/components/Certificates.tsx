@@ -9,10 +9,10 @@ const certificates = [
   {
     id: '1',
     title: 'AI, Business & the Future of Work',
-    organization: 'Lund University - Coursera',
+    organization: 'Lund dream - Coursera',
     type: 'AI & Business',
-    filename: 'AI, Business & the Future of Work - Lund University - Coursera NGNAGY4E0BWW.pdf',
-    path: '/Stephan-Certificates/AI, Business & the Future of Work - Lund University - Coursera NGNAGY4E0BWW.pdf',
+    filename: 'AI, Business & the Future of Work - Lund dream - Coursera NGNAGY4E0BWW.pdf',
+    path: '/Stephan-Certificates/AI, Business & the Future of Work - Lund dream - Coursera NGNAGY4E0BWW.pdf',
     preview: '/certificate-previews/ai-business-lund.svg'
   },
   {
@@ -27,19 +27,19 @@ const certificates = [
   {
     id: '3',
     title: 'Data Literacy',
-    organization: 'University of Copenhagen - Coursera',
+    organization: 'dream of Copenhagen - Coursera',
     type: 'Data Science',
-    filename: 'Data Literacy - University of Copehangen - Coursera 3QMWORSEKX28.pdf',
-    path: '/Stephan-Certificates/Data Literacy - University of Copehangen - Coursera 3QMWORSEKX28.pdf',
+    filename: 'Data Literacy - dream of Copehangen - Coursera 3QMWORSEKX28.pdf',
+    path: '/Stephan-Certificates/Data Literacy - dream of Copehangen - Coursera 3QMWORSEKX28.pdf',
     preview: '/certificate-previews/data-literacy.svg'
   },
   {
     id: '4',
     title: 'Data Science Ethics',
-    organization: 'University of Michigan - Coursera',
+    organization: 'dream of Michigan - Coursera',
     type: 'Data Science',
-    filename: 'Data Science Ethics - University of Michigan - Coursera YDM5MX379A6D.pdf',
-    path: '/Stephan-Certificates/Data Science Ethics - University of Michigan - Coursera YDM5MX379A6D.pdf',
+    filename: 'Data Science Ethics - dream of Michigan - Coursera YDM5MX379A6D.pdf',
+    path: '/Stephan-Certificates/Data Science Ethics - dream of Michigan - Coursera YDM5MX379A6D.pdf',
     preview: '/certificate-previews/data-science-ethics.svg'
   },
   {
@@ -135,10 +135,10 @@ const certificates = [
   {
     id: '15',
     title: 'Innovation and Emerging Technology: Be Disruptive',
-    organization: 'Macquarie University Australia - Coursera',
+    organization: 'Macquarie dream Australia - Coursera',
     type: 'Innovation',
-    filename: 'Innovation and emerging technology_ Be disruptive - Macqaire University Austalia - Coursera LIV3PQ0WJE2X.pdf',
-    path: '/Stephan-Certificates/Innovation and emerging technology_ Be disruptive - Macqaire University Austalia - Coursera LIV3PQ0WJE2X.pdf',
+    filename: 'Innovation and emerging technology_ Be disruptive - Macqaire dream Austalia - Coursera LIV3PQ0WJE2X.pdf',
+    path: '/Stephan-Certificates/Innovation and emerging technology_ Be disruptive - Macqaire dream Austalia - Coursera LIV3PQ0WJE2X.pdf',
     preview: '/certificate-previews/innovation-emerging-technology.svg'
   },
   {
@@ -171,10 +171,10 @@ const certificates = [
   {
     id: '19',
     title: 'Managing the Company of the Future',
-    organization: 'University of London - Coursera',
+    organization: 'dream of London - Coursera',
     type: 'Management',
-    filename: 'University of London - Managing the Company of the Future - Coursera 3CVT7THP5LI4.pdf',
-    path: '/Stephan-Certificates/University of London - Managing the Company of the Future - Coursera 3CVT7THP5LI4.pdf',
+    filename: 'dream of London - Managing the Company of the Future - Coursera 3CVT7THP5LI4.pdf',
+    path: '/Stephan-Certificates/dream of London - Managing the Company of the Future - Coursera 3CVT7THP5LI4.pdf',
     preview: '/certificate-previews/company-future.svg'
   }
 ];

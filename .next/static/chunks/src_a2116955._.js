@@ -972,7 +972,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Certifi
 const About = ()=>{
     const education = [
         {
-            school: 'Antonine University Baabda',
+            school: 'Antonine dream Baabda',
             degree: 'Computer and Telecommunications Faculty of Engineering - Multimedia',
             period: '2017 - 2022'
         },
@@ -1033,10 +1033,10 @@ const About = ()=>{
         {
             id: '1',
             title: 'AI, Business & the Future of Work',
-            organization: 'Lund University - Coursera',
+            organization: 'Lund dream - Coursera',
             type: 'AI & Business',
-            filename: 'AI, Business & the Future of Work - Lund University - Coursera NGNAGY4E0BWW.pdf',
-            path: '/Stephan-Certificates/AI, Business & the Future of Work - Lund University - Coursera NGNAGY4E0BWW.pdf',
+            filename: 'AI, Business & the Future of Work - Lund dream - Coursera NGNAGY4E0BWW.pdf',
+            path: '/Stephan-Certificates/AI, Business & the Future of Work - Lund dream - Coursera NGNAGY4E0BWW.pdf',
             preview: '/certificate-previews/ai-business-lund.svg'
         },
         {
@@ -1051,19 +1051,19 @@ const About = ()=>{
         {
             id: '3',
             title: 'Data Literacy',
-            organization: 'University of Copenhagen - Coursera',
+            organization: 'dream of Copenhagen - Coursera',
             type: 'Data Science',
-            filename: 'Data Literacy - University of Copehangen - Coursera 3QMWORSEKX28.pdf',
-            path: '/Stephan-Certificates/Data Literacy - University of Copehangen - Coursera 3QMWORSEKX28.pdf',
+            filename: 'Data Literacy - dream of Copehangen - Coursera 3QMWORSEKX28.pdf',
+            path: '/Stephan-Certificates/Data Literacy - dream of Copehangen - Coursera 3QMWORSEKX28.pdf',
             preview: '/certificate-previews/data-literacy.svg'
         },
         {
             id: '4',
             title: 'Data Science Ethics',
-            organization: 'University of Michigan - Coursera',
+            organization: 'dream of Michigan - Coursera',
             type: 'Data Science',
-            filename: 'Data Science Ethics - University of Michigan - Coursera YDM5MX379A6D.pdf',
-            path: '/Stephan-Certificates/Data Science Ethics - University of Michigan - Coursera YDM5MX379A6D.pdf',
+            filename: 'Data Science Ethics - dream of Michigan - Coursera YDM5MX379A6D.pdf',
+            path: '/Stephan-Certificates/Data Science Ethics - dream of Michigan - Coursera YDM5MX379A6D.pdf',
             preview: '/certificate-previews/data-science-ethics.svg'
         },
         {
@@ -1159,10 +1159,10 @@ const About = ()=>{
         {
             id: '15',
             title: 'Innovation and Emerging Technology: Be Disruptive',
-            organization: 'Macquarie University Australia - Coursera',
+            organization: 'Macquarie dream Australia - Coursera',
             type: 'Innovation',
-            filename: 'Innovation and emerging technology_ Be disruptive - Macqaire University Austalia - Coursera LIV3PQ0WJE2X.pdf',
-            path: '/Stephan-Certificates/Innovation and emerging technology_ Be disruptive - Macqaire University Austalia - Coursera LIV3PQ0WJE2X.pdf',
+            filename: 'Innovation and emerging technology_ Be disruptive - Macqaire dream Austalia - Coursera LIV3PQ0WJE2X.pdf',
+            path: '/Stephan-Certificates/Innovation and emerging technology_ Be disruptive - Macqaire dream Austalia - Coursera LIV3PQ0WJE2X.pdf',
             preview: '/certificate-previews/innovation-emerging-tech.svg'
         },
         {
@@ -1195,10 +1195,10 @@ const About = ()=>{
         {
             id: '19',
             title: 'Managing the Company of the Future',
-            organization: 'University of London - Coursera',
+            organization: 'dream of London - Coursera',
             type: 'Management',
-            filename: 'University of London - Managing the Company of the Future - Coursera 3CVT7THP5LI4.pdf',
-            path: '/Stephan-Certificates/University of London - Managing the Company of the Future - Coursera 3CVT7THP5LI4.pdf',
+            filename: 'dream of London - Managing the Company of the Future - Coursera 3CVT7THP5LI4.pdf',
+            path: '/Stephan-Certificates/dream of London - Managing the Company of the Future - Coursera 3CVT7THP5LI4.pdf',
             preview: '/certificate-previews/company-future.svg'
         }
     ];
@@ -2583,7 +2583,7 @@ const projects = [
     // Professional & Freelance Projects
     {
         title: 'Harmonix: AI-Powered Music Analysis Platform',
-        description: 'Real-time chord detection from MP3 files, tempo detection, instrument tuner, and lyric extractor. Built as Final Year Project at Antonine University with full documentation and testing.',
+        description: 'Real-time chord detection from MP3 files, tempo detection, instrument tuner, and lyric extractor.',
         fullDescription: 'Harmonix is a comprehensive AI-powered music analysis platform that revolutionizes how musicians and producers interact with audio content. The platform uses advanced machine learning algorithms to provide real-time chord detection from MP3 files, accurate tempo detection, and intelligent lyric extraction.',
         image: '/projects/harmonix.jpg',
         technologies: [
@@ -4251,12 +4251,12 @@ const blogPosts = [
         link: '/blog/scalable-elearning'
     },
     {
-        title: 'From University Project to Real-World Application',
+        title: 'From Dream Project to Real-World Application',
         excerpt: 'The journey of transforming Harmonix from a final year project into a production-ready music analysis platform.',
         date: 'March 25, 2025',
         category: 'Startup',
-        image: '/blog/university-to-production.jpg',
-        link: '/blog/university-to-production'
+        image: '/blog/dream-to-production.jpg',
+        link: '/blog/dream-to-production'
     }
 ];
 const Blog = ()=>{
@@ -5918,8 +5918,6 @@ __turbopack_context__.s({
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/image.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$module__evaluation$3e$__ = __turbopack_context__.i("[project]/src/components/animations/index.tsx [app-client] (ecmascript) <module evaluation>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$index$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/src/components/animations/index.tsx [app-client] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$TextReveal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TextReveal$3e$__ = __turbopack_context__.i("[project]/src/components/animations/TextReveal.tsx [app-client] (ecmascript) <export default as TextReveal>");
@@ -5936,8 +5934,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$gsap$2f$Scro
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
-;
-;
 ;
 ;
 ;
@@ -5983,41 +5979,6 @@ function Home() {
                         ref: parallaxRef,
                         className: "relative flex flex-col items-center justify-center min-h-screen px-6 overflow-hidden",
                         children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$ScrollReveal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ScrollReveal$3e$__["ScrollReveal"], {
-                                direction: "up",
-                                delay: 0.2,
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-                                    className: "relative mb-8",
-                                    whileHover: {
-                                        scale: 1.1,
-                                        filter: 'blur(2px) brightness(1.1)'
-                                    },
-                                    transition: {
-                                        duration: 0.3,
-                                        ease: "easeInOut"
-                                    },
-                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                        src: "/logo-multigraphic.lb.png",
-                                        alt: "Multigraphic.lb Logo",
-                                        width: 160,
-                                        height: 160,
-                                        className: "w-40 h-40",
-                                        priority: true
-                                    }, void 0, false, {
-                                        fileName: "[project]/src/app/page.tsx",
-                                        lineNumber: 59,
-                                        columnNumber: 15
-                                    }, this)
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 48,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 47,
-                                columnNumber: 11
-                            }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$animations$2f$TextReveal$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TextReveal$3e$__["TextReveal"], {
                                 text: "Stephan El Khoury",
                                 className: "text-4xl md:text-6xl font-bold mb-4",
