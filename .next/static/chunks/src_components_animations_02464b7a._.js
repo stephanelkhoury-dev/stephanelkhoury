@@ -98,8 +98,10 @@ const FloatingParticles = ()=>{
     _s();
     const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const [particles, setParticles] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState([]);
+    const [isClient, setIsClient] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].useState(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "FloatingParticles.useEffect": ()=>{
+            setIsClient(true);
             const colors = [
                 '#00E1FF',
                 '#C13CFF',
@@ -118,7 +120,8 @@ const FloatingParticles = ()=>{
                         speedX: (Math.random() - 0.5) * 0.5,
                         speedY: (Math.random() - 0.5) * 0.5,
                         opacity: Math.random() * 0.6 + 0.1,
-                        color: colors[Math.floor(Math.random() * colors.length)]
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        animationDuration: 3 + Math.random() * 2
                     })
             }["FloatingParticles.useEffect.newParticles"]);
             setParticles(newParticles);
@@ -144,7 +147,7 @@ const FloatingParticles = ()=>{
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         ref: containerRef,
         className: "fixed inset-0 pointer-events-none overflow-hidden z-0",
-        children: particles.map((particle)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+        children: isClient && particles.map((particle)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
                 className: "absolute rounded-full blur-sm",
                 style: {
                     left: `${particle.x}%`,
@@ -167,22 +170,22 @@ const FloatingParticles = ()=>{
                     ]
                 },
                 transition: {
-                    duration: 3 + Math.random() * 2,
+                    duration: particle.animationDuration,
                     repeat: Infinity,
                     ease: "easeInOut"
                 }
             }, particle.id, false, {
                 fileName: "[project]/src/components/animations/FloatingParticles.tsx",
-                lineNumber: 58,
+                lineNumber: 63,
                 columnNumber: 9
             }, this))
     }, void 0, false, {
         fileName: "[project]/src/components/animations/FloatingParticles.tsx",
-        lineNumber: 53,
+        lineNumber: 58,
         columnNumber: 5
     }, this);
 };
-_s(FloatingParticles, "u3wzCPHmU0MaBVmQMA45ZsjXXWY=");
+_s(FloatingParticles, "5UZImEsaJLpT3dMfNosf3hQ7jQg=");
 _c = FloatingParticles;
 const __TURBOPACK__default__export__ = FloatingParticles;
 var _c;

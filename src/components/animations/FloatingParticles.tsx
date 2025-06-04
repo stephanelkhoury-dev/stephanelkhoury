@@ -12,13 +12,17 @@ interface Particle {
   speedY: number;
   opacity: number;
   color: string;
+  animationDuration: number;
 }
 
 const FloatingParticles: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [particles, setParticles] = React.useState<Particle[]>([]);
+  const [isClient, setIsClient] = React.useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+    
     const colors = ['#00E1FF', '#C13CFF', '#FF8A00', '#FFFFFF'];
     const particleCount = 50;
 
@@ -31,6 +35,7 @@ const FloatingParticles: React.FC = () => {
       speedY: (Math.random() - 0.5) * 0.5,
       opacity: Math.random() * 0.6 + 0.1,
       color: colors[Math.floor(Math.random() * colors.length)],
+      animationDuration: 3 + Math.random() * 2,
     }));
 
     setParticles(newParticles);
@@ -54,7 +59,7 @@ const FloatingParticles: React.FC = () => {
       ref={containerRef}
       className="fixed inset-0 pointer-events-none overflow-hidden z-0"
     >
-      {particles.map(particle => (
+      {isClient && particles.map(particle => (
         <motion.div
           key={particle.id}
           className="absolute rounded-full blur-sm"
@@ -71,7 +76,7 @@ const FloatingParticles: React.FC = () => {
             opacity: [particle.opacity, particle.opacity * 0.5, particle.opacity],
           }}
           transition={{
-            duration: 3 + Math.random() * 2,
+            duration: particle.animationDuration,
             repeat: Infinity,
             ease: "easeInOut",
           }}
