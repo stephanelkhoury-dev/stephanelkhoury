@@ -113,6 +113,258 @@ const projects: Project[] = [
     github: 'https://github.com/stephanelkhoury/saudi-dates-docs',
     category: 'Documentation',
   },
+
+  // Upcoming & Planned Projects
+  {
+    title: 'Modern E-Commerce Platform',
+    description: 'Full-stack e-commerce solution with cart management, Stripe/PayPal integration, advanced filtering, and real-time inventory tracking.',
+    fullDescription: 'A comprehensive e-commerce platform built with modern technologies, featuring seamless user experience, secure payment processing, and advanced product management. Includes admin dashboard, order tracking, and analytics.',
+    image: '/projects/angular-ecommerce.jpg', // Reusing existing image as placeholder
+    technologies: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Stripe API', 'Redux', 'TypeScript'],
+    category: 'Upcoming Projects',
+    date: 'Q1 2025',
+    features: [
+      'Shopping cart with persistent storage',
+      'Stripe & PayPal payment integration',
+      'Advanced product filtering and search',
+      'User authentication and profiles',
+      'Order tracking and history',
+      'Admin dashboard with analytics',
+      'Real-time inventory management',
+      'Responsive design for all devices'
+    ],
+    challenges: [
+      'Implementing secure payment processing',
+      'Optimizing database queries for large product catalogs',
+      'Creating scalable cart and session management',
+      'Building comprehensive admin interface'
+    ]
+  },
+  {
+    title: 'Real-Time Chat Application',
+    description: 'Scalable messaging platform with WebSocket integration, private/group chats, message history, and real-time notifications.',
+    fullDescription: 'A modern chat application built for scalability and performance, featuring real-time messaging, file sharing, and comprehensive user management. Uses WebSocket technology for instant communication.',
+    image: '/projects/chord-dictionary.jpg', // Placeholder
+    technologies: ['React', 'Socket.IO', 'Node.js', 'Redis', 'MongoDB', 'JWT', 'WebRTC'],
+    category: 'Upcoming Projects',
+    date: 'Q1 2025',
+    features: [
+      'Real-time messaging with Socket.IO',
+      'Private and group chat rooms',
+      'Message history and search',
+      'File and image sharing',
+      'User presence indicators',
+      'Push notifications',
+      'Voice and video calling',
+      'Message encryption for security'
+    ],
+    challenges: [
+      'Scaling WebSocket connections',
+      'Implementing message delivery guarantees',
+      'Managing real-time user presence',
+      'Optimizing message storage and retrieval'
+    ]
+  },
+  {
+    title: 'Project Management Dashboard',
+    description: 'Kanban-style project management tool with drag-and-drop functionality, team collaboration, and real-time updates inspired by Trello and Notion.',
+    fullDescription: 'A comprehensive project management solution featuring intuitive drag-and-drop interfaces, role-based access control, and real-time collaboration tools for teams of all sizes.',
+    image: '/projects/pos-crm.jpg', // Placeholder
+    technologies: ['Next.js', 'FastAPI', 'PostgreSQL', 'Tailwind CSS', 'React DnD', 'WebSocket'],
+    category: 'Upcoming Projects',
+    date: 'Q2 2025',
+    features: [
+      'Drag-and-drop Kanban boards',
+      'Real-time collaboration',
+      'Role-based access control',
+      'Task assignments and deadlines',
+      'File attachments and comments',
+      'Project templates',
+      'Time tracking and reporting',
+      'Integration with third-party tools'
+    ],
+    challenges: [
+      'Implementing smooth drag-and-drop UX',
+      'Managing real-time state synchronization',
+      'Building flexible permission systems',
+      'Optimizing performance for large datasets'
+    ]
+  },
+  {
+    title: 'Headless CMS Blog Platform',
+    description: 'Modern content management system with headless architecture, SEO optimization, markdown support, and dynamic content rendering.',
+    fullDescription: 'A powerful blogging platform built with headless CMS architecture, featuring advanced SEO capabilities, flexible content modeling, and lightning-fast performance.',
+    image: '/projects/sancta-maria.jpg', // Placeholder
+    technologies: ['Next.js', 'Strapi', 'GraphQL', 'Tailwind CSS', 'Markdown', 'SEO'],
+    category: 'Upcoming Projects',
+    date: 'Q2 2025',
+    features: [
+      'Headless CMS with Strapi',
+      'SEO optimization and meta management',
+      'Markdown content support',
+      'Dynamic page generation',
+      'Content versioning',
+      'Multi-author support',
+      'Comment system',
+      'Analytics integration'
+    ],
+    challenges: [
+      'Optimizing static generation performance',
+      'Building flexible content schemas',
+      'Implementing advanced SEO features',
+      'Creating intuitive admin interface'
+    ]
+  },
+  {
+    title: 'Secure Authentication System',
+    description: 'Comprehensive authentication service with JWT tokens, OAuth integration, two-factor authentication, and advanced security features.',
+    fullDescription: 'A robust authentication system designed for modern applications, featuring multiple authentication methods, advanced security measures, and seamless user experience.',
+    image: '/projects/crypto-engineers.jpg', // Placeholder
+    technologies: ['Node.js', 'Express', 'MongoDB', 'JWT', 'OAuth', '2FA', 'bcrypt', 'Redis'],
+    category: 'Upcoming Projects',
+    date: 'Q2 2025',
+    features: [
+      'JWT-based authentication',
+      'OAuth integration (Google, GitHub)',
+      'Two-factor authentication (2FA)',
+      'Password reset functionality',
+      'Session management',
+      'Rate limiting and security',
+      'Email verification',
+      'Admin user management'
+    ],
+    challenges: [
+      'Implementing secure token handling',
+      'Managing session state across devices',
+      'Building robust 2FA system',
+      'Ensuring GDPR compliance'
+    ]
+  },
+  {
+    title: 'AI-Powered Music Analyzer',
+    description: 'Advanced music analysis application using machine learning for chord detection, tempo analysis, and intelligent music recommendations.',
+    fullDescription: 'Building on Harmonix, this expanded AI platform will include advanced music analysis features, recommendation systems, and collaborative tools for musicians and producers.',
+    image: '/projects/harmonix.jpg',
+    technologies: ['Python', 'TensorFlow', 'FastAPI', 'React', 'Audio Processing', 'ML', 'WebAssembly'],
+    category: 'Upcoming Projects',
+    date: 'Q3 2025',
+    features: [
+      'Advanced chord progression analysis',
+      'Intelligent music recommendations',
+      'Real-time audio visualization',
+      'Collaborative music sessions',
+      'Custom ML model training',
+      'Audio fingerprinting',
+      'Music theory education tools',
+      'API for third-party integration'
+    ],
+    challenges: [
+      'Training models on diverse musical styles',
+      'Optimizing real-time audio processing',
+      'Building scalable recommendation engine',
+      'Implementing collaborative features'
+    ]
+  },
+  {
+    title: 'RESTful API Platform',
+    description: 'Comprehensive API-first platform with full documentation, authentication, rate limiting, and microservices architecture.',
+    fullDescription: 'A production-ready API platform designed for scalability and developer experience, featuring comprehensive documentation, testing tools, and monitoring capabilities.',
+    image: '/projects/erp-system.jpg', // Placeholder
+    technologies: ['Node.js', 'Express', 'OpenAPI', 'Swagger', 'Docker', 'PostgreSQL', 'Redis'],
+    category: 'Upcoming Projects',
+    date: 'Q3 2025',
+    features: [
+      'RESTful API design',
+      'Comprehensive OpenAPI documentation',
+      'Rate limiting and throttling',
+      'API versioning',
+      'Authentication and authorization',
+      'Request/response validation',
+      'Monitoring and analytics',
+      'SDK generation for multiple languages'
+    ],
+    challenges: [
+      'Designing scalable API architecture',
+      'Implementing effective rate limiting',
+      'Building comprehensive documentation',
+      'Ensuring API security and performance'
+    ]
+  },
+  {
+    title: 'Dockerized Microservices Platform',
+    description: 'Production-ready microservices architecture with Docker, CI/CD pipelines, load balancing, and comprehensive monitoring.',
+    fullDescription: 'A complete microservices ecosystem demonstrating modern DevOps practices, featuring automated deployment, service discovery, and comprehensive monitoring solutions.',
+    image: '/projects/pos-crm.jpg', // Placeholder
+    technologies: ['Docker', 'Kubernetes', 'GitHub Actions', 'NGINX', 'Prometheus', 'Grafana', 'Microservices'],
+    category: 'Upcoming Projects',
+    date: 'Q4 2025',
+    features: [
+      'Containerized microservices',
+      'CI/CD with GitHub Actions',
+      'Service discovery and load balancing',
+      'Centralized logging',
+      'Monitoring and alerting',
+      'Auto-scaling capabilities',
+      'Health checks and circuit breakers',
+      'Blue-green deployments'
+    ],
+    challenges: [
+      'Orchestrating service communication',
+      'Implementing distributed tracing',
+      'Managing service dependencies',
+      'Building robust deployment pipelines'
+    ]
+  },
+  {
+    title: 'Streaming Platform Clone',
+    description: 'Full-featured streaming platform inspired by Spotify, with music streaming, playlists, social features, and recommendation engine.',
+    fullDescription: 'A comprehensive music streaming platform featuring advanced audio streaming, social interactions, and AI-powered music discovery to demonstrate full-stack capabilities.',
+    image: '/projects/harmonix.jpg', // Related to music
+    technologies: ['React', 'Node.js', 'MongoDB', 'Redis', 'WebRTC', 'Audio Streaming', 'ML Recommendations'],
+    category: 'Upcoming Projects',
+    date: 'Q4 2025',
+    features: [
+      'High-quality audio streaming',
+      'Playlist creation and sharing',
+      'Social features and following',
+      'AI-powered recommendations',
+      'Offline playback capability',
+      'Artist dashboard and analytics',
+      'Search and discovery',
+      'Mobile-responsive design'
+    ],
+    challenges: [
+      'Implementing efficient audio streaming',
+      'Building recommendation algorithms',
+      'Managing large media files',
+      'Creating smooth user experience'
+    ]
+  },
+  {
+    title: 'Business Analytics Dashboard',
+    description: 'Advanced analytics platform with interactive charts, real-time data visualization, role-based access, and comprehensive reporting tools.',
+    fullDescription: 'A powerful business intelligence platform featuring interactive dashboards, real-time analytics, and comprehensive reporting capabilities for data-driven decision making.',
+    image: '/projects/pos-crm.jpg', // Business-related
+    technologies: ['React', 'D3.js', 'Chart.js', 'NestJS', 'PostgreSQL', 'Redis', 'WebSocket'],
+    category: 'Upcoming Projects',
+    date: 'Q4 2025',
+    features: [
+      'Interactive data visualizations',
+      'Real-time analytics updates',
+      'Custom dashboard creation',
+      'Role-based access control',
+      'Export and reporting tools',
+      'Data filtering and drilling',
+      'Performance monitoring',
+      'Integration with multiple data sources'
+    ],
+    challenges: [
+      'Optimizing large dataset visualization',
+      'Building flexible charting system',
+      'Implementing real-time data updates',
+      'Creating intuitive user interface'
+    ]
+  },
 ];
 
 const Projects: React.FC = () => {

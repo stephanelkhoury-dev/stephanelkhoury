@@ -1,0 +1,18 @@
+
+> chat-server@1.0.0 start
+> node dist/server.js
+
+(node:19854) [MONGOOSE] Warning: Duplicate schema index on {"username":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19854) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+[32minfo[39m: Chat server running on port 5050 {"service":"chat-server","timestamp":"2025-06-07 03:04:43"}
+[32minfo[39m: Environment: development {"service":"chat-server","timestamp":"2025-06-07 03:04:43"}
+[32minfo[39m: Connected to MongoDB successfully {"service":"chat-server","timestamp":"2025-06-07 03:04:43"}
+[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:04:53"}
+[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:04:53"}
+[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:04:53"}
+[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:04:53"}
+[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:05:27"}
+[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:05:27"}
+[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:05:30"}
+[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:05:30"}

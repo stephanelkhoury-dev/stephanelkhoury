@@ -1,0 +1,84 @@
+{"level":"info","message":"Chat server running on port 3001","service":"chat-server","timestamp":"2025-06-07 00:52:50"}
+{"level":"info","message":"Environment: development","service":"chat-server","timestamp":"2025-06-07 00:52:50"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"chat-server","timestamp":"2025-06-07 00:52:50"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 00:55:10"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 00:55:10"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 00:55:10"}
+{"level":"info","message":"Chat server running on port 3001","service":"chat-server","timestamp":"2025-06-07 00:55:33"}
+{"level":"info","message":"Environment: development","service":"chat-server","timestamp":"2025-06-07 00:55:33"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"chat-server","timestamp":"2025-06-07 00:55:33"}
+{"level":"info","message":"Chat server running on port 3001","service":"chat-server","timestamp":"2025-06-07 00:59:37"}
+{"level":"info","message":"Environment: development","service":"chat-server","timestamp":"2025-06-07 00:59:37"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"chat-server","timestamp":"2025-06-07 00:59:37"}
+{"level":"info","message":"Chat server running on port 3001","service":"chat-server","timestamp":"2025-06-07 01:28:16"}
+{"level":"info","message":"Environment: development","service":"chat-server","timestamp":"2025-06-07 01:28:16"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"chat-server","timestamp":"2025-06-07 01:28:16"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 01:29:08"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 01:29:08"}
+{"level":"info","message":"HEAD /api/health - ::1","service":"chat-server","timestamp":"2025-06-07 01:31:18"}
+{"level":"info","message":"HEAD /api/auth/register - ::1","service":"chat-server","timestamp":"2025-06-07 01:31:31"}
+{"level":"info","message":"GET /health - ::1","service":"chat-server","timestamp":"2025-06-07 01:31:55"}
+{"level":"info","message":"POST /api/auth/register - ::1","service":"chat-server","timestamp":"2025-06-07 01:32:03"}
+{"level":"info","message":"New user registered: testuser (test@example.com)","service":"chat-server","timestamp":"2025-06-07 01:32:04"}
+{"level":"info","message":"Chat server running on port 3001","service":"chat-server","timestamp":"2025-06-07 02:08:58"}
+{"level":"info","message":"Environment: development","service":"chat-server","timestamp":"2025-06-07 02:08:58"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"chat-server","timestamp":"2025-06-07 02:08:58"}
+{"level":"info","message":"POST /api/auth/login - ::1","service":"chat-server","timestamp":"2025-06-07 02:52:06"}
+{"level":"info","message":"User logged in: testuser (test@example.com)","service":"chat-server","timestamp":"2025-06-07 02:52:06"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:52:06"}
+{"level":"info","message":"User connected: testuser (68436c633904e0ef0c1e4e82)","service":"chat-server","timestamp":"2025-06-07 02:52:06"}
+{"level":"info","message":"User joined 0 chat rooms","service":"chat-server","timestamp":"2025-06-07 02:52:06"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:52:06"}
+{"level":"info","message":"User disconnected: testuser (client namespace disconnect)","service":"chat-server","timestamp":"2025-06-07 02:52:06"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 02:52:16"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:06"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:06"}
+{"level":"info","message":"GET /api/auth/verify - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:06"}
+{"level":"info","message":"GET /api/auth/verify - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:06"}
+{"level":"info","message":"User connected: testuser (68436c633904e0ef0c1e4e82)","service":"chat-server","timestamp":"2025-06-07 02:53:06"}
+{"level":"info","message":"User joined 0 chat rooms","service":"chat-server","timestamp":"2025-06-07 02:53:06"}
+{"level":"info","message":"User connected: testuser (68436c633904e0ef0c1e4e82)","service":"chat-server","timestamp":"2025-06-07 02:53:06"}
+{"level":"info","message":"User joined 0 chat rooms","service":"chat-server","timestamp":"2025-06-07 02:53:06"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:27"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:27"}
+{"level":"info","message":"User disconnected: testuser (transport close)","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"User disconnected: testuser (transport close)","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"GET /api/auth/verify - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"GET /api/auth/verify - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"User connected: testuser (68436c633904e0ef0c1e4e82)","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"User connected: testuser (68436c633904e0ef0c1e4e82)","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"User joined 0 chat rooms","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"User joined 0 chat rooms","service":"chat-server","timestamp":"2025-06-07 02:53:30"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:36"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:53:36"}
+{"level":"info","message":"User disconnected: testuser (transport close)","service":"chat-server","timestamp":"2025-06-07 02:54:05"}
+{"level":"info","message":"User disconnected: testuser (transport close)","service":"chat-server","timestamp":"2025-06-07 02:54:05"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 02:54:05"}
+{"level":"info","message":"GET /api/auth/verify - ::1","service":"chat-server","timestamp":"2025-06-07 02:54:05"}
+{"level":"info","message":"GET /api/auth/verify - ::1","service":"chat-server","timestamp":"2025-06-07 02:54:05"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:54:05"}
+{"level":"info","message":"User connected: testuser (68436c633904e0ef0c1e4e82)","service":"chat-server","timestamp":"2025-06-07 02:54:06"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 02:54:06"}
+{"level":"info","message":"User connected: testuser (68436c633904e0ef0c1e4e82)","service":"chat-server","timestamp":"2025-06-07 02:54:06"}
+{"level":"info","message":"User joined 0 chat rooms","service":"chat-server","timestamp":"2025-06-07 02:54:06"}
+{"level":"info","message":"User joined 0 chat rooms","service":"chat-server","timestamp":"2025-06-07 02:54:06"}
+{"level":"info","message":"GET /api/chat - ::1","service":"chat-server","timestamp":"2025-06-07 02:54:06"}
+{"level":"info","message":"User disconnected: testuser (transport close)","service":"chat-server","timestamp":"2025-06-07 03:04:37"}
+{"level":"info","message":"User disconnected: testuser (transport close)","service":"chat-server","timestamp":"2025-06-07 03:04:37"}
+{"level":"info","message":"User connected: testuser (68436c633904e0ef0c1e4e82)","service":"chat-server","timestamp":"2025-06-07 03:04:38"}
+{"level":"info","message":"User joined 0 chat rooms","service":"chat-server","timestamp":"2025-06-07 03:04:38"}
+{"level":"info","message":"Chat server running on port 5050","service":"chat-server","timestamp":"2025-06-07 03:04:43"}
+{"level":"info","message":"Environment: development","service":"chat-server","timestamp":"2025-06-07 03:04:43"}
+{"level":"info","message":"Connected to MongoDB successfully","service":"chat-server","timestamp":"2025-06-07 03:04:43"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 03:04:53"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 03:04:53"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 03:04:53"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 03:04:53"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 03:05:27"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 03:05:27"}
+{"level":"info","message":"GET /favicon.ico - ::1","service":"chat-server","timestamp":"2025-06-07 03:05:30"}
+{"level":"info","message":"GET /manifest.json - ::1","service":"chat-server","timestamp":"2025-06-07 03:05:30"}
