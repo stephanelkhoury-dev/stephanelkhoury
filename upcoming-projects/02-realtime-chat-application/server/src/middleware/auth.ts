@@ -1,12 +1,31 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { User } from '../models/User';
+import { User, IUser } from '../models/User';
 
-export interface AuthRequest extends Request {
-  user?: any;
+export interface AuthUser {
+  userId: string;
+  _id: string;
+  username: string;
+  email: string;
+  status: string;
+  avatar?: string;
+  bio?: string;
+  isEmailVerified: boolean;
+  preferences: any;
+  twoFactorAuth: any;
+  devices: any[];
+  contacts: string[];
+  blockedUsers: string[];
+  statusMessage?: string;
+  lastSeen?: Date;
+  createdAt?: Date;
 }
 
-export const authenticateToken = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export interface AuthRequest extends Request {
+  user?: AuthUser;
+}
+
+export const authenticateToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
@@ -23,7 +42,26 @@ export const authenticateToken = async (req: AuthRequest, res: Response, next: N
       return res.status(401).json({ error: 'User not found' });
     }
 
-    req.user = user;
+    // Create properly typed user object
+    req.user = {
+      userId: (user._id as any).toString(),
+      _id: (user._id as any).toString(),
+      username: user.username,
+      email: user.email,
+      status: user.status,
+      avatar: user.avatar,
+      bio: user.bio,
+      isEmailVerified: user.isEmailVerified,
+      preferences: user.preferences,
+      twoFactorAuth: user.twoFactorAuth,
+      devices: user.devices,
+      contacts: user.contacts.map(id => id.toString()),
+      blockedUsers: user.blockedUsers.map(id => id.toString()),
+      statusMessage: user.statusMessage,
+      lastSeen: user.lastSeen,
+      createdAt: user.createdAt
+    };
+    
     next();
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
@@ -36,7 +74,7 @@ export const authenticateToken = async (req: AuthRequest, res: Response, next: N
   }
 };
 
-export const optionalAuth = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const optionalAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1];
@@ -44,7 +82,27 @@ export const optionalAuth = async (req: AuthRequest, res: Response, next: NextFu
     if (token) {
       const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key') as any;
       const user = await User.findById(decoded.userId).select('-password');
-      req.user = user;
+      
+      if (user) {
+        req.user = {
+          userId: (user._id as any).toString(),
+          _id: (user._id as any).toString(),
+          username: user.username,
+          email: user.email,
+          status: user.status,
+          avatar: user.avatar,
+          bio: user.bio,
+          isEmailVerified: user.isEmailVerified,
+          preferences: user.preferences,
+          twoFactorAuth: user.twoFactorAuth,
+          devices: user.devices,
+          contacts: user.contacts.map(id => id.toString()),
+          blockedUsers: user.blockedUsers.map(id => id.toString()),
+          statusMessage: user.statusMessage,
+          lastSeen: user.lastSeen,
+          createdAt: user.createdAt
+        };
+      }
     }
 
     next();
@@ -54,7 +112,7 @@ export const optionalAuth = async (req: AuthRequest, res: Response, next: NextFu
   }
 };
 
-export const requireAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const requireAdmin = (req: Request, res: Response, next: NextFunction) => {
   if (!req.user) {
     return res.status(401).json({ error: 'Authentication required' });
   }

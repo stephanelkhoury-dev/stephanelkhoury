@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import EmojiPicker from './EmojiPicker';
 
@@ -14,19 +14,19 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    adjustTextareaHeight();
-  }, [message]);
-
-  const adjustTextareaHeight = () => {
+  const adjustTextareaHeight = useCallback(() => {
     const textarea = textareaRef.current;
     if (textarea) {
       textarea.style.height = 'auto';
       textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
     }
-  };
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    adjustTextareaHeight();
+  }, [message, adjustTextareaHeight]);
+
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     
     if (message.trim() || files.length > 0) {
@@ -35,41 +35,40 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
       setFiles([]);
       setIsTyping(false);
     }
-  };
+  }, [message, files, onSendMessage]);
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e);
+      handleSubmit(e as any);
     }
-  };
+  }, [handleSubmit]);
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(e.target.files || []);
     setFiles(prev => [...prev, ...selectedFiles]);
-  };
+  }, []);
 
-  const removeFile = (index: number) => {
+  const removeFile = useCallback((index: number) => {
     setFiles(prev => prev.filter((_, i) => i !== index));
-  };
+  }, []);
 
-  const handleEmojiSelect = (emoji: string) => {
+  const handleEmojiSelect = useCallback((emoji: string) => {
     setMessage(prev => prev + emoji);
     setShowEmojiPicker(false);
     textareaRef.current?.focus();
-  };
+  }, []);
 
-  const formatFileSize = (bytes: number) => {
+  const formatFileSize = useCallback((bytes: number) => {
     if (bytes === 0) return '0 Bytes';
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-  };
+  }, []);
 
   return (
     <div className="bg-white border-t border-gray-200 p-4">
-      {/* File previews */}
       <AnimatePresence>
         {files.length > 0 && (
           <motion.div
@@ -114,7 +113,6 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
         )}
       </AnimatePresence>
 
-      {/* Message input */}
       <form onSubmit={handleSubmit} className="flex items-end space-x-3">
         <div className="flex-1 relative">
           <textarea
@@ -131,9 +129,7 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
             style={{ minHeight: '48px', maxHeight: '120px' }}
           />
 
-          {/* Action buttons */}
           <div className="absolute right-2 bottom-2 flex items-center space-x-1">
-            {/* File upload */}
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
@@ -145,7 +141,6 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
               </svg>
             </button>
 
-            {/* Emoji picker */}
             <div className="relative">
               <button
                 type="button"
@@ -170,7 +165,6 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
           </div>
         </div>
 
-        {/* Send button */}
         <motion.button
           type="submit"
           disabled={!message.trim() && files.length === 0}
@@ -188,7 +182,6 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
         </motion.button>
       </form>
 
-      {/* Hidden file input */}
       <input
         ref={fileInputRef}
         type="file"

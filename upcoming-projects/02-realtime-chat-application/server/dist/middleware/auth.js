@@ -19,7 +19,25 @@ const authenticateToken = async (req, res, next) => {
         if (!user) {
             return res.status(401).json({ error: 'User not found' });
         }
-        req.user = user;
+        // Create properly typed user object
+        req.user = {
+            userId: user._id.toString(),
+            _id: user._id.toString(),
+            username: user.username,
+            email: user.email,
+            status: user.status,
+            avatar: user.avatar,
+            bio: user.bio,
+            isEmailVerified: user.isEmailVerified,
+            preferences: user.preferences,
+            twoFactorAuth: user.twoFactorAuth,
+            devices: user.devices,
+            contacts: user.contacts.map(id => id.toString()),
+            blockedUsers: user.blockedUsers.map(id => id.toString()),
+            statusMessage: user.statusMessage,
+            lastSeen: user.lastSeen,
+            createdAt: user.createdAt
+        };
         next();
     }
     catch (error) {
@@ -40,7 +58,26 @@ const optionalAuth = async (req, res, next) => {
         if (token) {
             const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET || 'your-secret-key');
             const user = await User_1.User.findById(decoded.userId).select('-password');
-            req.user = user;
+            if (user) {
+                req.user = {
+                    userId: user._id.toString(),
+                    _id: user._id.toString(),
+                    username: user.username,
+                    email: user.email,
+                    status: user.status,
+                    avatar: user.avatar,
+                    bio: user.bio,
+                    isEmailVerified: user.isEmailVerified,
+                    preferences: user.preferences,
+                    twoFactorAuth: user.twoFactorAuth,
+                    devices: user.devices,
+                    contacts: user.contacts.map(id => id.toString()),
+                    blockedUsers: user.blockedUsers.map(id => id.toString()),
+                    statusMessage: user.statusMessage,
+                    lastSeen: user.lastSeen,
+                    createdAt: user.createdAt
+                };
+            }
         }
         next();
     }

@@ -12,6 +12,8 @@ import authRoutes from './routes/auth';
 import chatRoutes from './routes/chat';
 import userRoutes from './routes/user';
 import uploadRoutes from './routes/upload';
+import voiceNotesRoutes from './routes/voiceNotes';
+import gifRoutes from './routes/gif';
 import { authenticateToken } from './middleware/auth';
 import { socketAuth } from './middleware/socketAuth';
 import { handleSocketConnection } from './socket/socketHandlers';
@@ -84,9 +86,11 @@ class ChatServer {
 
     // API routes
     this.app.use('/api/auth', authRoutes);
-    this.app.use('/api/chat', authenticateToken, chatRoutes);
-    this.app.use('/api/user', authenticateToken, userRoutes);
-    this.app.use('/api/upload', authenticateToken, uploadRoutes);
+    this.app.use('/api/chat', chatRoutes);
+    this.app.use('/api/user', userRoutes);
+    this.app.use('/api/upload', uploadRoutes);
+    this.app.use('/api/voice-notes', voiceNotesRoutes);
+    this.app.use('/api/gif', gifRoutes);
 
     // 404 handler
     this.app.use('*', (req, res) => {

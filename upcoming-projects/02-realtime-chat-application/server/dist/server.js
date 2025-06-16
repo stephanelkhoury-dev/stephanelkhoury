@@ -16,7 +16,8 @@ const auth_1 = __importDefault(require("./routes/auth"));
 const chat_1 = __importDefault(require("./routes/chat"));
 const user_1 = __importDefault(require("./routes/user"));
 const upload_1 = __importDefault(require("./routes/upload"));
-const auth_2 = require("./middleware/auth");
+const voiceNotes_1 = __importDefault(require("./routes/voiceNotes"));
+const gif_1 = __importDefault(require("./routes/gif"));
 const socketAuth_1 = require("./middleware/socketAuth");
 const socketHandlers_1 = require("./socket/socketHandlers");
 const logger_1 = __importDefault(require("./utils/logger"));
@@ -72,9 +73,11 @@ class ChatServer {
         });
         // API routes
         this.app.use('/api/auth', auth_1.default);
-        this.app.use('/api/chat', auth_2.authenticateToken, chat_1.default);
-        this.app.use('/api/user', auth_2.authenticateToken, user_1.default);
-        this.app.use('/api/upload', auth_2.authenticateToken, upload_1.default);
+        this.app.use('/api/chat', chat_1.default);
+        this.app.use('/api/user', user_1.default);
+        this.app.use('/api/upload', upload_1.default);
+        this.app.use('/api/voice-notes', voiceNotes_1.default);
+        this.app.use('/api/gif', gif_1.default);
         // 404 handler
         this.app.use('*', (req, res) => {
             res.status(404).json({ error: 'Route not found' });

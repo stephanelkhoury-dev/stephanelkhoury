@@ -59,16 +59,24 @@ const UserSchema = new mongoose_1.Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: function () {
+            // Password not required for OAuth users
+            return !this.oAuth.google && !this.oAuth.facebook && !this.oAuth.apple;
+        },
         minlength: 6
     },
     avatar: {
         type: String,
         default: null
     },
+    bio: {
+        type: String,
+        maxlength: 200,
+        default: ''
+    },
     status: {
         type: String,
-        enum: ['online', 'offline', 'away', 'busy'],
+        enum: ['online', 'offline', 'away', 'busy', 'dnd'],
         default: 'offline'
     },
     statusMessage: {
@@ -84,20 +92,71 @@ const UserSchema = new mongoose_1.Schema({
         type: Boolean,
         default: false
     },
+    emailVerificationToken: String,
+    emailVerificationExpires: Date,
+    passwordResetToken: String,
+    passwordResetExpires: Date,
+    // OAuth fields
+    oAuth: {
+        google: {
+            id: String,
+            email: String
+        },
+        facebook: {
+            id: String,
+            email: String
+        },
+        apple: {
+            id: String,
+            email: String
+        }
+    },
+    // 2FA fields
+    twoFactorAuth: {
+        enabled: { type: Boolean, default: false },
+        secret: String,
+        backupCodes: [String]
+    },
+    // Device management
+    devices: [{
+            id: { type: String, required: true },
+            name: { type: String, required: true },
+            type: {
+                type: String,
+                enum: ['mobile', 'desktop', 'web'],
+                required: true
+            },
+            lastActive: { type: Date, default: Date.now },
+            pushToken: String
+        }],
     preferences: {
         theme: {
             type: String,
             enum: ['light', 'dark', 'auto'],
             default: 'light'
         },
+        language: { type: String, default: 'en' },
+        fontSize: {
+            type: String,
+            enum: ['small', 'medium', 'large'],
+            default: 'medium'
+        },
         notifications: {
             sound: { type: Boolean, default: true },
             desktop: { type: Boolean, default: true },
-            email: { type: Boolean, default: false }
+            email: { type: Boolean, default: false },
+            push: { type: Boolean, default: true },
+            muteUntil: Date
         },
         privacy: {
             showLastSeen: { type: Boolean, default: true },
-            showOnlineStatus: { type: Boolean, default: true }
+            showOnlineStatus: { type: Boolean, default: true },
+            allowMessagesFrom: {
+                type: String,
+                enum: ['everyone', 'contacts', 'nobody'],
+                default: 'everyone'
+            },
+            readReceipts: { type: Boolean, default: true }
         }
     },
     contacts: [{
@@ -107,6 +166,11 @@ const UserSchema = new mongoose_1.Schema({
     blockedUsers: [{
             type: mongoose_1.Schema.Types.ObjectId,
             ref: 'User'
+        }],
+    reportedUsers: [{
+            user: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
+            reason: String,
+            reportedAt: { type: Date, default: Date.now }
         }]
 }, {
     timestamps: true,
@@ -123,7 +187,7 @@ UserSchema.index({ email: 1 });
 UserSchema.index({ status: 1 });
 // Hash password before saving
 UserSchema.pre('save', async function (next) {
-    if (!this.isModified('password'))
+    if (!this.isModified('password') || !this.password)
         return next();
     try {
         const saltRounds = 12;
@@ -136,6 +200,8 @@ UserSchema.pre('save', async function (next) {
 });
 // Compare password method
 UserSchema.methods.comparePassword = async function (candidatePassword) {
+    if (!this.password)
+        return false;
     return bcryptjs_1.default.compare(candidatePassword, this.password);
 };
 // Generate JWT method
@@ -146,6 +212,22 @@ UserSchema.methods.generateJWT = function () {
         username: this.username,
         email: this.email
     }, process.env.JWT_SECRET || 'your-secret-key', { expiresIn: process.env.JWT_EXPIRES_IN || '7d' });
+};
+// Generate email verification token
+UserSchema.methods.generateEmailVerificationToken = function () {
+    const crypto = require('crypto');
+    const token = crypto.randomBytes(32).toString('hex');
+    this.emailVerificationToken = token;
+    this.emailVerificationExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    return token;
+};
+// Generate password reset token
+UserSchema.methods.generatePasswordResetToken = function () {
+    const crypto = require('crypto');
+    const token = crypto.randomBytes(32).toString('hex');
+    this.passwordResetToken = token;
+    this.passwordResetExpires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+    return token;
 };
 exports.User = mongoose_1.default.model('User', UserSchema);
 //# sourceMappingURL=User.js.map

@@ -1,10 +1,10 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import multer from 'multer';
 import sharp from 'sharp';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
-import { AuthRequest } from '../middleware/auth';
+import { authenticateToken } from '../middleware/auth';
 import logger from '../utils/logger';
 
 const router = express.Router();
@@ -49,20 +49,17 @@ const filesDir = path.join(uploadsDir, 'files');
 });
 
 // Upload avatar
-router.post('/avatar', upload.single('avatar'), async (req: AuthRequest, res) => {
+router.post('/avatar', authenticateToken, upload.single('avatar'), async (req: Request, res: Response) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ error: 'No file provided' });
+      return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    // Validate file is an image
-    if (!req.file.mimetype.startsWith('image/')) {
-      return res.status(400).json({ error: 'File must be an image' });
-    }
-
-    const userId = req.user._id;
-    const filename = `avatar-${userId}-${uuidv4()}.jpg`;
-    const filepath = path.join(avatarsDir, filename);
+    const authReq = req as any;
+    const userId = authReq.user._id;
+    const filename = `avatar-${userId}-${uuidv4()}.webp`;
+    const avatarDir = path.join(__dirname, '../../uploads/avatars');
+    const filepath = path.join(avatarDir, filename);
 
     // Process image with sharp
     await sharp(req.file.buffer)
@@ -70,7 +67,7 @@ router.post('/avatar', upload.single('avatar'), async (req: AuthRequest, res) =>
         fit: 'cover',
         position: 'center'
       })
-      .jpeg({ quality: 90 })
+      .webp({ quality: 90 })
       .toFile(filepath);
 
     // Update user's avatar in database
@@ -79,7 +76,7 @@ router.post('/avatar', upload.single('avatar'), async (req: AuthRequest, res) =>
     
     await User.findByIdAndUpdate(userId, { avatar: avatarUrl });
 
-    logger.info(`Avatar uploaded for user: ${req.user.username}`);
+    logger.info(`Avatar uploaded for user: ${authReq.user.username}`);
 
     res.json({
       message: 'Avatar uploaded successfully',
@@ -91,21 +88,22 @@ router.post('/avatar', upload.single('avatar'), async (req: AuthRequest, res) =>
   }
 });
 
-// Upload file for chat
-router.post('/file', upload.single('file'), async (req: AuthRequest, res) => {
+// Upload single file
+router.post('/file', authenticateToken, upload.single('file'), async (req: Request, res: Response) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ error: 'No file provided' });
+      return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    const userId = req.user._id;
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const originalName = req.file.originalname;
-    const extension = path.extname(originalName);
-    const filename = `${uuidv4()}${extension}`;
-    const filepath = path.join(filesDir, filename);
+    const fileExtension = path.extname(originalName);
+    const filename = `${uuidv4()}${fileExtension}`;
+    const filePath = path.join(__dirname, '../../uploads/files', filename);
 
     // Save file to disk
-    fs.writeFileSync(filepath, req.file.buffer);
+    fs.writeFileSync(filePath, req.file.buffer);
 
     const fileUrl = `/uploads/files/${filename}`;
     const fileData = {
@@ -115,7 +113,7 @@ router.post('/file', upload.single('file'), async (req: AuthRequest, res) => {
       size: req.file.size
     };
 
-    logger.info(`File uploaded by user ${req.user.username}: ${originalName}`);
+    logger.info(`File uploaded by user ${authReq.user.username}: ${originalName}`);
 
     res.json({
       message: 'File uploaded successfully',
@@ -128,13 +126,15 @@ router.post('/file', upload.single('file'), async (req: AuthRequest, res) => {
 });
 
 // Upload multiple files
-router.post('/files', upload.array('files', 5), async (req: AuthRequest, res) => {
+router.post('/files', authenticateToken, upload.array('files', 5), async (req: Request, res: Response) => {
   try {
-    if (!req.files || req.files.length === 0) {
-      return res.status(400).json({ error: 'No files provided' });
+    const files = req.files as Express.Multer.File[];
+    if (!files || files.length === 0) {
+      return res.status(400).json({ error: 'No files uploaded' });
     }
 
-    const files = req.files as Express.Multer.File[];
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const uploadedFiles = [];
 
     for (const file of files) {
@@ -156,7 +156,7 @@ router.post('/files', upload.array('files', 5), async (req: AuthRequest, res) =>
       uploadedFiles.push(fileData);
     }
 
-    logger.info(`${files.length} files uploaded by user ${req.user.username}`);
+    logger.info(`${files.length} files uploaded by user ${authReq.user.username}`);
 
     res.json({
       message: 'Files uploaded successfully',
@@ -168,11 +168,12 @@ router.post('/files', upload.array('files', 5), async (req: AuthRequest, res) =>
   }
 });
 
-// Delete uploaded file
-router.delete('/file/:filename', async (req: AuthRequest, res) => {
+// Delete file
+router.delete('/file/:filename', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { filename } = req.params;
-    const userId = req.user._id;
+    const authReq = req as any;
+    const userId = authReq.user._id;
 
     // Check if file exists in files directory
     const filepath = path.join(filesDir, filename);
@@ -184,7 +185,7 @@ router.delete('/file/:filename', async (req: AuthRequest, res) => {
     // Delete file
     fs.unlinkSync(filepath);
 
-    logger.info(`File deleted by user ${req.user.username}: ${filename}`);
+    logger.info(`File deleted by user ${authReq.user.username}: ${filename}`);
 
     res.json({
       message: 'File deleted successfully'

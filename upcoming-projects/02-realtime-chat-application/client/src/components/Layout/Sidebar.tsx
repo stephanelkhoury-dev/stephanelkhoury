@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RootState, useAppDispatch } from '../../store/store';
 import { setChats, setActiveChat, addMessage } from '../../store/slices/chatSlice';
 import { toggleSidebar } from '../../store/slices/uiSlice';
+import UserSearchModal from '../Chat/UserSearchModal';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
 
 const Sidebar: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const { user } = useSelector((state: RootState) => state.auth);
   const { chats = [], activeChat } = useSelector((state: RootState) => state.chat);
   const { socket } = useSelector((state: RootState) => state.socket);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showUserSearch, setShowUserSearch] = useState(false);
 
   useEffect(() => {
     fetchChats();
@@ -41,7 +44,7 @@ const Sidebar: React.FC = () => {
   const fetchChats = async () => {
     try {
       const response = await api.get('/chat');
-      dispatch(setChats(response.data));
+      dispatch(setChats(response.data.chats || []));
     } catch (error) {
       toast.error('Failed to load chats');
     } finally {
@@ -52,6 +55,34 @@ const Sidebar: React.FC = () => {
   const handleChatSelect = (chat: any) => {
     dispatch(setActiveChat(chat));
     dispatch(toggleSidebar());
+  };
+
+  const handleUserSelect = async (user: any) => {
+    // Find existing chat with this user
+    const existingChat = chats.find((chat: any) => 
+      chat.type === 'private' && 
+      chat.participants.some((p: any) => p._id === user._id)
+    );
+
+    if (existingChat) {
+      // Navigate to existing chat
+      dispatch(setActiveChat(existingChat));
+      navigate(`/chat/${existingChat._id}`);
+    } else {
+      // Refresh chats to get the newly created one
+      await fetchChats();
+      // Navigate to new chat (it should be at the top of the list now)
+      const response = await api.get('/chat');
+      const newChat = response.data.chats?.find((chat: any) => 
+        chat.type === 'private' && 
+        chat.participants.some((p: any) => p._id === user._id)
+      );
+      
+      if (newChat) {
+        dispatch(setActiveChat(newChat));
+        navigate(`/chat/${newChat._id}`);
+      }
+    }
   };
 
   const getLastMessage = (chat: any) => {
@@ -93,14 +124,40 @@ const Sidebar: React.FC = () => {
       <div className="p-4 border-b border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <h1 className="text-xl font-bold text-gray-900">Chats</h1>
-          <button
-            onClick={() => dispatch(toggleSidebar())}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <div className="flex items-center space-x-2">
+            {/* New Chat Button */}
+            <button
+              onClick={() => setShowUserSearch(true)}
+              className="hidden sm:flex items-center space-x-2 px-3 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 transition-colors"
+              title="Start new chat"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <span>New Chat</span>
+            </button>
+            
+            {/* Mobile New Chat Button */}
+            <button
+              onClick={() => setShowUserSearch(true)}
+              className="sm:hidden p-2 text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-lg transition-colors"
+              title="Start new chat"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+            </button>
+            
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => dispatch(toggleSidebar())}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Search */}
@@ -212,6 +269,13 @@ const Sidebar: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      {/* User Search Modal */}
+      <UserSearchModal
+        isOpen={showUserSearch}
+        onClose={() => setShowUserSearch(false)}
+        onUserSelect={handleUserSelect}
+      />
     </div>
   );
 };

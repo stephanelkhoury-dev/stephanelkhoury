@@ -2640,6 +2640,336 @@ const projects = [
         ],
         github: 'https://github.com/stephanelkhoury/saudi-dates-docs',
         category: 'Documentation'
+    },
+    // Upcoming & Planned Projects
+    {
+        title: 'Modern E-Commerce Platform',
+        description: 'Full-stack e-commerce solution with cart management, Stripe/PayPal integration, advanced filtering, and real-time inventory tracking.',
+        fullDescription: 'A comprehensive e-commerce platform built with modern technologies, featuring seamless user experience, secure payment processing, and advanced product management. Includes admin dashboard, order tracking, and analytics.',
+        image: '/projects/angular-ecommerce.jpg',
+        technologies: [
+            'React',
+            'Node.js',
+            'Express',
+            'PostgreSQL',
+            'Stripe API',
+            'Redux',
+            'TypeScript'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q1 2025',
+        features: [
+            'Shopping cart with persistent storage',
+            'Stripe & PayPal payment integration',
+            'Advanced product filtering and search',
+            'User authentication and profiles',
+            'Order tracking and history',
+            'Admin dashboard with analytics',
+            'Real-time inventory management',
+            'Responsive design for all devices'
+        ],
+        challenges: [
+            'Implementing secure payment processing',
+            'Optimizing database queries for large product catalogs',
+            'Creating scalable cart and session management',
+            'Building comprehensive admin interface'
+        ]
+    },
+    {
+        title: 'Real-Time Chat Application',
+        description: 'Scalable messaging platform with WebSocket integration, private/group chats, message history, and real-time notifications.',
+        fullDescription: 'A modern chat application built for scalability and performance, featuring real-time messaging, file sharing, and comprehensive user management. Uses WebSocket technology for instant communication.',
+        image: '/projects/chord-dictionary.jpg',
+        technologies: [
+            'React',
+            'Socket.IO',
+            'Node.js',
+            'Redis',
+            'MongoDB',
+            'JWT',
+            'WebRTC'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q1 2025',
+        features: [
+            'Real-time messaging with Socket.IO',
+            'Private and group chat rooms',
+            'Message history and search',
+            'File and image sharing',
+            'User presence indicators',
+            'Push notifications',
+            'Voice and video calling',
+            'Message encryption for security'
+        ],
+        challenges: [
+            'Scaling WebSocket connections',
+            'Implementing message delivery guarantees',
+            'Managing real-time user presence',
+            'Optimizing message storage and retrieval'
+        ]
+    },
+    {
+        title: 'Project Management Dashboard',
+        description: 'Kanban-style project management tool with drag-and-drop functionality, team collaboration, and real-time updates inspired by Trello and Notion.',
+        fullDescription: 'A comprehensive project management solution featuring intuitive drag-and-drop interfaces, role-based access control, and real-time collaboration tools for teams of all sizes.',
+        image: '/projects/pos-crm.jpg',
+        technologies: [
+            'Next.js',
+            'FastAPI',
+            'PostgreSQL',
+            'Tailwind CSS',
+            'React DnD',
+            'WebSocket'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q2 2025',
+        features: [
+            'Drag-and-drop Kanban boards',
+            'Real-time collaboration',
+            'Role-based access control',
+            'Task assignments and deadlines',
+            'File attachments and comments',
+            'Project templates',
+            'Time tracking and reporting',
+            'Integration with third-party tools'
+        ],
+        challenges: [
+            'Implementing smooth drag-and-drop UX',
+            'Managing real-time state synchronization',
+            'Building flexible permission systems',
+            'Optimizing performance for large datasets'
+        ]
+    },
+    {
+        title: 'Headless CMS Blog Platform',
+        description: 'Modern content management system with headless architecture, SEO optimization, markdown support, and dynamic content rendering.',
+        fullDescription: 'A powerful blogging platform built with headless CMS architecture, featuring advanced SEO capabilities, flexible content modeling, and lightning-fast performance.',
+        image: '/projects/sancta-maria.jpg',
+        technologies: [
+            'Next.js',
+            'Strapi',
+            'GraphQL',
+            'Tailwind CSS',
+            'Markdown',
+            'SEO'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q2 2025',
+        features: [
+            'Headless CMS with Strapi',
+            'SEO optimization and meta management',
+            'Markdown content support',
+            'Dynamic page generation',
+            'Content versioning',
+            'Multi-author support',
+            'Comment system',
+            'Analytics integration'
+        ],
+        challenges: [
+            'Optimizing static generation performance',
+            'Building flexible content schemas',
+            'Implementing advanced SEO features',
+            'Creating intuitive admin interface'
+        ]
+    },
+    {
+        title: 'Secure Authentication System',
+        description: 'Comprehensive authentication service with JWT tokens, OAuth integration, two-factor authentication, and advanced security features.',
+        fullDescription: 'A robust authentication system designed for modern applications, featuring multiple authentication methods, advanced security measures, and seamless user experience.',
+        image: '/projects/crypto-engineers.jpg',
+        technologies: [
+            'Node.js',
+            'Express',
+            'MongoDB',
+            'JWT',
+            'OAuth',
+            '2FA',
+            'bcrypt',
+            'Redis'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q2 2025',
+        features: [
+            'JWT-based authentication',
+            'OAuth integration (Google, GitHub)',
+            'Two-factor authentication (2FA)',
+            'Password reset functionality',
+            'Session management',
+            'Rate limiting and security',
+            'Email verification',
+            'Admin user management'
+        ],
+        challenges: [
+            'Implementing secure token handling',
+            'Managing session state across devices',
+            'Building robust 2FA system',
+            'Ensuring GDPR compliance'
+        ]
+    },
+    {
+        title: 'AI-Powered Music Analyzer',
+        description: 'Advanced music analysis application using machine learning for chord detection, tempo analysis, and intelligent music recommendations.',
+        fullDescription: 'Building on Harmonix, this expanded AI platform will include advanced music analysis features, recommendation systems, and collaborative tools for musicians and producers.',
+        image: '/projects/harmonix.jpg',
+        technologies: [
+            'Python',
+            'TensorFlow',
+            'FastAPI',
+            'React',
+            'Audio Processing',
+            'ML',
+            'WebAssembly'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q3 2025',
+        features: [
+            'Advanced chord progression analysis',
+            'Intelligent music recommendations',
+            'Real-time audio visualization',
+            'Collaborative music sessions',
+            'Custom ML model training',
+            'Audio fingerprinting',
+            'Music theory education tools',
+            'API for third-party integration'
+        ],
+        challenges: [
+            'Training models on diverse musical styles',
+            'Optimizing real-time audio processing',
+            'Building scalable recommendation engine',
+            'Implementing collaborative features'
+        ]
+    },
+    {
+        title: 'RESTful API Platform',
+        description: 'Comprehensive API-first platform with full documentation, authentication, rate limiting, and microservices architecture.',
+        fullDescription: 'A production-ready API platform designed for scalability and developer experience, featuring comprehensive documentation, testing tools, and monitoring capabilities.',
+        image: '/projects/erp-system.jpg',
+        technologies: [
+            'Node.js',
+            'Express',
+            'OpenAPI',
+            'Swagger',
+            'Docker',
+            'PostgreSQL',
+            'Redis'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q3 2025',
+        features: [
+            'RESTful API design',
+            'Comprehensive OpenAPI documentation',
+            'Rate limiting and throttling',
+            'API versioning',
+            'Authentication and authorization',
+            'Request/response validation',
+            'Monitoring and analytics',
+            'SDK generation for multiple languages'
+        ],
+        challenges: [
+            'Designing scalable API architecture',
+            'Implementing effective rate limiting',
+            'Building comprehensive documentation',
+            'Ensuring API security and performance'
+        ]
+    },
+    {
+        title: 'Dockerized Microservices Platform',
+        description: 'Production-ready microservices architecture with Docker, CI/CD pipelines, load balancing, and comprehensive monitoring.',
+        fullDescription: 'A complete microservices ecosystem demonstrating modern DevOps practices, featuring automated deployment, service discovery, and comprehensive monitoring solutions.',
+        image: '/projects/pos-crm.jpg',
+        technologies: [
+            'Docker',
+            'Kubernetes',
+            'GitHub Actions',
+            'NGINX',
+            'Prometheus',
+            'Grafana',
+            'Microservices'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q4 2025',
+        features: [
+            'Containerized microservices',
+            'CI/CD with GitHub Actions',
+            'Service discovery and load balancing',
+            'Centralized logging',
+            'Monitoring and alerting',
+            'Auto-scaling capabilities',
+            'Health checks and circuit breakers',
+            'Blue-green deployments'
+        ],
+        challenges: [
+            'Orchestrating service communication',
+            'Implementing distributed tracing',
+            'Managing service dependencies',
+            'Building robust deployment pipelines'
+        ]
+    },
+    {
+        title: 'Streaming Platform Clone',
+        description: 'Full-featured streaming platform inspired by Spotify, with music streaming, playlists, social features, and recommendation engine.',
+        fullDescription: 'A comprehensive music streaming platform featuring advanced audio streaming, social interactions, and AI-powered music discovery to demonstrate full-stack capabilities.',
+        image: '/projects/harmonix.jpg',
+        technologies: [
+            'React',
+            'Node.js',
+            'MongoDB',
+            'Redis',
+            'WebRTC',
+            'Audio Streaming',
+            'ML Recommendations'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q4 2025',
+        features: [
+            'High-quality audio streaming',
+            'Playlist creation and sharing',
+            'Social features and following',
+            'AI-powered recommendations',
+            'Offline playback capability',
+            'Artist dashboard and analytics',
+            'Search and discovery',
+            'Mobile-responsive design'
+        ],
+        challenges: [
+            'Implementing efficient audio streaming',
+            'Building recommendation algorithms',
+            'Managing large media files',
+            'Creating smooth user experience'
+        ]
+    },
+    {
+        title: 'Business Analytics Dashboard',
+        description: 'Advanced analytics platform with interactive charts, real-time data visualization, role-based access, and comprehensive reporting tools.',
+        fullDescription: 'A powerful business intelligence platform featuring interactive dashboards, real-time analytics, and comprehensive reporting capabilities for data-driven decision making.',
+        image: '/projects/pos-crm.jpg',
+        technologies: [
+            'React',
+            'D3.js',
+            'Chart.js',
+            'NestJS',
+            'PostgreSQL',
+            'Redis',
+            'WebSocket'
+        ],
+        category: 'Upcoming Projects',
+        date: 'Q4 2025',
+        features: [
+            'Interactive data visualizations',
+            'Real-time analytics updates',
+            'Custom dashboard creation',
+            'Role-based access control',
+            'Export and reporting tools',
+            'Data filtering and drilling',
+            'Performance monitoring',
+            'Integration with multiple data sources'
+        ],
+        challenges: [
+            'Optimizing large dataset visualization',
+            'Building flexible charting system',
+            'Implementing real-time data updates',
+            'Creating intuitive user interface'
+        ]
     }
 ];
 const Projects = ()=>{
@@ -2670,7 +3000,7 @@ const Projects = ()=>{
                         className: "text-3xl font-semibold mb-8"
                     }, void 0, false, {
                         fileName: "[project]/src/components/Projects.tsx",
-                        lineNumber: 142,
+                        lineNumber: 394,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2681,12 +3011,12 @@ const Projects = ()=>{
                                 children: category
                             }, category, false, {
                                 fileName: "[project]/src/components/Projects.tsx",
-                                lineNumber: 150,
+                                lineNumber: 402,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/Projects.tsx",
-                        lineNumber: 148,
+                        lineNumber: 400,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2721,14 +3051,14 @@ const Projects = ()=>{
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                    lineNumber: 174,
+                                                    lineNumber: 426,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                    lineNumber: 180,
+                                                    lineNumber: 432,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -2741,12 +3071,12 @@ const Projects = ()=>{
                                                         children: project.category
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Projects.tsx",
-                                                        lineNumber: 187,
+                                                        lineNumber: 439,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                    lineNumber: 183,
+                                                    lineNumber: 435,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2762,18 +3092,18 @@ const Projects = ()=>{
                                                         children: "Click to view details"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/Projects.tsx",
-                                                        lineNumber: 194,
+                                                        lineNumber: 446,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                    lineNumber: 193,
+                                                    lineNumber: 445,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Projects.tsx",
-                                            lineNumber: 173,
+                                            lineNumber: 425,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2787,7 +3117,7 @@ const Projects = ()=>{
                                                     children: project.title
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                    lineNumber: 205,
+                                                    lineNumber: 457,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2795,7 +3125,7 @@ const Projects = ()=>{
                                                     children: project.description
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                    lineNumber: 211,
+                                                    lineNumber: 463,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2822,7 +3152,7 @@ const Projects = ()=>{
                                                                 children: tech
                                                             }, techIndex, false, {
                                                                 fileName: "[project]/src/components/Projects.tsx",
-                                                                lineNumber: 218,
+                                                                lineNumber: 470,
                                                                 columnNumber: 23
                                                             }, this)),
                                                         project.technologies.length > 4 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2834,13 +3164,13 @@ const Projects = ()=>{
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/Projects.tsx",
-                                                            lineNumber: 230,
+                                                            lineNumber: 482,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                    lineNumber: 216,
+                                                    lineNumber: 468,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2857,14 +3187,14 @@ const Projects = ()=>{
                                                                     icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$fortawesome$2f$free$2d$brands$2d$svg$2d$icons$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["faGithub"]
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                                    lineNumber: 246,
+                                                                    lineNumber: 498,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 "Code"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/Projects.tsx",
-                                                            lineNumber: 239,
+                                                            lineNumber: 491,
                                                             columnNumber: 21
                                                         }, this),
                                                         project.live && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -2878,42 +3208,42 @@ const Projects = ()=>{
                                                                     icon: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$fortawesome$2f$free$2d$solid$2d$svg$2d$icons$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["faExternalLinkAlt"]
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                                    lineNumber: 258,
+                                                                    lineNumber: 510,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 "Live Demo"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/components/Projects.tsx",
-                                                            lineNumber: 251,
+                                                            lineNumber: 503,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/Projects.tsx",
-                                                    lineNumber: 237,
+                                                    lineNumber: 489,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/Projects.tsx",
-                                            lineNumber: 204,
+                                            lineNumber: 456,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/Projects.tsx",
-                                    lineNumber: 167,
+                                    lineNumber: 419,
                                     columnNumber: 15
                                 }, this)
                             }, index, false, {
                                 fileName: "[project]/src/components/Projects.tsx",
-                                lineNumber: 166,
+                                lineNumber: 418,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/components/Projects.tsx",
-                        lineNumber: 164,
+                        lineNumber: 416,
                         columnNumber: 9
                     }, this),
                     filteredProjects.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2923,18 +3253,18 @@ const Projects = ()=>{
                             children: "No projects found in this category."
                         }, void 0, false, {
                             fileName: "[project]/src/components/Projects.tsx",
-                            lineNumber: 271,
+                            lineNumber: 523,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/Projects.tsx",
-                        lineNumber: 270,
+                        lineNumber: 522,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/Projects.tsx",
-                lineNumber: 141,
+                lineNumber: 393,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectModal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2943,13 +3273,13 @@ const Projects = ()=>{
                 onClose: handleCloseModal
             }, void 0, false, {
                 fileName: "[project]/src/components/Projects.tsx",
-                lineNumber: 277,
+                lineNumber: 529,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/Projects.tsx",
-        lineNumber: 140,
+        lineNumber: 392,
         columnNumber: 5
     }, this);
 };

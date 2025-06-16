@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import Joi from 'joi';
 import { Chat } from '../models/Chat';
 import { Message } from '../models/Message';
 import { User } from '../models/User';
-import { AuthRequest } from '../middleware/auth';
+import { authenticateToken } from '../middleware/auth';
 import logger from '../utils/logger';
 
 const router = express.Router();
@@ -23,9 +23,10 @@ const sendMessageSchema = Joi.object({
 });
 
 // Get all chats for the authenticated user
-router.get('/', async (req: AuthRequest, res) => {
+router.get('/', authenticateToken, async (req: Request, res: Response) => {
   try {
-    const userId = req.user._id;
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 20;
     const skip = (page - 1) * limit;
@@ -55,11 +56,12 @@ router.get('/', async (req: AuthRequest, res) => {
   }
 });
 
-// Get a specific chat
-router.get('/:chatId', async (req: AuthRequest, res) => {
+// Get a specific chat by ID
+router.get('/:chatId', authenticateToken, async (req: Request, res: Response) => {
   try {
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const { chatId } = req.params;
-    const userId = req.user._id;
 
     const chat = await Chat.findOne({
       _id: chatId,
@@ -82,15 +84,16 @@ router.get('/:chatId', async (req: AuthRequest, res) => {
 });
 
 // Create a new chat
-router.post('/', async (req: AuthRequest, res) => {
+router.post('/', authenticateToken, async (req: Request, res: Response) => {
   try {
-    const { error } = createChatSchema.validate(req.body);
+    const { error, value } = createChatSchema.validate(req.body);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
     }
 
-    const { type, name, description, participants } = req.body;
-    const userId = req.user._id;
+    const authReq = req as any;
+    const userId = authReq.user._id;
+    const { type, name, description, participants } = value;
 
     // Validate participants exist
     const participantUsers = await User.find({ _id: { $in: participants } });
@@ -135,7 +138,7 @@ router.post('/', async (req: AuthRequest, res) => {
     await chat.populate('participants', 'username avatar status');
     await chat.populate('createdBy', 'username');
 
-    logger.info(`New ${type} chat created by ${req.user.username}: ${chat._id}`);
+    logger.info(`New ${type} chat created by ${authReq.user.username}: ${chat._id}`);
 
     res.status(201).json({
       message: 'Chat created successfully',
@@ -147,11 +150,12 @@ router.post('/', async (req: AuthRequest, res) => {
   }
 });
 
-// Get messages for a chat
-router.get('/:chatId/messages', async (req: AuthRequest, res) => {
+// Get messages for a specific chat
+router.get('/:chatId/messages', authenticateToken, async (req: Request, res: Response) => {
   try {
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const { chatId } = req.params;
-    const userId = req.user._id;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 50;
     const skip = (page - 1) * limit;
@@ -197,16 +201,17 @@ router.get('/:chatId/messages', async (req: AuthRequest, res) => {
 });
 
 // Send a message to a chat
-router.post('/:chatId/messages', async (req: AuthRequest, res) => {
+router.post('/:chatId/messages', authenticateToken, async (req: Request, res: Response) => {
   try {
-    const { error } = sendMessageSchema.validate(req.body);
+    const { error, value } = sendMessageSchema.validate(req.body);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
     }
 
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const { chatId } = req.params;
-    const { content, type, replyTo } = req.body;
-    const userId = req.user._id;
+    const { content, type, replyTo } = value;
 
     // Verify user is participant in the chat
     const chat = await Chat.findOne({
@@ -235,7 +240,7 @@ router.post('/:chatId/messages', async (req: AuthRequest, res) => {
       await message.populate('replyTo', 'content sender');
     }
 
-    logger.info(`Message sent by ${req.user.username} to chat ${chatId}`);
+    logger.info(`Message sent by ${authReq.user.username} to chat ${chatId}`);
 
     res.status(201).json({
       message: 'Message sent successfully',
@@ -247,12 +252,13 @@ router.post('/:chatId/messages', async (req: AuthRequest, res) => {
   }
 });
 
-// Update chat settings
-router.put('/:chatId', async (req: AuthRequest, res) => {
+// Update chat information
+router.put('/:chatId', authenticateToken, async (req: Request, res: Response) => {
   try {
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const { chatId } = req.params;
-    const userId = req.user._id;
-    const { name, description, settings } = req.body;
+    const { name, description } = req.body;
 
     // Find chat and verify user is admin (for group chats) or participant (for private chats)
     const chat = await Chat.findById(chatId);
@@ -273,13 +279,10 @@ router.put('/:chatId', async (req: AuthRequest, res) => {
     // Update allowed fields
     if (name !== undefined) chat.name = name;
     if (description !== undefined) chat.description = description;
-    if (settings !== undefined) {
-      Object.assign(chat.settings, settings);
-    }
 
     await chat.save();
 
-    logger.info(`Chat ${chatId} updated by ${req.user.username}`);
+    logger.info(`Chat ${chatId} updated by ${authReq.user.username}`);
 
     res.json({
       message: 'Chat updated successfully',
@@ -291,12 +294,13 @@ router.put('/:chatId', async (req: AuthRequest, res) => {
   }
 });
 
-// Add participants to group chat
-router.post('/:chatId/participants', async (req: AuthRequest, res) => {
+// Add participants to a chat
+router.post('/:chatId/participants', authenticateToken, async (req: Request, res: Response) => {
   try {
-    const { chatId } = req.params;
     const { participants } = req.body;
-    const userId = req.user._id;
+    const authReq = req as any;
+    const userId = authReq.user._id;
+    const { chatId } = req.params;
 
     if (!Array.isArray(participants) || participants.length === 0) {
       return res.status(400).json({ error: 'Participants array is required' });
@@ -328,7 +332,7 @@ router.post('/:chatId/participants', async (req: AuthRequest, res) => {
     
     await chat.save();
 
-    logger.info(`${uniqueParticipants.length} participants added to chat ${chatId} by ${req.user.username}`);
+    logger.info(`${uniqueParticipants.length} participants added to chat ${chatId} by ${authReq.user.username}`);
 
     res.json({
       message: 'Participants added successfully',
@@ -340,11 +344,12 @@ router.post('/:chatId/participants', async (req: AuthRequest, res) => {
   }
 });
 
-// Remove participant from group chat
-router.delete('/:chatId/participants/:participantId', async (req: AuthRequest, res) => {
+// Remove a participant from a chat
+router.delete('/:chatId/participants/:participantId', authenticateToken, async (req: Request, res: Response) => {
   try {
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const { chatId, participantId } = req.params;
-    const userId = req.user._id;
 
     const chat = await Chat.findById(chatId);
     
@@ -370,7 +375,7 @@ router.delete('/:chatId/participants/:participantId', async (req: AuthRequest, r
 
     await chat.save();
 
-    logger.info(`Participant ${participantId} removed from chat ${chatId} by ${req.user.username}`);
+    logger.info(`Participant ${participantId} removed from chat ${chatId} by ${authReq.user.username}`);
 
     res.json({
       message: 'Participant removed successfully'
@@ -382,10 +387,11 @@ router.delete('/:chatId/participants/:participantId', async (req: AuthRequest, r
 });
 
 // Delete a chat
-router.delete('/:chatId', async (req: AuthRequest, res) => {
+router.delete('/:chatId', authenticateToken, async (req: Request, res: Response) => {
   try {
+    const authReq = req as any;
+    const userId = authReq.user._id;
     const { chatId } = req.params;
-    const userId = req.user._id;
 
     const chat = await Chat.findById(chatId);
     
@@ -411,7 +417,7 @@ router.delete('/:chatId', async (req: AuthRequest, res) => {
     // Delete the chat
     await Chat.findByIdAndDelete(chatId);
 
-    logger.info(`Chat ${chatId} deleted by ${req.user.username}`);
+    logger.info(`Chat ${chatId} deleted by ${authReq.user.username}`);
 
     res.json({
       message: 'Chat deleted successfully'

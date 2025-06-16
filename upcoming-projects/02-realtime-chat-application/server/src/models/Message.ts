@@ -4,12 +4,20 @@ export interface IMessage extends Document {
   chat: mongoose.Types.ObjectId;
   sender: mongoose.Types.ObjectId;
   content: string;
-  type: 'text' | 'image' | 'file' | 'system';
+  type: 'text' | 'image' | 'file' | 'system' | 'voice' | 'video' | 'gif';
   file?: {
     url: string;
     filename: string;
     mimetype: string;
     size: number;
+    duration?: number; // for voice/video messages
+  };
+  gif?: {
+    url: string;
+    id?: string;
+    title?: string;
+    width?: number;
+    height?: number;
   };
   replyTo?: mongoose.Types.ObjectId;
   reactions: {
@@ -20,6 +28,11 @@ export interface IMessage extends Document {
     user: mongoose.Types.ObjectId;
     readAt: Date;
   }[];
+  deliveredTo: {
+    user: mongoose.Types.ObjectId;
+    deliveredAt: Date;
+  }[];
+  status: 'sending' | 'sent' | 'delivered' | 'read' | 'failed';
   editedAt?: Date;
   isDeleted: boolean;
   deletedAt?: Date;
@@ -45,14 +58,22 @@ const MessageSchema = new Schema<IMessage>({
   },
   type: {
     type: String,
-    enum: ['text', 'image', 'file', 'system'],
+    enum: ['text', 'image', 'file', 'system', 'voice', 'video', 'gif'],
     default: 'text'
   },
   file: {
     url: String,
     filename: String,
     mimetype: String,
-    size: Number
+    size: Number,
+    duration: Number // for voice/video messages
+  },
+  gif: {
+    url: String,
+    id: String,
+    title: String,
+    width: Number,
+    height: Number
   },
   replyTo: {
     type: Schema.Types.ObjectId,
@@ -79,6 +100,22 @@ const MessageSchema = new Schema<IMessage>({
       default: Date.now
     }
   }],
+  deliveredTo: [{
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    deliveredAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  status: {
+    type: String,
+    enum: ['sending', 'sent', 'delivered', 'read', 'failed'],
+    default: 'sending'
+  },
   editedAt: {
     type: Date
   },

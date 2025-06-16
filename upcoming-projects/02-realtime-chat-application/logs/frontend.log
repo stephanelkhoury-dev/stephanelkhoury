@@ -2,379 +2,42 @@
 > chat-client@1.0.0 start
 > PORT=3030 react-scripts start
 
-(node:19901) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:98844) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:19901) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:98844) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
-Failed to compile.
+Compiled successfully!
 
-[eslint] 
-src/services/api.ts
-Syntax error: Unknown keyword or identifier. Did you mean 'const'? (1:undefined)
-WARNING in [eslint] 
-src/components/Chat/MessageInput.tsx
-  Line 13:10:  'isTyping' is assigned a value but never used  @typescript-eslint/no-unused-vars
+You can now view chat-client in the browser.
 
-src/components/Layout/Sidebar.tsx
-  Line 13:9:  'location' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
-  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchChats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-  Line 39:6:  React Hook useEffect has a missing dependency: 'fetchChats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Local:            http://localhost:3030
+  On Your Network:  http://192.168.0.102:3030
 
-src/pages/Chat/Chat.tsx
-  Line 22:9:  The 'messages' conditional could make the dependencies of useEffect Hook (at line 39) change on every render. To fix this, wrap the initialization of 'messages' in its own useMemo() Hook  react-hooks/exhaustive-deps
-  Line 28:6:  React Hook useEffect has missing dependencies: 'activeChat?._id' and 'loadChat'. Either include them or remove the dependency array                                                         react-hooks/exhaustive-deps
-  Line 35:6:  React Hook useEffect has missing dependencies: 'joinChatRoom' and 'loadMessages'. Either include them or remove the dependency array                                                        react-hooks/exhaustive-deps
-  Line 53:6:  React Hook useEffect has a missing dependency: 'handleNewMessage'. Either include it or remove the dependency array                                                                         react-hooks/exhaustive-deps
+Note that the development build is not optimized.
+To create a production build, use npm run build.
 
-ERROR in ./src/services/api.ts
-Module build failed (from ./node_modules/babel-loader/lib/index.js):
-SyntaxError: /Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/src/services/api.ts: Missing semicolon. (1:7)
-
-> 1 | imconst api = axios.create({
-    |        ^
-  2 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-  3 |   headers: {
-  4 |     'Content-Type': 'application/json',
-    at constructor (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:363:19)
-    at TypeScriptParserMixin.raise (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:6609:19)
-    at TypeScriptParserMixin.semicolon (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:6906:10)
-    at TypeScriptParserMixin.parseExpressionStatement (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:13204:10)
-    at TypeScriptParserMixin.parseExpressionStatement (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:9553:26)
-    at TypeScriptParserMixin.parseStatementContent (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12818:19)
-    at TypeScriptParserMixin.parseStatementContent (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:9469:18)
-    at TypeScriptParserMixin.parseStatementLike (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12685:17)
-    at TypeScriptParserMixin.parseModuleItem (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12662:17)
-    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:13235:36)
-    at TypeScriptParserMixin.parseBlockBody (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:13228:10)
-    at TypeScriptParserMixin.parseProgram (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12541:10)
-    at TypeScriptParserMixin.parseTopLevel (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12531:25)
-    at TypeScriptParserMixin.parse (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:14410:10)
-    at TypeScriptParserMixin.parse (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:10086:18)
-    at parse (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:14444:38)
-    at parser (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/parser/index.js:41:34)
-    at parser.next (<anonymous>)
-    at normalizeFile (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
-    at normalizeFile.next (<anonymous>)
-    at run (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/transformation/index.js:22:50)
-    at run.next (<anonymous>)
-    at transform (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/transform.js:22:33)
-    at transform.next (<anonymous>)
-    at step (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:261:32)
-    at /Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:273:13
-    at async.call.result.err.err (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:223:11)
-    at /Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:189:28
-    at /Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
-    at /Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:113:33
-    at step (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:287:14)
-    at /Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:273:13
-    at async.call.result.err.err (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:223:11)
-
-ERROR in [eslint] 
-src/services/api.ts
-  Line 1:  Parsing error: Unknown keyword or identifier. Did you mean 'const'?
-
-webpack compiled with 2 errors and 1 warning
-ERROR in src/services/api.ts
-TS1435: Unknown keyword or identifier. Did you mean 'const'?
-
-ERROR in src/services/api.ts
-TS2304: Cannot find name 'imconst'.
-
-ERROR in src/services/api.ts:1:9
-TS2448: Block-scoped variable 'api' used before its declaration.
-  > 1 | imconst api = axios.create({
-      |         ^^^
-    2 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-    3 |   headers: {
-    4 |     'Content-Type': 'application/json',
-
-ERROR in src/services/api.ts:1:9
-TS2588: Cannot assign to 'api' because it is a constant.
-  > 1 | imconst api = axios.create({
-      |         ^^^
-    2 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-    3 |   headers: {
-    4 |     'Content-Type': 'application/json',
-
-ERROR in src/services/api.ts:1:15
-TS2304: Cannot find name 'axios'.
-  > 1 | imconst api = axios.create({
-      |               ^^^^^
-    2 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-    3 |   headers: {
-    4 |     'Content-Type': 'application/json',
-
-ERROR in src/services/api.ts:6:4
-TS1434: Unexpected keyword or identifier.
-    4 |     'Content-Type': 'application/json',
-    5 |   },
-  > 6 | });xios from 'axios';
-      |    ^^^^
-    7 |
-    8 | const api = axios.create({
-    9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-
-ERROR in src/services/api.ts:6:4
-TS2304: Cannot find name 'xios'.
-    4 |     'Content-Type': 'application/json',
-    5 |   },
-  > 6 | });xios from 'axios';
-      |    ^^^^
-    7 |
-    8 | const api = axios.create({
-    9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-
-ERROR in src/services/api.ts:6:9
-TS1434: Unexpected keyword or identifier.
-    4 |     'Content-Type': 'application/json',
-    5 |   },
-  > 6 | });xios from 'axios';
-      |         ^^^^
-    7 |
-    8 | const api = axios.create({
-    9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-
-ERROR in src/services/api.ts:6:9
-TS2304: Cannot find name 'from'.
-    4 |     'Content-Type': 'application/json',
-    5 |   },
-  > 6 | });xios from 'axios';
-      |         ^^^^
-    7 |
-    8 | const api = axios.create({
-    9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-
-ERROR in src/services/api.ts:8:13
-TS2304: Cannot find name 'axios'.
-     6 | });xios from 'axios';
-     7 |
-  >  8 | const api = axios.create({
-       |             ^^^^^
-     9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-    10 |   headers: {
-    11 |     'Content-Type': 'application/json',
-
-ERROR in src/services/api.ts:17:4
-TS7006: Parameter 'config' implicitly has an 'any' type.
-    15 | // Request interceptor to add auth token
-    16 | api.interceptors.request.use(
-  > 17 |   (config) => {
-       |    ^^^^^^
-    18 |     const token = localStorage.getItem('token');
-    19 |     if (token) {
-    20 |       config.headers.Authorization = `Bearer ${token}`;
-
-ERROR in src/services/api.ts:24:4
-TS7006: Parameter 'error' implicitly has an 'any' type.
-    22 |     return config;
-    23 |   },
-  > 24 |   (error) => {
-       |    ^^^^^
-    25 |     return Promise.reject(error);
-    26 |   }
-    27 | );
-
-ERROR in src/services/api.ts:31:4
-TS7006: Parameter 'response' implicitly has an 'any' type.
-    29 | // Response interceptor to handle auth errors
-    30 | api.interceptors.response.use(
-  > 31 |   (response) => response,
-       |    ^^^^^^^^
-    32 |   (error) => {
-    33 |     if (error.response?.status === 401) {
-    34 |       localStorage.removeItem('token');
-
-ERROR in src/services/api.ts:32:4
-TS7006: Parameter 'error' implicitly has an 'any' type.
-    30 | api.interceptors.response.use(
-    31 |   (response) => response,
-  > 32 |   (error) => {
-       |    ^^^^^
-    33 |     if (error.response?.status === 401) {
-    34 |       localStorage.removeItem('token');
-    35 |       window.location.href = '/login';
-
+webpack compiled successfully
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+No issues found.
 Compiling...
-Failed to compile.
+Compiled with warnings.
 
 [eslint] 
-src/services/api.ts
-Syntax error: Unknown keyword or identifier. Did you mean 'const'? (1:undefined)
-WARNING in [eslint] 
-src/components/Chat/MessageInput.tsx
-  Line 13:10:  'isTyping' is assigned a value but never used  @typescript-eslint/no-unused-vars
-
 src/components/Layout/Sidebar.tsx
-  Line 13:9:  'location' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
-  Line 22:6:  React Hook useEffect has a missing dependency: 'fetchChats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-  Line 39:6:  React Hook useEffect has a missing dependency: 'fetchChats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 15:9:  'location' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+  Line 25:6:  React Hook useEffect has a missing dependency: 'fetchChats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 42:6:  React Hook useEffect has a missing dependency: 'fetchChats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
 
-src/pages/Chat/Chat.tsx
-  Line 22:9:  The 'messages' conditional could make the dependencies of useEffect Hook (at line 39) change on every render. To fix this, wrap the initialization of 'messages' in its own useMemo() Hook  react-hooks/exhaustive-deps
-  Line 28:6:  React Hook useEffect has missing dependencies: 'activeChat?._id' and 'loadChat'. Either include them or remove the dependency array                                                         react-hooks/exhaustive-deps
-  Line 35:6:  React Hook useEffect has missing dependencies: 'joinChatRoom' and 'loadMessages'. Either include them or remove the dependency array                                                        react-hooks/exhaustive-deps
-  Line 53:6:  React Hook useEffect has a missing dependency: 'handleNewMessage'. Either include it or remove the dependency array                                                                         react-hooks/exhaustive-deps
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
 
-ERROR in ./src/services/api.ts
-Module build failed (from ./node_modules/babel-loader/lib/index.js):
-SyntaxError: /Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/src/services/api.ts: Missing semicolon. (1:7)
+WARNING in [eslint] 
+src/components/Layout/Sidebar.tsx
+  Line 15:9:  'location' is assigned a value but never used                                                                  @typescript-eslint/no-unused-vars
+  Line 25:6:  React Hook useEffect has a missing dependency: 'fetchChats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 42:6:  React Hook useEffect has a missing dependency: 'fetchChats'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
 
-> 1 | imconst api = axios.create({
-    |        ^
-  2 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-  3 |   headers: {
-  4 |     'Content-Type': 'application/json',
-    at constructor (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:363:19)
-    at TypeScriptParserMixin.raise (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:6609:19)
-    at TypeScriptParserMixin.semicolon (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:6906:10)
-    at TypeScriptParserMixin.parseExpressionStatement (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:13204:10)
-    at TypeScriptParserMixin.parseExpressionStatement (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:9553:26)
-    at TypeScriptParserMixin.parseStatementContent (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12818:19)
-    at TypeScriptParserMixin.parseStatementContent (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:9469:18)
-    at TypeScriptParserMixin.parseStatementLike (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12685:17)
-    at TypeScriptParserMixin.parseModuleItem (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12662:17)
-    at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:13235:36)
-    at TypeScriptParserMixin.parseBlockBody (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:13228:10)
-    at TypeScriptParserMixin.parseProgram (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12541:10)
-    at TypeScriptParserMixin.parseTopLevel (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:12531:25)
-    at TypeScriptParserMixin.parse (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:14410:10)
-    at TypeScriptParserMixin.parse (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:10086:18)
-    at parse (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/parser/lib/index.js:14444:38)
-    at parser (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/parser/index.js:41:34)
-    at parser.next (<anonymous>)
-    at normalizeFile (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
-    at normalizeFile.next (<anonymous>)
-    at run (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/transformation/index.js:22:50)
-    at run.next (<anonymous>)
-    at transform (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/@babel/core/lib/transform.js:22:33)
-    at transform.next (<anonymous>)
-    at step (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:261:32)
-    at /Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:273:13
-    at async.call.result.err.err (/Users/stephanelkhoury/Documents/GitHub/stephanelkhoury/upcoming-projects/02-realtime-chat-application/client/node_modules/gensync/index.js:223:11)
-
-ERROR in [eslint] 
-src/services/api.ts
-  Line 1:  Parsing error: Unknown keyword or identifier. Did you mean 'const'?
-
-webpack compiled with 2 errors and 1 warning
-ERROR in src/services/api.ts
-TS1435: Unknown keyword or identifier. Did you mean 'const'?
-
-ERROR in src/services/api.ts
-TS2304: Cannot find name 'imconst'.
-
-ERROR in src/services/api.ts:1:9
-TS2448: Block-scoped variable 'api' used before its declaration.
-  > 1 | imconst api = axios.create({
-      |         ^^^
-    2 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-    3 |   headers: {
-    4 |     'Content-Type': 'application/json',
-
-ERROR in src/services/api.ts:1:9
-TS2588: Cannot assign to 'api' because it is a constant.
-  > 1 | imconst api = axios.create({
-      |         ^^^
-    2 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-    3 |   headers: {
-    4 |     'Content-Type': 'application/json',
-
-ERROR in src/services/api.ts:1:15
-TS2304: Cannot find name 'axios'.
-  > 1 | imconst api = axios.create({
-      |               ^^^^^
-    2 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-    3 |   headers: {
-    4 |     'Content-Type': 'application/json',
-
-ERROR in src/services/api.ts:6:4
-TS1434: Unexpected keyword or identifier.
-    4 |     'Content-Type': 'application/json',
-    5 |   },
-  > 6 | });xios from 'axios';
-      |    ^^^^
-    7 |
-    8 | const api = axios.create({
-    9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-
-ERROR in src/services/api.ts:6:4
-TS2304: Cannot find name 'xios'.
-    4 |     'Content-Type': 'application/json',
-    5 |   },
-  > 6 | });xios from 'axios';
-      |    ^^^^
-    7 |
-    8 | const api = axios.create({
-    9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-
-ERROR in src/services/api.ts:6:9
-TS1434: Unexpected keyword or identifier.
-    4 |     'Content-Type': 'application/json',
-    5 |   },
-  > 6 | });xios from 'axios';
-      |         ^^^^
-    7 |
-    8 | const api = axios.create({
-    9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-
-ERROR in src/services/api.ts:6:9
-TS2304: Cannot find name 'from'.
-    4 |     'Content-Type': 'application/json',
-    5 |   },
-  > 6 | });xios from 'axios';
-      |         ^^^^
-    7 |
-    8 | const api = axios.create({
-    9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-
-ERROR in src/services/api.ts:8:13
-TS2304: Cannot find name 'axios'.
-     6 | });xios from 'axios';
-     7 |
-  >  8 | const api = axios.create({
-       |             ^^^^^
-     9 |   baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5050/api',
-    10 |   headers: {
-    11 |     'Content-Type': 'application/json',
-
-ERROR in src/services/api.ts:17:4
-TS7006: Parameter 'config' implicitly has an 'any' type.
-    15 | // Request interceptor to add auth token
-    16 | api.interceptors.request.use(
-  > 17 |   (config) => {
-       |    ^^^^^^
-    18 |     const token = localStorage.getItem('token');
-    19 |     if (token) {
-    20 |       config.headers.Authorization = `Bearer ${token}`;
-
-ERROR in src/services/api.ts:24:4
-TS7006: Parameter 'error' implicitly has an 'any' type.
-    22 |     return config;
-    23 |   },
-  > 24 |   (error) => {
-       |    ^^^^^
-    25 |     return Promise.reject(error);
-    26 |   }
-    27 | );
-
-ERROR in src/services/api.ts:31:4
-TS7006: Parameter 'response' implicitly has an 'any' type.
-    29 | // Response interceptor to handle auth errors
-    30 | api.interceptors.response.use(
-  > 31 |   (response) => response,
-       |    ^^^^^^^^
-    32 |   (error) => {
-    33 |     if (error.response?.status === 401) {
-    34 |       localStorage.removeItem('token');
-
-ERROR in src/services/api.ts:32:4
-TS7006: Parameter 'error' implicitly has an 'any' type.
-    30 | api.interceptors.response.use(
-    31 |   (response) => response,
-  > 32 |   (error) => {
-       |    ^^^^^
-    33 |     if (error.response?.status === 401) {
-    34 |       localStorage.removeItem('token');
-    35 |       window.location.href = '/login';
-
+webpack compiled with 1 warning
+No issues found.

@@ -2,17 +2,339 @@
 > chat-server@1.0.0 start
 > node dist/server.js
 
-(node:19854) [MONGOOSE] Warning: Duplicate schema index on {"username":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+[33mwarn[39m: GIPHY_API_KEY not set - GIF functionality will be limited {"service":"chat-server","timestamp":"2025-06-07 16:58:38"}
+(node:98779) [MONGOOSE] Warning: Duplicate schema index on {"username":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
 (Use `node --trace-warnings ...` to show where the warning was created)
-(node:19854) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
-[32minfo[39m: Chat server running on port 5050 {"service":"chat-server","timestamp":"2025-06-07 03:04:43"}
-[32minfo[39m: Environment: development {"service":"chat-server","timestamp":"2025-06-07 03:04:43"}
-[32minfo[39m: Connected to MongoDB successfully {"service":"chat-server","timestamp":"2025-06-07 03:04:43"}
-[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:04:53"}
-[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:04:53"}
-[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:04:53"}
-[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:04:53"}
-[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:05:27"}
-[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:05:27"}
-[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:05:30"}
-[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 03:05:30"}
+(node:98779) [MONGOOSE] Warning: Duplicate schema index on {"email":1} found. This is often due to declaring an index using both "index: true" and "schema.index()". Please remove the duplicate index definition.
+[32minfo[39m: Chat server running on port 5050 {"service":"chat-server","timestamp":"2025-06-07 16:58:38"}
+[32minfo[39m: Environment: development {"service":"chat-server","timestamp":"2025-06-07 16:58:38"}
+[32minfo[39m: Connected to MongoDB successfully {"service":"chat-server","timestamp":"2025-06-07 16:58:38"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 16:58:40"}
+[33mwarn[39m: GIPHY_API_KEY not set - GIF functionality will be limited {"service":"chat-server","timestamp":"2025-06-07 16:58:40"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 16:58:40"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 16:58:40"}
+[32minfo[39m: Created voice notes upload directory {"service":"chat-server","timestamp":"2025-06-07 16:58:40"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: GET /api/auth/verify - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: GET /api/auth/verify - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: GET /api/chat - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: GET /api/chat - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:44"}
+[32minfo[39m: GET /favicon.ico - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: GET /api/auth/verify - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: GET /api/auth/verify - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: GET /api/chat - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: GET /api/chat - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: GET /manifest.json - ::1 {"service":"chat-server","timestamp":"2025-06-07 16:58:46"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 17:03:44"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 17:03:46"}
+[32minfo[39m: GET /api/user/search - ::1 {"service":"chat-server","timestamp":"2025-06-07 17:10:08"}
+[32minfo[39m: GET /api/user/search - ::1 {"service":"chat-server","timestamp":"2025-06-07 17:10:09"}
+[32minfo[39m: GET /api/user/search - ::1 {"service":"chat-server","timestamp":"2025-06-07 17:10:10"}
+[32minfo[39m: GET /api/chat - ::1 {"service":"chat-server","timestamp":"2025-06-07 17:10:11"}
+[32minfo[39m: GET /api/chat - ::1 {"service":"chat-server","timestamp":"2025-06-07 17:11:32"}
+[32minfo[39m: GET /api/chat - ::1 {"service":"chat-server","timestamp":"2025-06-07 17:11:32"}
+[32minfo[39m: User demouser joined chat 68438a24f2b530bdfb4da5f8 {"service":"chat-server","timestamp":"2025-06-07 17:12:00"}
+[32minfo[39m: GET /api/chat/68438a24f2b530bdfb4da5f8/messages - ::1 {"service":"chat-server","timestamp":"2025-06-07 17:12:00"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 17:33:36"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 17:33:36"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 17:33:36"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 17:33:36"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 17:33:36"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 17:33:36"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 17:33:36"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 17:33:36"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 17:33:37"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 17:33:37"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 17:33:37"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 17:33:38"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 17:33:38"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 17:33:38"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 17:47:22"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 17:47:22"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 17:47:45"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 17:47:45"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 17:47:45"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 17:47:45"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 17:47:46"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 17:47:46"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 17:47:46"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 17:47:47"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 17:47:47"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 17:47:47"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 17:51:03"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 17:51:03"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 17:51:03"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 17:51:03"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 17:51:04"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 17:51:04"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 17:51:04"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 17:51:04"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 17:51:04"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 17:51:04"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 17:58:29"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 17:58:29"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 19:12:31"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 19:12:31"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 19:12:31"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 19:12:31"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 19:12:31"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 19:12:31"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 19:12:31"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 19:12:32"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 19:12:32"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 19:12:32"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 19:17:37"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 19:17:37"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 20:16:59"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 20:16:59"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 20:16:59"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 20:16:59"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 20:17:01"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 20:17:01"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 20:17:01"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 20:17:01"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 20:17:01"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 20:17:01"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 20:25:02"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 20:25:02"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 21:47:32"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 21:47:32"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 21:47:32"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 21:47:32"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 21:47:32"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 21:47:32"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 21:47:32"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 21:47:33"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 21:47:33"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 21:47:33"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:03:58"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:03:58"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:04:40"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:04:40"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:04:40"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:04:40"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:04:41"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:04:41"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:04:41"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:04:41"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:04:41"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:04:41"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:09:41"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:09:41"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:13:55"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:13:55"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:13:55"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:13:55"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:13:56"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:13:56"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:13:56"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:13:56"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:13:56"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:13:56"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:16:11"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:16:11"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:16:11"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:16:11"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:16:12"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:16:12"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:16:12"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:16:13"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:16:13"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:16:13"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:20:22"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:20:22"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:20:22"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:20:22"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:20:23"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:20:23"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:20:23"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:20:24"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:20:24"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:20:24"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:25:23"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:25:24"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:30:24"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:30:24"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:30:24"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:30:24"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:30:25"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:30:25"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:30:25"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:30:25"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:30:25"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:30:25"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:35:25"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:35:25"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:35:47"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:35:47"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:35:47"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:35:47"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:35:48"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:35:48"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:35:48"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:35:48"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:35:48"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:35:48"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:40:02"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:40:02"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:40:02"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:40:02"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:40:03"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:40:03"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:40:03"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:40:04"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:40:04"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:40:04"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:41:01"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:41:01"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:41:01"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:41:01"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:41:02"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:41:02"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:41:02"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:41:02"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:41:02"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:41:02"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:46:02"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:46:02"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:54:54"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 22:54:54"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:54:54"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 22:54:54"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 22:54:55"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:54:55"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:54:55"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 22:54:56"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 22:54:56"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 22:54:56"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:59:55"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 22:59:56"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 23:17:13"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 23:17:13"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 23:17:13"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 23:17:13"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 23:17:14"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 23:17:14"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 23:17:14"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 23:17:14"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 23:17:14"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 23:17:14"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 23:18:01"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 23:18:01"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 23:18:01"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 23:18:01"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 23:18:02"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 23:18:02"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 23:18:02"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 23:18:02"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 23:18:02"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 23:18:02"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 23:23:02"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 23:23:02"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-07 23:24:17"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-07 23:24:17"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 23:24:17"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-07 23:24:17"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-07 23:24:18"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-07 23:24:18"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 23:24:18"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 23:24:18"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-07 23:24:18"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-07 23:24:18"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-07 23:29:18"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-07 23:29:18"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-08 00:10:52"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-08 00:10:52"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 00:10:52"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 00:10:52"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-08 00:10:53"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-08 00:10:53"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 00:10:53"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 00:10:53"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 00:10:53"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 00:10:53"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-08 00:26:15"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-08 00:26:15"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-08 00:54:52"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-08 00:54:52"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 00:54:52"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 00:54:52"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-08 00:54:53"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-08 00:54:53"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 00:54:53"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 00:54:53"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 00:54:53"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 00:54:53"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-08 00:59:53"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-08 00:59:53"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-08 01:02:40"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-08 01:02:40"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 01:02:40"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 01:02:40"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-08 01:02:41"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 01:02:41"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 01:02:41"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-08 01:02:42"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 01:02:42"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 01:02:42"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-08 01:02:57"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-08 01:02:57"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 01:02:57"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 01:02:57"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-08 01:02:59"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 01:02:59"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 01:02:59"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-08 01:03:00"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 01:03:00"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 01:03:00"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-08 01:07:59"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-08 01:08:00"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-08 02:26:09"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-08 02:26:09"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 02:26:10"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 02:26:10"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-08 02:26:11"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-08 02:26:11"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 02:26:11"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 02:26:11"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 02:26:11"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 02:26:11"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-08 02:31:11"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-08 02:31:11"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-08 02:55:06"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-08 02:55:06"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 02:55:06"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 02:55:06"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-08 02:55:08"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 02:55:08"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 02:55:08"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-08 02:55:09"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 02:55:09"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 02:55:09"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-08 03:00:08"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-08 03:00:09"}
+[32minfo[39m: User disconnected: alice (transport close) {"service":"chat-server","timestamp":"2025-06-08 03:32:37"}
+[32minfo[39m: User disconnected: demouser (transport close) {"service":"chat-server","timestamp":"2025-06-08 03:32:37"}
+[32minfo[39m: User alice disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 03:32:37"}
+[32minfo[39m: User demouser disconnected - offline status updated {"service":"chat-server","timestamp":"2025-06-08 03:32:37"}
+[32minfo[39m: User connected: demouser (6843884cf2b530bdfb4da568) {"service":"chat-server","timestamp":"2025-06-08 03:32:38"}
+[32minfo[39m: User demouser connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 03:32:38"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 03:32:38"}
+[32minfo[39m: User connected: alice (684388c9f2b530bdfb4da579) {"service":"chat-server","timestamp":"2025-06-08 03:32:39"}
+[32minfo[39m: User alice connected - online status updated {"service":"chat-server","timestamp":"2025-06-08 03:32:39"}
+[32minfo[39m: User joined 1 chat rooms {"service":"chat-server","timestamp":"2025-06-08 03:32:39"}
+[32minfo[39m: User 6843884cf2b530bdfb4da568 status updated to away {"service":"chat-server","timestamp":"2025-06-08 03:43:10"}
+[32minfo[39m: User 684388c9f2b530bdfb4da579 status updated to away {"service":"chat-server","timestamp":"2025-06-08 03:43:10"}

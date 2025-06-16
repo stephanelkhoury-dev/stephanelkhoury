@@ -12,14 +12,15 @@ import Chat from './pages/Chat/Chat';
 import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
 import LoadingSpinner from './components/Common/LoadingSpinner';
+import toast from 'react-hot-toast';
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { user, isLoading } = useSelector((state: RootState) => state.auth);
-  const { connected } = useSelector((state: RootState) => state.socket);
+  const { connected, socket } = useSelector((state: RootState) => state.socket);
 
+  // Check authentication status and initialize socket
   useEffect(() => {
-    // Check if user is already logged in
     const checkAuth = async () => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -27,26 +28,64 @@ const App: React.FC = () => {
           const response = await api.get('/auth/verify');
           dispatch(setUser(response.data.user));
           
-          // Initialize socket connection
-          dispatch(initializeSocket(token));
+          // Initialize socket connection if not already connected
+          if (!connected || !socket) {
+            dispatch(initializeSocket(token));
+          }
         } catch (error) {
           localStorage.removeItem('token');
+          if (connected) {
+            dispatch(disconnectSocket());
+          }
         }
       }
       dispatch(setLoading(false));
     };
 
     checkAuth();
-  }, [dispatch]);
 
-  useEffect(() => {
-    // Cleanup socket connection on unmount
+    // Setup reconnection handling
+    window.addEventListener('online', checkAuth);
+    window.addEventListener('focus', checkAuth);
+
     return () => {
+      window.removeEventListener('online', checkAuth);
+      window.removeEventListener('focus', checkAuth);
       if (connected) {
         dispatch(disconnectSocket());
       }
     };
-  }, [dispatch, connected]);
+  }, [dispatch, connected, socket]);
+
+  // Handle socket connection status
+  useEffect(() => {
+    if (socket) {
+      socket.on('connect', () => {
+        toast.success('Connected to chat server');
+      });
+
+      socket.on('disconnect', () => {
+        toast.error('Lost connection to chat server');
+      });
+
+      socket.on('connect_error', (error: Error) => {
+        toast.error(`Connection error: ${error.message}`);
+        // Attempt to reconnect after a delay
+        setTimeout(() => {
+          if (user && !connected) {
+            const token = localStorage.getItem('token');
+            if (token) dispatch(initializeSocket(token));
+          }
+        }, 5000);
+      });
+
+      return () => {
+        socket.off('connect');
+        socket.off('disconnect');
+        socket.off('connect_error');
+      };
+    }
+  }, [socket, dispatch, user, connected]);
 
   if (isLoading) {
     return (

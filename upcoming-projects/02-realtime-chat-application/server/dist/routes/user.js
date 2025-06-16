@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const joi_1 = __importDefault(require("joi"));
 const User_1 = require("../models/User");
+const auth_1 = require("../middleware/auth");
 const logger_1 = __importDefault(require("../utils/logger"));
 const router = express_1.default.Router();
 // Validation schemas
@@ -26,9 +27,10 @@ const updateProfileSchema = joi_1.default.object({
     })
 });
 // Get user profile
-router.get('/profile', async (req, res) => {
+router.get('/profile', auth_1.authenticateToken, async (req, res) => {
     try {
-        const user = req.user;
+        const authReq = req;
+        const user = authReq.user;
         res.json({
             id: user._id,
             username: user.username,
@@ -48,32 +50,32 @@ router.get('/profile', async (req, res) => {
     }
 });
 // Update user profile
-router.put('/profile', async (req, res) => {
+router.put('/profile', auth_1.authenticateToken, async (req, res) => {
     try {
-        const { error } = updateProfileSchema.validate(req.body);
+        const { error, value } = updateProfileSchema.validate(req.body);
         if (error) {
             return res.status(400).json({ error: error.details[0].message });
         }
-        const userId = req.user._id;
-        const { username, statusMessage, preferences } = req.body;
-        // Check if username is taken (if being updated)
-        if (username && username !== req.user.username) {
+        const authReq = req;
+        const userId = authReq.user._id;
+        const { username, statusMessage, preferences } = value;
+        // Check if username is already taken (if changing)
+        if (username && username !== authReq.user.username) {
             const existingUser = await User_1.User.findOne({ username });
-            if (existingUser && existingUser._id.toString() !== userId.toString()) {
-                return res.status(400).json({ error: 'Username already taken' });
+            if (existingUser) {
+                return res.status(409).json({ error: 'Username already taken' });
             }
         }
-        // Build update object
         const updateData = {};
         if (username)
             updateData.username = username;
         if (statusMessage !== undefined)
             updateData.statusMessage = statusMessage;
         if (preferences) {
-            updateData.preferences = { ...req.user.preferences, ...preferences };
+            updateData.preferences = { ...authReq.user.preferences, ...preferences };
         }
         const updatedUser = await User_1.User.findByIdAndUpdate(userId, updateData, { new: true }).select('-password');
-        logger_1.default.info(`User profile updated: ${req.user.username}`);
+        logger_1.default.info(`User profile updated: ${authReq.user.username}`);
         res.json({
             message: 'Profile updated successfully',
             user: updatedUser
@@ -85,27 +87,28 @@ router.put('/profile', async (req, res) => {
     }
 });
 // Search users
-router.get('/search', async (req, res) => {
+router.get('/search', auth_1.authenticateToken, async (req, res) => {
     try {
-        const { q, limit = 10 } = req.query;
-        if (!q || typeof q !== 'string' || q.length < 2) {
-            return res.status(400).json({ error: 'Search query must be at least 2 characters' });
+        const { q } = req.query;
+        if (!q || typeof q !== 'string' || q.trim().length < 2) {
+            return res.status(400).json({ error: 'Query must be at least 2 characters long' });
         }
-        const searchRegex = new RegExp(q, 'i');
+        const authReq = req;
+        const query = q.trim();
         const users = await User_1.User.find({
             $and: [
-                { _id: { $ne: req.user._id } }, // Exclude current user
-                { _id: { $nin: req.user.blockedUsers } }, // Exclude blocked users
+                { _id: { $ne: authReq.user._id } }, // Exclude current user
+                { _id: { $nin: authReq.user.blockedUsers } }, // Exclude blocked users
                 {
                     $or: [
-                        { username: searchRegex },
-                        { email: searchRegex }
+                        { username: { $regex: query, $options: 'i' } },
+                        { email: { $regex: query, $options: 'i' } }
                     ]
                 }
             ]
         })
             .select('username email avatar status lastSeen')
-            .limit(parseInt(limit));
+            .limit(20);
         res.json({
             users,
             count: users.length
@@ -117,9 +120,10 @@ router.get('/search', async (req, res) => {
     }
 });
 // Get user contacts
-router.get('/contacts', async (req, res) => {
+router.get('/contacts', auth_1.authenticateToken, async (req, res) => {
     try {
-        const user = await User_1.User.findById(req.user._id)
+        const authReq = req;
+        const user = await User_1.User.findById(authReq.user._id)
             .populate('contacts', 'username email avatar status lastSeen')
             .select('contacts');
         res.json({
@@ -132,10 +136,11 @@ router.get('/contacts', async (req, res) => {
     }
 });
 // Add contact
-router.post('/contacts/:userId', async (req, res) => {
+router.post('/contacts/:userId', auth_1.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
-        const currentUserId = req.user._id;
+        const authReq = req;
+        const currentUserId = authReq.user._id;
         if (userId === currentUserId.toString()) {
             return res.status(400).json({ error: 'Cannot add yourself as contact' });
         }
@@ -145,8 +150,8 @@ router.post('/contacts/:userId', async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
         // Check if already in contacts
-        if (req.user.contacts.includes(userId)) {
-            return res.status(400).json({ error: 'User already in contacts' });
+        if (authReq.user.contacts.includes(userId)) {
+            return res.status(409).json({ error: 'User already in contacts' });
         }
         // Add to contacts
         await User_1.User.findByIdAndUpdate(currentUserId, {
@@ -156,7 +161,7 @@ router.post('/contacts/:userId', async (req, res) => {
         await User_1.User.findByIdAndUpdate(userId, {
             $addToSet: { contacts: currentUserId }
         });
-        logger_1.default.info(`Contact added: ${req.user.username} added ${targetUser.username}`);
+        logger_1.default.info(`Contact added: ${authReq.user.username} added ${targetUser.username}`);
         res.json({
             message: 'Contact added successfully',
             contact: {
@@ -173,10 +178,11 @@ router.post('/contacts/:userId', async (req, res) => {
     }
 });
 // Remove contact
-router.delete('/contacts/:userId', async (req, res) => {
+router.delete('/contacts/:userId', auth_1.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
-        const currentUserId = req.user._id;
+        const authReq = req;
+        const currentUserId = authReq.user._id;
         // Remove from contacts
         await User_1.User.findByIdAndUpdate(currentUserId, {
             $pull: { contacts: userId }
@@ -185,7 +191,7 @@ router.delete('/contacts/:userId', async (req, res) => {
         await User_1.User.findByIdAndUpdate(userId, {
             $pull: { contacts: currentUserId }
         });
-        logger_1.default.info(`Contact removed: ${req.user.username} removed ${userId}`);
+        logger_1.default.info(`Contact removed: ${authReq.user.username} removed ${userId}`);
         res.json({
             message: 'Contact removed successfully'
         });
@@ -196,10 +202,11 @@ router.delete('/contacts/:userId', async (req, res) => {
     }
 });
 // Block user
-router.post('/block/:userId', async (req, res) => {
+router.post('/block/:userId', auth_1.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
-        const currentUserId = req.user._id;
+        const authReq = req;
+        const currentUserId = authReq.user._id;
         if (userId === currentUserId.toString()) {
             return res.status(400).json({ error: 'Cannot block yourself' });
         }
@@ -213,7 +220,7 @@ router.post('/block/:userId', async (req, res) => {
             $addToSet: { blockedUsers: userId },
             $pull: { contacts: userId } // Remove from contacts if exists
         });
-        logger_1.default.info(`User blocked: ${req.user.username} blocked ${targetUser.username}`);
+        logger_1.default.info(`User blocked: ${authReq.user.username} blocked ${targetUser.username}`);
         res.json({
             message: 'User blocked successfully'
         });
@@ -224,15 +231,16 @@ router.post('/block/:userId', async (req, res) => {
     }
 });
 // Unblock user
-router.delete('/block/:userId', async (req, res) => {
+router.delete('/block/:userId', auth_1.authenticateToken, async (req, res) => {
     try {
         const { userId } = req.params;
-        const currentUserId = req.user._id;
+        const authReq = req;
+        const currentUserId = authReq.user._id;
         // Remove from blocked users
         await User_1.User.findByIdAndUpdate(currentUserId, {
             $pull: { blockedUsers: userId }
         });
-        logger_1.default.info(`User unblocked: ${req.user.username} unblocked ${userId}`);
+        logger_1.default.info(`User unblocked: ${authReq.user.username} unblocked ${userId}`);
         res.json({
             message: 'User unblocked successfully'
         });
@@ -243,10 +251,11 @@ router.delete('/block/:userId', async (req, res) => {
     }
 });
 // Get blocked users
-router.get('/blocked', async (req, res) => {
+router.get('/blocked', auth_1.authenticateToken, async (req, res) => {
     try {
-        const user = await User_1.User.findById(req.user._id)
-            .populate('blockedUsers', 'username avatar')
+        const authReq = req;
+        const user = await User_1.User.findById(authReq.user._id)
+            .populate('blockedUsers', 'username email avatar')
             .select('blockedUsers');
         res.json({
             blockedUsers: user?.blockedUsers || []
@@ -258,22 +267,22 @@ router.get('/blocked', async (req, res) => {
     }
 });
 // Update user status
-router.put('/status', async (req, res) => {
+router.put('/status', auth_1.authenticateToken, async (req, res) => {
     try {
         const { status, statusMessage } = req.body;
-        if (!['online', 'away', 'busy', 'offline'].includes(status)) {
+        if (!['online', 'offline', 'away', 'busy', 'dnd'].includes(status)) {
             return res.status(400).json({ error: 'Invalid status' });
         }
         const updateData = { status, lastSeen: new Date() };
         if (statusMessage !== undefined) {
             updateData.statusMessage = statusMessage;
         }
-        await User_1.User.findByIdAndUpdate(req.user._id, updateData);
-        logger_1.default.info(`User status updated: ${req.user.username} set to ${status}`);
+        const authReq = req;
+        await User_1.User.findByIdAndUpdate(authReq.user._id, updateData);
+        logger_1.default.info(`User status updated: ${authReq.user.username} set to ${status}`);
         res.json({
-            message: 'Status updated successfully',
             status,
-            statusMessage: statusMessage || req.user.statusMessage
+            statusMessage: statusMessage || authReq.user.statusMessage
         });
     }
     catch (error) {

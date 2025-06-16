@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../store/store';
@@ -17,27 +17,77 @@ const Chat: React.FC = () => {
   const { socket } = useSelector((state: RootState) => state.socket);
   const { user } = useSelector((state: RootState) => state.auth);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
+
   // Get messages for the current chat
   const messages = activeChat ? allMessages[activeChat._id] || [] : [];
 
+  const loadChat = useCallback(async (id: string) => {
+    try {
+      const response = await api.get(`/chat/${id}`);
+      dispatch(setActiveChat(response.data));
+    } catch (error) {
+      toast.error('Failed to load chat');
+    }
+  }, [dispatch]);
+
+  const loadMessages = useCallback(async () => {
+    if (!activeChat) return;
+
+    try {
+      const response = await api.get(`/chat/${activeChat._id}/messages`);
+      dispatch(setMessages(response.data));
+    } catch (error) {
+      toast.error('Failed to load messages');
+    }
+  }, [activeChat, dispatch]);
+
+  const joinChatRoom = useCallback(() => {
+    if (socket && activeChat) {
+      socket.emit('join-chat', activeChat._id);
+    }
+  }, [socket, activeChat]);
+
+  const handleNewMessage = useCallback((message: any) => {
+    if (message.chat === activeChat?._id) {
+      dispatch(addMessage(message));
+    }
+  }, [dispatch, activeChat?._id]);
+
+  const handleMessageDeleted = useCallback((messageId: string) => {
+    // Handle message deletion
+    console.log('Message deleted:', messageId);
+  }, []);
+
+  const handleMessageEdited = useCallback((message: any) => {
+    // Handle message editing
+    console.log('Message edited:', message);
+  }, []);
+
+  const scrollToBottom = useCallback(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  // Effect for loading chat
   useEffect(() => {
     if (chatId && chatId !== activeChat?._id) {
       loadChat(chatId);
     }
-  }, [chatId]);
+  }, [chatId, activeChat?._id, loadChat]);
 
+  // Effect for loading messages and joining chat room
   useEffect(() => {
     if (activeChat) {
       loadMessages();
       joinChatRoom();
     }
-  }, [activeChat]);
+  }, [activeChat, loadMessages, joinChatRoom]);
 
+  // Effect for scrolling to bottom
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, scrollToBottom]);
 
+  // Effect for socket event listeners
   useEffect(() => {
     if (socket) {
       socket.on('new-message', handleNewMessage);
@@ -50,59 +100,12 @@ const Chat: React.FC = () => {
         socket.off('message-edited');
       };
     }
-  }, [socket, activeChat]);
-
-  const loadChat = async (id: string) => {
-    try {
-      const response = await api.get(`/chat/${id}`);
-      dispatch(setActiveChat(response.data));
-    } catch (error) {
-      toast.error('Failed to load chat');
-    }
-  };
-
-  const loadMessages = async () => {
-    if (!activeChat) return;
-
-    try {
-      const response = await api.get(`/chat/${activeChat._id}/messages`);
-      dispatch(setMessages(response.data));
-    } catch (error) {
-      toast.error('Failed to load messages');
-    }
-  };
-
-  const joinChatRoom = () => {
-    if (socket && activeChat) {
-      socket.emit('join-chat', activeChat._id);
-    }
-  };
-
-  const handleNewMessage = (message: any) => {
-    if (message.chat === activeChat?._id) {
-      dispatch(addMessage(message));
-    }
-  };
-
-  const handleMessageDeleted = (messageId: string) => {
-    // Handle message deletion
-    console.log('Message deleted:', messageId);
-  };
-
-  const handleMessageEdited = (message: any) => {
-    // Handle message editing
-    console.log('Message edited:', message);
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  }, [socket, handleNewMessage, handleMessageDeleted, handleMessageEdited]);
 
   const handleSendMessage = async (content: string, files?: File[]) => {
     if (!socket || !activeChat || !user) return;
 
     try {
-      // Handle file uploads first if any
       let attachments = [];
       if (files && files.length > 0) {
         const formData = new FormData();
@@ -114,7 +117,6 @@ const Chat: React.FC = () => {
         attachments = uploadResponse.data.files;
       }
 
-      // Send message via socket
       const messageData = {
         chat: activeChat._id,
         content,

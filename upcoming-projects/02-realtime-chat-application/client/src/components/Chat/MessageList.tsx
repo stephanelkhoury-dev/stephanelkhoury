@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import { RootState } from '../../store/store';
@@ -12,66 +12,52 @@ const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   const { user } = useSelector((state: RootState) => state.auth);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const scrollToBottom = useCallback(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, scrollToBottom]);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const shouldShowTimestamp = (currentMessage: any, previousMessage: any) => {
+  const shouldShowTimestamp = useCallback((currentMessage: any, previousMessage: any) => {
     if (!previousMessage) return true;
     
     const currentTime = new Date(currentMessage.createdAt);
     const previousTime = new Date(previousMessage.createdAt);
     const timeDiff = currentTime.getTime() - previousTime.getTime();
     
-    // Show timestamp if messages are more than 5 minutes apart
-    return timeDiff > 5 * 60 * 1000;
-  };
+    return timeDiff > 15 * 60 * 1000; // Show timestamp if more than 15 minutes between messages
+  }, []);
 
-  const shouldShowAvatar = (currentMessage: any, nextMessage: any) => {
+  const shouldShowAvatar = useCallback((currentMessage: any, nextMessage: any) => {
     if (!nextMessage) return true;
-    if (currentMessage.sender._id !== nextMessage.sender._id) return true;
     
-    const currentTime = new Date(currentMessage.createdAt);
-    const nextTime = new Date(nextMessage.createdAt);
-    const timeDiff = nextTime.getTime() - currentTime.getTime();
-    
-    // Show avatar if next message is from different sender or more than 2 minutes apart
-    return timeDiff > 2 * 60 * 1000;
-  };
+    return currentMessage.sender._id !== nextMessage.sender._id;
+  }, []);
 
-  const formatTimestamp = (date: string) => {
+  const formatTimestamp = useCallback((date: string) => {
     const messageDate = new Date(date);
     const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
-    const messageDay = new Date(messageDate.getFullYear(), messageDate.getMonth(), messageDate.getDate());
+    const diff = now.getTime() - messageDate.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    let dateString = '';
-    if (messageDay.getTime() === today.getTime()) {
-      dateString = 'Today';
-    } else if (messageDay.getTime() === yesterday.getTime()) {
-      dateString = 'Yesterday';
+    if (days === 0) {
+      return messageDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    } else if (days === 1) {
+      return 'Yesterday';
+    } else if (days < 7) {
+      return messageDate.toLocaleDateString([], { weekday: 'long' });
     } else {
-      dateString = messageDate.toLocaleDateString();
+      return messageDate.toLocaleDateString([], { month: 'short', day: 'numeric' });
     }
+  }, []);
 
-    const timeString = messageDate.toLocaleTimeString([], { 
-      hour: '2-digit', 
-      minute: '2-digit' 
-    });
-
-    return `${dateString} at ${timeString}`;
-  };
-
-  if (messages.length === 0) {
+  if (!messages.length) {
     return (
-      <div className="flex-1 flex items-center justify-center p-8">
+      <div className="flex-1 flex items-center justify-center p-4">
         <div className="text-center">
-          <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
             <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>

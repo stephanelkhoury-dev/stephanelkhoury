@@ -53,14 +53,22 @@ const MessageSchema = new mongoose_1.Schema({
     },
     type: {
         type: String,
-        enum: ['text', 'image', 'file', 'system'],
+        enum: ['text', 'image', 'file', 'system', 'voice', 'video', 'gif'],
         default: 'text'
     },
     file: {
         url: String,
         filename: String,
         mimetype: String,
-        size: Number
+        size: Number,
+        duration: Number // for voice/video messages
+    },
+    gif: {
+        url: String,
+        id: String,
+        title: String,
+        width: Number,
+        height: Number
     },
     replyTo: {
         type: mongoose_1.Schema.Types.ObjectId,
@@ -87,6 +95,22 @@ const MessageSchema = new mongoose_1.Schema({
                 default: Date.now
             }
         }],
+    deliveredTo: [{
+            user: {
+                type: mongoose_1.Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            deliveredAt: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+    status: {
+        type: String,
+        enum: ['sending', 'sent', 'delivered', 'read', 'failed'],
+        default: 'sending'
+    },
     editedAt: {
         type: Date
     },

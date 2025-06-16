@@ -3,12 +3,20 @@ export interface IMessage extends Document {
     chat: mongoose.Types.ObjectId;
     sender: mongoose.Types.ObjectId;
     content: string;
-    type: 'text' | 'image' | 'file' | 'system';
+    type: 'text' | 'image' | 'file' | 'system' | 'voice' | 'video' | 'gif';
     file?: {
         url: string;
         filename: string;
         mimetype: string;
         size: number;
+        duration?: number;
+    };
+    gif?: {
+        url: string;
+        id?: string;
+        title?: string;
+        width?: number;
+        height?: number;
     };
     replyTo?: mongoose.Types.ObjectId;
     reactions: {
@@ -19,6 +27,11 @@ export interface IMessage extends Document {
         user: mongoose.Types.ObjectId;
         readAt: Date;
     }[];
+    deliveredTo: {
+        user: mongoose.Types.ObjectId;
+        deliveredAt: Date;
+    }[];
+    status: 'sending' | 'sent' | 'delivered' | 'read' | 'failed';
     editedAt?: Date;
     isDeleted: boolean;
     deletedAt?: Date;
