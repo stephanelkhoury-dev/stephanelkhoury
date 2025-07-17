@@ -24,7 +24,109 @@ interface Project {
 }
 
 const projects: Project[] = [
-  // Professional & Freelance Projects
+  // Major Projects 2024-2025
+  {
+    title: 'Project Management Dashboard – Enterprise Edition',
+    description: 'A comprehensive project management platform with real-time collaboration, task tracking, and analytics.',
+    fullDescription: 'Enterprise-grade project management dashboard built with Next.js 14 and FastAPI, featuring Kanban boards, time tracking, and advanced reporting.',
+    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/project-management',
+    technologies: ['Next.js', 'FastAPI', 'PostgreSQL', 'WebSocket', 'Docker'],
+    github: 'https://github.com/stephanelkhoury/project-management-dashboard',
+    category: 'Full Stack Applications',
+    date: 'May 2025',
+    features: [
+      'Real-time collaboration with WebSocket',
+      'Kanban board with drag-and-drop',
+      'Time tracking and resource management',
+      'Advanced analytics and reporting',
+      'Role-based access control'
+    ]
+  },
+  {
+    title: 'Headless CMS Blog Platform',
+    description: 'Modern headless CMS with a Next.js frontend and Strapi backend for flexible content management.',
+    fullDescription: 'A flexible content management system that separates content from presentation, allowing seamless content delivery across multiple platforms.',
+    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/headless-cms',
+    technologies: ['Next.js', 'Strapi', 'GraphQL', 'PostgreSQL', 'TypeScript'],
+    github: 'https://github.com/stephanelkhoury/headless-cms-platform',
+    category: 'Content Management',
+    date: 'May 2025',
+    features: [
+      'GraphQL API for flexible queries',
+      'Multi-author support',
+      'Rich text editor',
+      'SEO optimization',
+      'Media library management'
+    ]
+  },
+  {
+    title: 'Secure Authentication System',
+    description: 'Enterprise-grade authentication service with multi-factor auth and SSO support.',
+    fullDescription: 'A robust authentication system implementing industry best practices for security, including OAuth2, MFA, and JWT.',
+    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/auth-system',
+    technologies: ['Node.js', 'Express', 'MongoDB', 'JWT', 'OAuth2'],
+    github: 'https://github.com/stephanelkhoury/secure-auth-system',
+    category: 'Security',
+    date: 'June 2025',
+    features: [
+      'Multi-factor authentication',
+      'OAuth2 and SSO integration',
+      'JWT with refresh tokens',
+      'Rate limiting and brute force protection',
+      'Audit logging'
+    ]
+  },
+  {
+    title: 'AI-Powered Music Analyzer',
+    description: 'Real-time audio analysis platform using machine learning for music processing.',
+    fullDescription: 'Advanced audio processing platform that uses AI to analyze music in real-time, detect chords, tempo, and extract features.',
+    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/ai-music',
+    technologies: ['Python', 'TensorFlow', 'FastAPI', 'React', 'WebAssembly'],
+    github: 'https://github.com/stephanelkhoury/ai-music-analyzer',
+    category: 'AI & Machine Learning',
+    date: 'July 2025',
+    features: [
+      'Real-time chord detection',
+      'Tempo and beat tracking',
+      'Instrument recognition',
+      'Audio feature extraction',
+      'WASM-powered processing'
+    ]
+  },
+  {
+    title: 'RESTful API Platform',
+    description: 'Comprehensive API development and management platform with documentation and testing tools.',
+    fullDescription: 'Enterprise API platform for building, testing, and managing RESTful APIs with automatic documentation and monitoring.',
+    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/api-platform',
+    technologies: ['Node.js', 'Express', 'PostgreSQL', 'OpenAPI', 'Docker'],
+    github: 'https://github.com/stephanelkhoury/restful-api-platform',
+    category: 'Backend & API',
+    date: 'August 2025',
+    features: [
+      'API key management',
+      'Rate limiting',
+      'Automatic documentation',
+      'Usage analytics',
+      'Mock server generation'
+    ]
+  },
+  {
+    title: 'Dockerized Microservices Platform',
+    description: 'Cloud-native microservices architecture with Kubernetes orchestration.',
+    fullDescription: 'Production-ready microservices platform with service mesh, monitoring, and automated deployment pipelines.',
+    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/microservices',
+    technologies: ['Docker', 'Kubernetes', 'Istio', 'Prometheus', 'Terraform'],
+    github: 'https://github.com/stephanelkhoury/microservices-platform',
+    category: 'DevOps & Infrastructure',
+    date: 'September 2025',
+    features: [
+      'Service mesh with Istio',
+      'Kubernetes orchestration',
+      'Automated CI/CD',
+      'Monitoring stack',
+      'Infrastructure as code'
+    ]
+  },
   {
     title: 'Harmonix: AI-Powered Music Analysis Platform',
     description: 'Real-time chord detection from MP3 files, tempo detection, instrument tuner, and lyric extractor.',
