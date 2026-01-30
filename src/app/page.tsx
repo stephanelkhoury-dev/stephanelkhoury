@@ -39,7 +39,7 @@ export default function Home() {
         {/* Hero Section */}
         <section
           ref={parallaxRef}
-          className="relative flex flex-col items-center justify-center min-h-screen px-6 overflow-hidden"
+          className="relative flex flex-col items-center justify-center h-screen px-6 overflow-hidden"
         >
           {/* Logo Animation */}
           {/* <ScrollReveal direction="up" delay={0.2}>
@@ -68,31 +68,30 @@ export default function Home() {
           {/* Name and Title with Text Reveal */}
           <TextReveal
             text="Stephan El Khoury"
-            className="text-4xl md:text-6xl font-bold mb-4"
+            className="text-4xl md:text-6xl font-bold mb-4 relative z-10"
             delay={0.5}
             staggerDelay={0.1}
           />
 
           <ScrollReveal direction="up" delay={0.8}>
-            <h2 className="text-xl md:text-2xl text-gray-300 mb-2">
+            <h2 className="text-xl md:text-2xl text-gray-300 mb-2 relative z-10">
               Computer Engineer | Full Stack Developer | Musician
             </h2>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={1.0}>
-            <p className="text-lg text-gray-400 max-w-2xl text-center mb-8">
+            <p className="text-lg text-gray-400 max-w-2xl text-center mb-8 relative z-10">
               Innovating at the intersection of code, creativity, and sound
             </p>
           </ScrollReveal>
 
           <ScrollReveal direction="up" delay={1.2}>
-            <AnimatedButton>
-              Explore My Work
-            </AnimatedButton>
+            <div className="relative z-10">
+              <AnimatedButton>
+                Explore My Work
+              </AnimatedButton>
+            </div>
           </ScrollReveal>
-
-          {/* Background Gradient */}
-          <div className="absolute inset-0 bg-gradient-radial from-[#0B001F] via-[#0B001F] to-black opacity-50 -z-10" />
         </section>
 
         <ScrollReveal direction="up">

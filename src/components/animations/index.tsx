@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import MusicNotes from './MusicNotes';
 import FloatingParticles from './FloatingParticles';
+import ThreeBackground from './ThreeBackground';
 import useSmoothScroll from './useSmoothScroll';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -83,6 +84,10 @@ const AnimationProvider: React.FC<{ children: React.ReactNode }> = ({ children }
 
   return (
     <>
+      {/* Global Three.js animated background - fixed across entire site */}
+      <div className="fixed inset-0 -z-10">
+        <ThreeBackground />
+      </div>
       <FloatingParticles />
       <MusicNotes />
       {children}
@@ -95,3 +100,7 @@ export { default as TextReveal } from './TextReveal';
 export { default as ScrollReveal } from './ScrollReveal';
 export { default as GradientText } from './GradientText';
 export { default as FloatingParticles } from './FloatingParticles';
+export { default as ThreeBackground } from './ThreeBackground';
+export { default as SimpleThreeBackground } from './SimpleThreeBackground';
+export { default as CustomizableThreeBackground } from './CustomizableThreeBackground';
+export type { ThreeBackgroundProps, AnimatedShapeProps, ParticleSystemProps } from './types';
