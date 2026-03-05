@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${sora.variable}`}>
-      <body className={`${sora.className} bg-[#0B001F] text-[#F5F5F5]`}>
+      <body className={`${sora.className} bg-[#0a0f1a] text-[#f1f5f9]`}>
         <AnimationProvider>
           {children}
         </AnimationProvider>

@@ -113,7 +113,7 @@ const BlogModal: React.FC<BlogModalProps> = ({ post, isOpen, onClose }) => {
                     <motion.span
                       key={index}
                       whileHover={{ scale: 1.05 }}
-                      className="px-3 py-1 bg-gradient-to-r from-[#FF8A00]/20 to-[#C13CFF]/20 border border-[#FF8A00]/30 rounded-full text-sm text-[#FF8A00] font-medium"
+                      className="px-3 py-1 bg-gradient-to-r from-[#10b981]/20 to-[#06b6d4]/20 border border-[#10b981]/30 rounded-full text-sm text-[#10b981] font-medium"
                     >
                       #{tag}
                     </motion.span>
@@ -130,7 +130,7 @@ const BlogModal: React.FC<BlogModalProps> = ({ post, isOpen, onClose }) => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-[#FF8A00] to-[#C13CFF] rounded-lg text-white font-medium hover:shadow-lg hover:shadow-[#FF8A00]/25 transition-all"
+                className="inline-flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-[#10b981] to-[#06b6d4] rounded-lg text-white font-medium hover:shadow-lg hover:shadow-[#10b981]/25 transition-all"
               >
                 Read Full Article
                 <FontAwesomeIcon icon={faArrowRight} />
@@ -141,7 +141,7 @@ const BlogModal: React.FC<BlogModalProps> = ({ post, isOpen, onClose }) => {
             {post.author && (
               <div className="border-t border-white/10 pt-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-[#00E1FF] to-[#C13CFF] rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold text-lg">SE</span>
                   </div>
                   <div>
@@ -202,7 +202,7 @@ const BlogModal: React.FC<BlogModalProps> = ({ post, isOpen, onClose }) => {
                   <motion.span
                     key={index}
                     whileHover={{ scale: 1.05 }}
-                    className="px-2 sm:px-3 py-1 bg-gradient-to-r from-[#FF8A00]/20 to-[#C13CFF]/20 border border-[#FF8A00]/30 rounded-full text-xs sm:text-sm text-[#FF8A00] font-medium"
+                    className="px-2 sm:px-3 py-1 bg-gradient-to-r from-[#10b981]/20 to-[#06b6d4]/20 border border-[#10b981]/30 rounded-full text-xs sm:text-sm text-[#10b981] font-medium"
                   >
                     #{tag}
                   </motion.span>
@@ -219,7 +219,7 @@ const BlogModal: React.FC<BlogModalProps> = ({ post, isOpen, onClose }) => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-4 sm:px-6 py-3 bg-gradient-to-r from-[#FF8A00] to-[#C13CFF] rounded-lg text-white font-medium hover:shadow-lg hover:shadow-[#FF8A00]/25 transition-all text-sm sm:text-base"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-4 sm:px-6 py-3 bg-gradient-to-r from-[#10b981] to-[#06b6d4] rounded-lg text-white font-medium hover:shadow-lg hover:shadow-[#10b981]/25 transition-all text-sm sm:text-base"
             >
               Read Full Article
               <FontAwesomeIcon icon={faArrowRight} />
@@ -230,7 +230,7 @@ const BlogModal: React.FC<BlogModalProps> = ({ post, isOpen, onClose }) => {
           {post.author && (
             <div className="border-t border-white/10 pt-4 sm:pt-6 mt-4 sm:mt-6">
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-[#00E1FF] to-[#C13CFF] rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-base sm:text-lg">SE</span>
                 </div>
                 <div>

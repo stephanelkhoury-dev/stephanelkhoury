@@ -55,8 +55,8 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-20 px-6 md:px-20 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-[#00E1FF]/20 to-[#C13CFF]/20 rounded-full blur-3xl floating" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-[#FF8A00]/20 to-[#C13CFF]/20 rounded-full blur-3xl floating" style={{ animationDelay: '4s' }} />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-[#3b82f6]/20 to-[#06b6d4]/20 rounded-full blur-3xl floating" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-[#10b981]/20 to-[#06b6d4]/20 rounded-full blur-3xl floating" style={{ animationDelay: '4s' }} />
       </div>
       
       <AnimatedSection>
@@ -167,7 +167,7 @@ const Contact: React.FC = () => {
                         placeholder="Your Name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#00E1FF] focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 hover-lift"
+                        className="w-full px-4 py-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 hover-lift"
                         required
                       />
                     </motion.div>
@@ -182,7 +182,7 @@ const Contact: React.FC = () => {
                         placeholder="Your Email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#00E1FF] focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 hover-lift"
+                        className="w-full px-4 py-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 hover-lift"
                         required
                       />
                     </motion.div>
@@ -199,7 +199,7 @@ const Contact: React.FC = () => {
                       rows={6}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#00E1FF] focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 resize-none hover-lift"
+                      className="w-full px-4 py-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent transition-all duration-300 text-white placeholder-gray-400 resize-none hover-lift"
                       required
                     />
                   </motion.div>
@@ -212,7 +212,7 @@ const Contact: React.FC = () => {
                     <motion.button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full group relative px-8 py-4 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black font-bold rounded-xl hover-glow magnetic liquid-bg overflow-hidden"
+                      className="w-full group relative px-8 py-4 bg-gradient-to-r from-[#3b82f6] to-[#10b981] text-black font-bold rounded-xl hover-glow magnetic liquid-bg overflow-hidden"
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
                       transition={{ duration: 0.2 }}
@@ -286,7 +286,7 @@ const ContactInfo: React.FC<{
     whileHover={{ x: 5, scale: 1.02 }}
   >
     <motion.div
-      className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black"
+      className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-r from-[#3b82f6] to-[#10b981] text-black"
       whileHover={{ scale: 1.1, rotate: 5 }}
       transition={{ duration: 0.3 }}
     >
@@ -297,7 +297,7 @@ const ContactInfo: React.FC<{
       {href ? (
         <motion.a
           href={href}
-          className="text-white font-medium hover:text-[#00E1FF] transition-colors duration-300"
+          className="text-white font-medium hover:text-[#3b82f6] transition-colors duration-300"
           whileHover={{ scale: 1.02 }}
         >
           {value}

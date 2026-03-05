@@ -23,7 +23,7 @@ const FloatingParticles: React.FC = () => {
   useEffect(() => {
     setIsClient(true);
     
-    const colors = ['#00E1FF', '#C13CFF', '#FF8A00', '#FFFFFF'];
+    const colors = ['#3b82f6', '#06b6d4', '#10b981', '#FFFFFF'];
     const particleCount = 50;
 
     const newParticles: Particle[] = Array.from({ length: particleCount }, (_, i) => ({

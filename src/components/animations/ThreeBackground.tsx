@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useRef, useMemo, useEffect } from 'react';
-import { Canvas, useFrame, extend, useThree } from '@react-three/fiber';
-import { OrbitControls, Stars, Text, Float } from '@react-three/drei';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Animated Sphere Component
@@ -184,27 +184,39 @@ function CameraController() {
   return null;
 }
 
+// Grid Lines for tech aesthetic
+function TechGrid() {
+  const gridRef = useRef<THREE.GridHelper>(null);
+  
+  useFrame((state) => {
+    if (gridRef.current) {
+      gridRef.current.position.z = (state.clock.elapsedTime * 0.5) % 2;
+    }
+  });
+
+  return (
+    <group rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]}>
+      <gridHelper
+        ref={gridRef}
+        args={[40, 40, '#3b82f6', '#1e3a5f']}
+      />
+    </group>
+  );
+}
+
 // Main Three.js Scene Component
 function Scene() {
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4f46e5" />
+      {/* Lighting - subtle and professional */}
+      <ambientLight intensity={0.2} />
+      <pointLight position={[10, 10, 10]} intensity={0.6} />
+      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#3b82f6" />
       
-      {/* Stars Background */}
-      <Stars
-        radius={50}
-        depth={50}
-        count={1000}
-        factor={4}
-        saturation={0.5}
-        fade
-      />
+      {/* Subtle tech grid instead of stars */}
+      <TechGrid />
       
-      {/* Animated Components */}
-      <AnimatedSphere />
+      {/* Simplified animated components */}
       <FloatingShapes />
       <ParticleField />
       

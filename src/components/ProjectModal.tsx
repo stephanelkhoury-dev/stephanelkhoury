@@ -78,7 +78,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                 <motion.span
                   key={index}
                   whileHover={{ scale: 1.05 }}
-                  className="px-3 py-1 bg-gradient-to-r from-[#00E1FF]/20 to-[#C13CFF]/20 border border-[#00E1FF]/30 rounded-full text-xs text-[#00E1FF] font-medium"
+                  className="px-3 py-1 bg-gradient-to-r from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30 rounded-full text-xs text-[#3b82f6] font-medium"
                 >
                   {tech}
                 </motion.span>
@@ -108,7 +108,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#00E1FF] to-[#C13CFF] rounded-lg text-white font-medium hover:shadow-lg hover:shadow-[#00E1FF]/25 transition-all text-sm"
+                className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-lg text-white font-medium hover:shadow-lg hover:shadow-[#3b82f6]/25 transition-all text-sm"
               >
                 <FontAwesomeIcon icon={faExternalLinkAlt} />
                 Live Demo
@@ -125,7 +125,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                   <ul className="space-y-2">
                     {project.features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300 text-sm">
-                        <span className="text-[#00E1FF] mt-1 flex-shrink-0">•</span>
+                        <span className="text-[#3b82f6] mt-1 flex-shrink-0">•</span>
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -139,7 +139,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                   <ul className="space-y-2">
                     {project.challenges.map((challenge, index) => (
                       <li key={index} className="flex items-start gap-2 text-gray-300 text-sm">
-                        <span className="text-[#C13CFF] mt-1 flex-shrink-0">•</span>
+                        <span className="text-[#06b6d4] mt-1 flex-shrink-0">•</span>
                         <span>{challenge}</span>
                       </li>
                     ))}
@@ -203,7 +203,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                   <motion.span
                     key={index}
                     whileHover={{ scale: 1.05 }}
-                    className="px-3 py-1 bg-gradient-to-r from-[#00E1FF]/20 to-[#C13CFF]/20 border border-[#00E1FF]/30 rounded-full text-xs text-[#00E1FF] font-medium"
+                    className="px-3 py-1 bg-gradient-to-r from-[#3b82f6]/20 to-[#06b6d4]/20 border border-[#3b82f6]/30 rounded-full text-xs text-[#3b82f6] font-medium"
                   >
                     {tech}
                   </motion.span>
@@ -233,7 +233,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#00E1FF] to-[#C13CFF] rounded-lg text-white font-medium hover:shadow-lg hover:shadow-[#00E1FF]/25 transition-all text-sm"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-lg text-white font-medium hover:shadow-lg hover:shadow-[#3b82f6]/25 transition-all text-sm"
                 >
                   <FontAwesomeIcon icon={faExternalLinkAlt} />
                   Live Demo
@@ -251,7 +251,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                 <div className="space-y-2">
                   {project.features.map((feature, index) => (
                     <div key={index} className="flex items-start gap-2 p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                      <span className="text-[#00E1FF] mt-1 flex-shrink-0 text-xs">•</span>
+                      <span className="text-[#3b82f6] mt-1 flex-shrink-0 text-xs">•</span>
                       <span className="text-gray-300 text-xs leading-relaxed">{feature}</span>
                     </div>
                   ))}
@@ -266,7 +266,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                 <div className="space-y-2">
                   {project.challenges.map((challenge, index) => (
                     <div key={index} className="flex items-start gap-2 p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                      <span className="text-[#C13CFF] mt-1 flex-shrink-0 text-xs">•</span>
+                      <span className="text-[#06b6d4] mt-1 flex-shrink-0 text-xs">•</span>
                       <span className="text-gray-300 text-xs leading-relaxed">{challenge}</span>
                     </div>
                   ))}

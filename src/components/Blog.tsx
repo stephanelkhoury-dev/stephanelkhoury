@@ -101,8 +101,8 @@ const Blog: React.FC = () => {
     <section id="blog" className="py-20 px-6 md:px-20 bg-[#0B001F]/30 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-32 right-20 w-64 h-64 bg-[#C13CFF]/20 rounded-full blur-3xl floating" />
-        <div className="absolute bottom-40 left-16 w-80 h-80 bg-[#00E1FF]/15 rounded-full blur-3xl floating" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-32 right-20 w-64 h-64 bg-[#06b6d4]/20 rounded-full blur-3xl floating" />
+        <div className="absolute bottom-40 left-16 w-80 h-80 bg-[#3b82f6]/15 rounded-full blur-3xl floating" style={{ animationDelay: '3s' }} />
       </div>
       
       <AnimatedSection>
@@ -150,7 +150,7 @@ const Blog: React.FC = () => {
                       whileHover={{ scale: 1.1, rotate: 2 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <span className="px-3 py-1 text-xs bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black rounded-full font-semibold liquid-bg">
+                      <span className="px-3 py-1 text-xs bg-gradient-to-r from-[#3b82f6] to-[#10b981] text-black rounded-full font-semibold liquid-bg">
                         {post.category}
                       </span>
                     </motion.div>
@@ -163,7 +163,7 @@ const Blog: React.FC = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.5, duration: 0.3 }}
                       >
-                        <span className="px-3 py-1 text-xs bg-gradient-to-r from-[#C13CFF] to-[#FF8A00] text-white rounded-full font-semibold pulse">
+                        <span className="px-3 py-1 text-xs bg-gradient-to-r from-[#06b6d4] to-[#10b981] text-white rounded-full font-semibold pulse">
                           Featured
                         </span>
                       </motion.div>
@@ -191,12 +191,12 @@ const Blog: React.FC = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3, duration: 0.4 }}
                     >
-                      <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-[#00E1FF]" />
+                      <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-[#3b82f6]" />
                       <span className="shimmer">{post.date}</span>
                     </motion.div>
                     
                     <motion.h3 
-                      className={`font-bold mb-3 group-hover:text-[#00E1FF] transition-colors duration-400  ${
+                      className={`font-bold mb-3 group-hover:text-[#3b82f6] transition-colors duration-400  ${
                         index === 0 && !showAllArticles ? 'text-2xl lg:text-3xl' : 'text-xl'
                       }`}
                       whileHover={{ scale: 1.02 }}
@@ -223,7 +223,7 @@ const Blog: React.FC = () => {
                       transition={{ delay: 0.7, duration: 0.4 }}
                     >
                       <motion.span 
-                        className="text-[#00E1FF] font-semibold group-hover:text-[#FF8A00] transition-colors duration-300 flex items-center gap-2"
+                        className="text-[#3b82f6] font-semibold group-hover:text-[#10b981] transition-colors duration-300 flex items-center gap-2"
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.2 }}
                       >
@@ -237,7 +237,7 @@ const Blog: React.FC = () => {
                       </motion.span>
                       
                       <motion.div
-                        className="w-8 h-1 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] rounded-full"
+                        className="w-8 h-1 bg-gradient-to-r from-[#3b82f6] to-[#10b981] rounded-full"
                         initial={{ width: 0 }}
                         whileInView={{ width: 32 }}
                         transition={{ delay: 0.8, duration: 0.5 }}
@@ -254,7 +254,7 @@ const Blog: React.FC = () => {
           <div className="text-center">
             <motion.button
               onClick={() => setShowAllArticles(!showAllArticles)}
-              className="group px-8 py-4 bg-gradient-to-r from-[#00E1FF] to-[#FF8A00] text-black font-bold rounded-full hover-glow magnetic liquid-bg relative overflow-hidden"
+              className="group px-8 py-4 bg-gradient-to-r from-[#3b82f6] to-[#10b981] text-black font-bold rounded-full hover-glow magnetic liquid-bg relative overflow-hidden"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}

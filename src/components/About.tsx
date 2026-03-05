@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLaptopCode, faMusic } from '@fortawesome/free-solid-svg-icons';
 import { AnimatedSection, ScrollReveal, TextReveal } from './animations';
 import CertificateCarousel from './CertificateCarousel';
 
@@ -97,8 +99,8 @@ const About: React.FC = () => {
       <section id="about" className="py-20 px-6 md:px-20 bg-[#0B001F]/30 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-[#00E1FF] to-[#C13CFF] rounded-full blur-3xl floating-animation" />
-          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-[#C13CFF] to-[#FF8A00] rounded-full blur-2xl floating-animation" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-full blur-3xl floating-animation" />
+          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-[#06b6d4] to-[#10b981] rounded-full blur-2xl floating-animation" style={{ animationDelay: '2s' }} />
         </div>
 
         <AnimatedSection>
@@ -112,7 +114,7 @@ const About: React.FC = () => {
             <ScrollReveal direction="up" delay={0.2}>
               <div className="lg:col-span-1 text-center">
                 <div className="relative w-80 h-80 mx-auto mb-8">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#C13CFF] to-[#00E1FF] rounded-full blur-xl opacity-30"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#06b6d4] to-[#3b82f6] rounded-full blur-xl opacity-30"></div>
                   <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
                     <img
                       src="/images/profile/stephan-profile.jpg"
@@ -121,11 +123,11 @@ const About: React.FC = () => {
                     />
                   </div>
                   {/* Floating Elements around Profile */}
-                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-[#FF8A00] to-[#C13CFF] rounded-full flex items-center justify-center shadow-lg floating-animation">
-                    <span className="text-white font-bold">💻</span>
+                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-[#10b981] to-[#06b6d4] rounded-full flex items-center justify-center shadow-lg floating-animation">
+                    <FontAwesomeIcon icon={faLaptopCode} className="text-white text-lg" />
                   </div>
-                  <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-[#00E1FF] to-[#C13CFF] rounded-full flex items-center justify-center shadow-lg floating-animation" style={{ animationDelay: '1s' }}>
-                    <span className="text-white font-bold">🎵</span>
+                  <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-[#3b82f6] to-[#06b6d4] rounded-full flex items-center justify-center shadow-lg floating-animation" style={{ animationDelay: '1s' }}>
+                    <FontAwesomeIcon icon={faMusic} className="text-white text-lg" />
                   </div>
                 </div>
 
@@ -135,21 +137,21 @@ const About: React.FC = () => {
                     className="bg-white/10 backdrop-blur-sm p-4 rounded-lg hover-glow"
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
                   >
-                    <div className="text-2xl font-bold text-[#00E1FF]">5+</div>
+                    <div className="text-2xl font-bold text-[#3b82f6]">5+</div>
                     <div className="text-sm text-gray-300">Years Experience</div>
                   </motion.div>
                   <motion.div 
                     className="bg-white/10 backdrop-blur-sm p-4 rounded-lg hover-glow"
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
                   >
-                    <div className="text-2xl font-bold text-[#C13CFF]">50+</div>
+                    <div className="text-2xl font-bold text-[#06b6d4]">50+</div>
                     <div className="text-sm text-gray-300">Projects Completed</div>
                   </motion.div>
                   <motion.div 
                     className="bg-white/10 backdrop-blur-sm p-4 rounded-lg hover-glow"
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
                   >
-                    <div className="text-2xl font-bold text-[#FF8A00]">15+</div>
+                    <div className="text-2xl font-bold text-[#10b981]">15+</div>
                     <div className="text-sm text-gray-300">Certifications</div>
                   </motion.div>
                 </div>
@@ -167,8 +169,8 @@ const About: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                   >
-                    I'm a passionate <span className="text-[#00E1FF] font-semibold">Computer Engineer</span> and 
-                    <span className="text-[#C13CFF] font-semibold"> Full Stack Developer</span> with expertise in 
+                    I'm a passionate <span className="text-[#3b82f6] font-semibold">Computer Engineer</span> and 
+                    <span className="text-[#06b6d4] font-semibold"> Full Stack Developer</span> with expertise in 
                     modern web technologies and a unique background in music production.
                   </motion.p>
 
@@ -183,7 +185,7 @@ const About: React.FC = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1, duration: 0.6 }}
                       >
-                        <h4 className="font-semibold text-[#00E1FF]">{edu.school}</h4>
+                        <h4 className="font-semibold text-[#3b82f6]">{edu.school}</h4>
                         <p className="text-gray-300 text-sm">{edu.degree}</p>
                         <p className="text-gray-400 text-xs">{edu.period}</p>
                       </motion.div>
@@ -200,7 +202,7 @@ const About: React.FC = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.1, duration: 0.5 }}
                       >
-                        <div className="font-semibold text-[#C13CFF]">{lang.name}</div>
+                        <div className="font-semibold text-[#06b6d4]">{lang.name}</div>
                         <div className="text-gray-400 text-sm">{lang.level}</div>
                       </motion.div>
                     ))}
@@ -216,7 +218,7 @@ const About: React.FC = () => {
                     {skills.map((skill, index) => (
                       <motion.span
                         key={index}
-                        className="bg-gradient-to-r from-[#00E1FF]/20 to-[#C13CFF]/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm text-gray-300 border border-white/10"
+                        className="bg-gradient-to-r from-[#3b82f6]/20 to-[#06b6d4]/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm text-gray-300 border border-white/10"
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.05, duration: 0.4 }}
@@ -238,13 +240,13 @@ const About: React.FC = () => {
                         transition={{ delay: index * 0.2, duration: 0.6 }}
                         whileHover={{ scale: 1.02 }}
                       >
-                        <h4 className="font-semibold text-[#00E1FF] mb-2">{cert.type}</h4>
+                        <h4 className="font-semibold text-[#3b82f6] mb-2">{cert.type}</h4>
                         <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
                           {cert.items.slice(0, 3).map((item, i) => (
                             <li key={i}>{item}</li>
                           ))}
                           {cert.items.length > 3 && (
-                            <li className="text-[#C13CFF]">+{cert.items.length - 3} more</li>
+                            <li className="text-[#06b6d4]">+{cert.items.length - 3} more</li>
                           )}
                         </ul>
                       </motion.div>
@@ -261,8 +263,8 @@ const About: React.FC = () => {
       <section className="py-16 px-6 md:px-20 bg-[#0B001F]/20 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/3 right-1/4 w-40 h-40 bg-gradient-to-r from-[#C13CFF] to-[#00E1FF] rounded-full blur-3xl floating-animation" />
-          <div className="absolute bottom-1/4 left-1/3 w-28 h-28 bg-gradient-to-r from-[#FF8A00] to-[#C13CFF] rounded-full blur-2xl floating-animation" style={{ animationDelay: '3s' }} />
+          <div className="absolute top-1/3 right-1/4 w-40 h-40 bg-gradient-to-r from-[#06b6d4] to-[#3b82f6] rounded-full blur-3xl floating-animation" />
+          <div className="absolute bottom-1/4 left-1/3 w-28 h-28 bg-gradient-to-r from-[#10b981] to-[#06b6d4] rounded-full blur-2xl floating-animation" style={{ animationDelay: '3s' }} />
         </div>
 
         <AnimatedSection>

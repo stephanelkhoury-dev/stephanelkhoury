@@ -96,7 +96,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
               {/* Header - Fixed */}
               <div className="flex-shrink-0 flex items-center justify-between p-4 sm:p-6 border-b border-white/10 bg-[#0B001F]/80 backdrop-blur-sm sticky top-0 z-10">
                 {title && (
-                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[#00E1FF] via-[#C13CFF] to-[#FF8A00] text-transparent bg-clip-text pr-4 truncate">
+                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[#3b82f6] via-[#06b6d4] to-[#10b981] text-transparent bg-clip-text pr-4 truncate">
                     {title}
                   </h2>
                 )}

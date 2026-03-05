@@ -56,7 +56,7 @@ const AnimatedLink: React.FC<AnimatedLinkProps> = ({ href, children }) => (
   >
     <span className="relative z-10 text-white">{children}</span>
     <motion.span
-      className="absolute inset-0 bg-gradient-to-r from-[#00E1FF] via-[#C13CFF] to-[#FF8A00] rounded-lg opacity-0"
+      className="absolute inset-0 bg-gradient-to-r from-[#3b82f6] via-[#06b6d4] to-[#10b981] rounded-lg opacity-0"
       whileHover={{ opacity: 0.2 }}
       transition={{ duration: 0.2 }}
     />
@@ -71,7 +71,7 @@ interface AnimatedButtonProps {
 const AnimatedButton: React.FC<AnimatedButtonProps> = ({ onClick, children }) => (
   <motion.button
     onClick={onClick}
-    className="glow-button relative px-6 py-3 bg-gradient-to-r from-[#C13CFF] to-[#FF8A00] rounded-full text-white font-semibold shadow-lg"
+    className="glow-button relative px-6 py-3 bg-gradient-to-r from-[#06b6d4] to-[#10b981] rounded-full text-white font-semibold shadow-lg"
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
   >

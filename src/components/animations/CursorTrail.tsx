@@ -36,7 +36,7 @@ const CursorTrail: React.FC = () => {
     window.addEventListener('resize', resizeCanvas);
 
     // Colors inspired by the site theme
-    const colors = ['#00E1FF', '#C13CFF', '#FF8A00'];
+    const colors = ['#3b82f6', '#06b6d4', '#10b981'];
 
     // Mouse move handler
     const handleMouseMove = (e: MouseEvent) => {
