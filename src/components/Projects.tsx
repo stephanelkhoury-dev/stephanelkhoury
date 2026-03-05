@@ -24,449 +24,226 @@ interface Project {
 }
 
 const projects: Project[] = [
-  // Major Projects 2024-2025
-  {
-    title: 'Project Management Dashboard – Enterprise Edition',
-    description: 'A comprehensive project management platform with real-time collaboration, task tracking, and analytics.',
-    fullDescription: 'Enterprise-grade project management dashboard built with Next.js 14 and FastAPI, featuring Kanban boards, time tracking, and advanced reporting.',
-    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/project-management',
-    technologies: ['Next.js', 'FastAPI', 'PostgreSQL', 'WebSocket', 'Docker'],
-    github: 'https://github.com/stephanelkhoury/project-management-dashboard',
-    category: 'Full Stack Applications',
-    date: 'May 2025',
-    features: [
-      'Real-time collaboration with WebSocket',
-      'Kanban board with drag-and-drop',
-      'Time tracking and resource management',
-      'Advanced analytics and reporting',
-      'Role-based access control'
-    ]
-  },
-  {
-    title: 'Headless CMS Blog Platform',
-    description: 'Modern headless CMS with a Next.js frontend and Strapi backend for flexible content management.',
-    fullDescription: 'A flexible content management system that separates content from presentation, allowing seamless content delivery across multiple platforms.',
-    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/headless-cms',
-    technologies: ['Next.js', 'Strapi', 'GraphQL', 'PostgreSQL', 'TypeScript'],
-    github: 'https://github.com/stephanelkhoury/headless-cms-platform',
-    category: 'Content Management',
-    date: 'May 2025',
-    features: [
-      'GraphQL API for flexible queries',
-      'Multi-author support',
-      'Rich text editor',
-      'SEO optimization',
-      'Media library management'
-    ]
-  },
-  {
-    title: 'Secure Authentication System',
-    description: 'Enterprise-grade authentication service with multi-factor auth and SSO support.',
-    fullDescription: 'A robust authentication system implementing industry best practices for security, including OAuth2, MFA, and JWT.',
-    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/auth-system',
-    technologies: ['Node.js', 'Express', 'MongoDB', 'JWT', 'OAuth2'],
-    github: 'https://github.com/stephanelkhoury/secure-auth-system',
-    category: 'Security',
-    date: 'June 2025',
-    features: [
-      'Multi-factor authentication',
-      'OAuth2 and SSO integration',
-      'JWT with refresh tokens',
-      'Rate limiting and brute force protection',
-      'Audit logging'
-    ]
-  },
-  {
-    title: 'AI-Powered Music Analyzer',
-    description: 'Real-time audio analysis platform using machine learning for music processing.',
-    fullDescription: 'Advanced audio processing platform that uses AI to analyze music in real-time, detect chords, tempo, and extract features.',
-    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/ai-music',
-    technologies: ['Python', 'TensorFlow', 'FastAPI', 'React', 'WebAssembly'],
-    github: 'https://github.com/stephanelkhoury/ai-music-analyzer',
-    category: 'AI & Machine Learning',
-    date: 'July 2025',
-    features: [
-      'Real-time chord detection',
-      'Tempo and beat tracking',
-      'Instrument recognition',
-      'Audio feature extraction',
-      'WASM-powered processing'
-    ]
-  },
-  {
-    title: 'RESTful API Platform',
-    description: 'Comprehensive API development and management platform with documentation and testing tools.',
-    fullDescription: 'Enterprise API platform for building, testing, and managing RESTful APIs with automatic documentation and monitoring.',
-    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/api-platform',
-    technologies: ['Node.js', 'Express', 'PostgreSQL', 'OpenAPI', 'Docker'],
-    github: 'https://github.com/stephanelkhoury/restful-api-platform',
-    category: 'Backend & API',
-    date: 'August 2025',
-    features: [
-      'API key management',
-      'Rate limiting',
-      'Automatic documentation',
-      'Usage analytics',
-      'Mock server generation'
-    ]
-  },
-  {
-    title: 'Dockerized Microservices Platform',
-    description: 'Cloud-native microservices architecture with Kubernetes orchestration.',
-    fullDescription: 'Production-ready microservices platform with service mesh, monitoring, and automated deployment pipelines.',
-    image: 'https://res.cloudinary.com/stephanelkhoury/image/upload/v1/portfolio/projects/microservices',
-    technologies: ['Docker', 'Kubernetes', 'Istio', 'Prometheus', 'Terraform'],
-    github: 'https://github.com/stephanelkhoury/microservices-platform',
-    category: 'DevOps & Infrastructure',
-    date: 'September 2025',
-    features: [
-      'Service mesh with Istio',
-      'Kubernetes orchestration',
-      'Automated CI/CD',
-      'Monitoring stack',
-      'Infrastructure as code'
-    ]
-  },
-  {
-    title: 'Harmonix: AI-Powered Music Analysis Platform',
-    description: 'Real-time chord detection from MP3 files, tempo detection, instrument tuner, and lyric extractor.',
-    fullDescription: 'Harmonix is a comprehensive AI-powered music analysis platform that revolutionizes how musicians and producers interact with audio content. The platform uses advanced machine learning algorithms to provide real-time chord detection from MP3 files, accurate tempo detection, and intelligent lyric extraction.',
-    image: '/projects/harmonix.jpg',
-    technologies: ['React', 'FastAPI', 'Python', 'Machine Learning', 'Audio Processing'],
-    github: 'https://github.com/stephanelkhoury/harmonix',
-    live: 'https://harmonix.ai',
-    category: 'AI & Machine Learning',
-    date: 'December 2024',
-    features: [
-      'Real-time chord detection with 95% accuracy',
-      'Automatic tempo and BPM detection',
-      'AI-powered lyric extraction and synchronization',
-      'Interactive chord visualization',
-      'Multi-format audio support (MP3, WAV, FLAC)',
-      'Instrument tuner with multiple tuning systems'
-    ],
-    challenges: [
-      'Optimizing real-time audio processing for web browsers',
-      'Training ML models with diverse musical genres',
-      'Implementing accurate chord recognition algorithms',
-      'Creating responsive audio visualization components'
-    ]
-  },
-  {
-    title: 'Sancta Maria Choir Website',
-    description: 'Complete CMS with ACF Pro, events management, PDF resources, admin dashboard, and media gallery. Full-featured website for professional choir with advanced content management.',
-    image: '/projects/sancta-maria.jpg',
-    technologies: ['WordPress', 'ACF Pro', 'PHP', 'MySQL', 'CMS', 'Event Management'],
-    live: 'https://sanctamariachoir.com',
-    category: 'WordPress',
-  },
-  {
-    title: 'Guitta Tabet Portfolio Website',
-    description: 'Custom WordPress website with categorized product collections, responsive design, and modern UI. Built for creative professional with advanced filtering and showcase features.',
-    image: '/projects/guitta-tabet.jpg',
-    technologies: ['WordPress', 'Custom PHP', 'JavaScript', 'Responsive Design', 'Portfolio'],
-    live: 'https://guittatabet.com',
-    category: 'WordPress',
-  },
-  {
-    title: 'Online POS + CRM Platform',
-    description: 'Full-stack enterprise solution with custom CRM tools, inventory management, and sales analytics. Dockerized architecture for scalability and performance.',
-    image: '/projects/pos-crm.jpg',
-    technologies: ['React', 'Node.js', 'Docker', 'PostgreSQL', 'Redux', 'Enterprise'],
-    github: 'https://github.com/stephanelkhoury/pos-crm',
-    category: 'Enterprise',
-  },
-  {
-    title: 'Cryptokers E-Learning Platform',
-    description: 'Comprehensive platform for cryptocurrency and blockchain education with course streaming, Telegram subscription for signals, and integrated payment gateway.',
-    image: '/projects/cryptokers.jpg',
-    technologies: ['PHP', 'MySQL', 'Telegram API', 'Payment Gateway', 'LMS', 'Blockchain'],
-    live: 'https://cryptokers.com',
-    category: 'E-Learning',
-  },
-  {
-    title: 'Angular E-Commerce Platform',
-    description: 'Fully-featured shopping system with NgRx state management, Redux flow, and comprehensive product-cart relations with schema visuals.',
-    image: '/projects/angular-ecommerce.jpg',
-    technologies: ['Angular', 'NgRx', 'TypeScript', 'Redux', 'E-Commerce', 'State Management'],
-    github: 'https://github.com/stephanelkhoury/angular-ecommerce',
-    category: 'E-Commerce',
-  },
-  {
-    title: 'Richy\'s Entertainment Website',
-    description: 'Event company website with tagline integration and visual storytelling. Modern design with booking system and portfolio showcase.',
-    image: '/projects/richys-entertainment.jpg',
-    technologies: ['WordPress', 'Event Management', 'Visual Storytelling', 'Booking System'],
-    live: 'https://richysentertainment.com',
-    category: 'WordPress',
-  },
-  {
-    title: 'Hi-YU Lebanon Web Strategy',
-    description: 'Complete website rebuild strategy and development proposal. Full-stack approach with modern design principles and performance optimization.',
-    image: '/projects/hi-yu-lebanon.jpg',
-    technologies: ['Strategy', 'Full-Stack Development', 'Performance Optimization', 'Modern Design'],
-    category: 'Strategy',
-  },
-  {
-    title: 'Saudi Dates Documentation',
-    description: 'Comprehensive GitHub markdown wiki based on 9 functional pages. Includes use cases, user stories, and system diagrams for enterprise application.',
-    image: '/projects/saudi-dates.jpg',
-    technologies: ['Documentation', 'GitHub Wiki', 'System Design', 'Use Cases', 'Markdown'],
-    github: 'https://github.com/stephanelkhoury/saudi-dates-docs',
-    category: 'Documentation',
-  },
-
-  // Upcoming & Planned Projects
   {
     title: 'Modern E-Commerce Platform',
-    description: 'Full-stack e-commerce solution with cart management, Stripe/PayPal integration, advanced filtering, and real-time inventory tracking.',
-    fullDescription: 'A comprehensive e-commerce platform built with modern technologies, featuring seamless user experience, secure payment processing, and advanced product management. Includes admin dashboard, order tracking, and analytics.',
-    image: '/projects/angular-ecommerce.jpg', // Reusing existing image as placeholder
-    technologies: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Stripe API', 'Redux', 'TypeScript'],
-    category: 'Upcoming Projects',
-    date: 'Q1 2025',
+    description: 'Full-stack commerce platform with secure checkout, advanced product filtering, inventory management, and admin analytics.',
+    fullDescription: 'A production-ready e-commerce solution with customer shopping workflows, robust admin operations, and payment integrations for scalable online retail.',
+    image: '/projects/angular-ecommerce.jpg',
+    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Prisma', 'Stripe'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/01-modern-ecommerce-platform',
+    category: 'E-Commerce',
+    date: '2025',
     features: [
-      'Shopping cart with persistent storage',
-      'Stripe & PayPal payment integration',
-      'Advanced product filtering and search',
-      'User authentication and profiles',
-      'Order tracking and history',
-      'Admin dashboard with analytics',
-      'Real-time inventory management',
-      'Responsive design for all devices'
+      'Product catalog with filtering and recommendations',
+      'Persistent cart and real-time inventory checks',
+      'Multi-step checkout with Stripe and PayPal support',
+      'Admin dashboard for products, orders, and users',
+      'Role-based access and reporting workflows'
     ],
     challenges: [
-      'Implementing secure payment processing',
-      'Optimizing database queries for large product catalogs',
-      'Creating scalable cart and session management',
-      'Building comprehensive admin interface'
+      'Designing secure payment and order flows',
+      'Keeping inventory and cart state synchronized',
+      'Optimizing performance for large product catalogs'
     ]
   },
   {
     title: 'Real-Time Chat Application',
-    description: 'Scalable messaging platform with WebSocket integration, private/group chats, message history, and real-time notifications.',
-    fullDescription: 'A modern chat application built for scalability and performance, featuring real-time messaging, file sharing, and comprehensive user management. Uses WebSocket technology for instant communication.',
-    image: '/projects/chord-dictionary.jpg', // Placeholder
-    technologies: ['React', 'Socket.IO', 'Node.js', 'Redis', 'MongoDB', 'JWT', 'WebRTC'],
-    category: 'Upcoming Projects',
-    date: 'Q1 2025',
+    description: 'Scalable chat system with Socket.IO, private/group messaging, typing indicators, reactions, and presence tracking.',
+    fullDescription: 'A modern real-time messaging platform built for reliability and speed, including rich communication features and structured conversation management.',
+    image: '/projects/chord-dictionary.jpg',
+    technologies: ['React', 'TypeScript', 'Socket.IO', 'Node.js', 'MongoDB', 'Redis'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/02-realtime-chat-application',
+    category: 'Communication',
+    date: '2025',
     features: [
-      'Real-time messaging with Socket.IO',
-      'Private and group chat rooms',
-      'Message history and search',
-      'File and image sharing',
-      'User presence indicators',
-      'Push notifications',
-      'Voice and video calling',
-      'Message encryption for security'
+      'Private chats and group conversations',
+      'Typing indicators and read receipts',
+      'File and image sharing support',
+      'Presence and last-seen status tracking',
+      'Searchable message history with pagination'
     ],
     challenges: [
-      'Scaling WebSocket connections',
-      'Implementing message delivery guarantees',
-      'Managing real-time user presence',
-      'Optimizing message storage and retrieval'
+      'Maintaining consistent real-time state',
+      'Scaling socket connections and event throughput',
+      'Balancing UX responsiveness with data integrity'
     ]
   },
   {
     title: 'Project Management Dashboard',
-    description: 'Kanban-style project management tool with drag-and-drop functionality, team collaboration, and real-time updates inspired by Trello and Notion.',
-    fullDescription: 'A comprehensive project management solution featuring intuitive drag-and-drop interfaces, role-based access control, and real-time collaboration tools for teams of all sizes.',
-    image: '/projects/pos-crm.jpg', // Placeholder
-    technologies: ['Next.js', 'FastAPI', 'PostgreSQL', 'Tailwind CSS', 'React DnD', 'WebSocket'],
-    category: 'Upcoming Projects',
-    date: 'Q2 2025',
+    description: 'Enterprise project operations suite with task workflows, sprint planning, collaboration tools, and advanced analytics.',
+    fullDescription: 'A comprehensive dashboard for teams and organizations covering project lifecycle management, resource planning, automation, and KPI reporting.',
+    image: '/projects/pos-crm.jpg',
+    technologies: ['Next.js', 'TypeScript', 'NestJS', 'PostgreSQL', 'Redis', 'Docker'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/03-project-management-dashboard',
+    category: 'Enterprise',
+    date: '2025',
     features: [
-      'Drag-and-drop Kanban boards',
-      'Real-time collaboration',
-      'Role-based access control',
-      'Task assignments and deadlines',
-      'File attachments and comments',
-      'Project templates',
-      'Time tracking and reporting',
-      'Integration with third-party tools'
+      'Role-based workspaces and permission matrix',
+      'Task workflows with milestones and dependencies',
+      'Real-time collaboration with comments and mentions',
+      'Time tracking, utilization, and approvals',
+      'Exportable reports and analytics dashboards'
     ],
     challenges: [
-      'Implementing smooth drag-and-drop UX',
-      'Managing real-time state synchronization',
-      'Building flexible permission systems',
-      'Optimizing performance for large datasets'
+      'Designing scalable multi-tenant architecture',
+      'Implementing flexible workflow engines',
+      'Ensuring performance under enterprise workload'
     ]
   },
   {
     title: 'Headless CMS Blog Platform',
-    description: 'Modern content management system with headless architecture, SEO optimization, markdown support, and dynamic content rendering.',
-    fullDescription: 'A powerful blogging platform built with headless CMS architecture, featuring advanced SEO capabilities, flexible content modeling, and lightning-fast performance.',
-    image: '/projects/sancta-maria.jpg', // Placeholder
-    technologies: ['Next.js', 'Strapi', 'GraphQL', 'Tailwind CSS', 'Markdown', 'SEO'],
-    category: 'Upcoming Projects',
-    date: 'Q2 2025',
+    description: 'API-first CMS with multi-author publishing, content versioning, SEO tooling, and a modern blog frontend.',
+    fullDescription: 'A decoupled content platform combining rich editorial workflows with fast frontend delivery, designed for modern publishing teams.',
+    image: '/projects/sancta-maria.jpg',
+    technologies: ['Next.js', 'Strapi', 'GraphQL', 'PostgreSQL', 'Tailwind CSS'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/04-headless-cms-blog-platform',
+    category: 'CMS',
+    date: '2025',
     features: [
-      'Headless CMS with Strapi',
-      'SEO optimization and meta management',
-      'Markdown content support',
-      'Dynamic page generation',
-      'Content versioning',
-      'Multi-author support',
-      'Comment system',
-      'Analytics integration'
+      'Rich text editing and media management',
+      'Drafts, scheduling, and content versioning',
+      'GraphQL and REST API access patterns',
+      'SEO metadata and structured content support',
+      'Search, tags, categories, and author pages'
     ],
     challenges: [
-      'Optimizing static generation performance',
-      'Building flexible content schemas',
-      'Implementing advanced SEO features',
-      'Creating intuitive admin interface'
+      'Synchronizing CMS and frontend content models',
+      'Balancing editorial flexibility with performance',
+      'Building scalable, secure media pipelines'
     ]
   },
   {
     title: 'Secure Authentication System',
-    description: 'Comprehensive authentication service with JWT tokens, OAuth integration, two-factor authentication, and advanced security features.',
-    fullDescription: 'A robust authentication system designed for modern applications, featuring multiple authentication methods, advanced security measures, and seamless user experience.',
-    image: '/projects/crypto-engineers.jpg', // Placeholder
-    technologies: ['Node.js', 'Express', 'MongoDB', 'JWT', 'OAuth', '2FA', 'bcrypt', 'Redis'],
-    category: 'Upcoming Projects',
-    date: 'Q2 2025',
+    description: 'Security-first authentication service with MFA, OAuth, RBAC, device tracking, and enterprise audit logging.',
+    fullDescription: 'A robust auth platform designed for integration across products, featuring strong identity flows, token security, and compliance-ready controls.',
+    image: '/projects/crypto-engineers.jpg',
+    technologies: ['Node.js', 'TypeScript', 'Express', 'MongoDB', 'Redis', 'JWT'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/05-secure-authentication-system',
+    category: 'Backend & Security',
+    date: '2025',
     features: [
-      'JWT-based authentication',
-      'OAuth integration (Google, GitHub)',
-      'Two-factor authentication (2FA)',
-      'Password reset functionality',
-      'Session management',
-      'Rate limiting and security',
-      'Email verification',
-      'Admin user management'
+      'Email/password, OAuth, and passwordless login',
+      'MFA with TOTP, SMS, and backup recovery',
+      'Role-based access and permission controls',
+      'Session, token, and device lifecycle management',
+      'Comprehensive security audit trail'
     ],
     challenges: [
-      'Implementing secure token handling',
-      'Managing session state across devices',
-      'Building robust 2FA system',
-      'Ensuring GDPR compliance'
+      'Hardening authentication attack surfaces',
+      'Designing secure token rotation strategy',
+      'Supporting flexible enterprise authorization models'
     ]
   },
   {
     title: 'AI-Powered Music Analyzer',
-    description: 'Advanced music analysis application using machine learning for chord detection, tempo analysis, and intelligent music recommendations.',
-    fullDescription: 'Building on Harmonix, this expanded AI platform will include advanced music analysis features, recommendation systems, and collaborative tools for musicians and producers.',
+    description: 'Machine-learning platform for audio feature extraction, genre/mood analysis, and personalized music recommendations.',
+    fullDescription: 'An advanced AI system that processes audio tracks, predicts musical characteristics, and provides recommendation insights through an interactive web interface.',
     image: '/projects/harmonix.jpg',
-    technologies: ['Python', 'TensorFlow', 'FastAPI', 'React', 'Audio Processing', 'ML', 'WebAssembly'],
-    category: 'Upcoming Projects',
-    date: 'Q3 2025',
+    technologies: ['Python', 'FastAPI', 'TensorFlow', 'Librosa', 'React', 'PostgreSQL'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/06-ai-powered-music-analyzer',
+    category: 'AI & Machine Learning',
+    date: '2025',
     features: [
-      'Advanced chord progression analysis',
-      'Intelligent music recommendations',
-      'Real-time audio visualization',
-      'Collaborative music sessions',
-      'Custom ML model training',
-      'Audio fingerprinting',
-      'Music theory education tools',
-      'API for third-party integration'
+      'Feature extraction for tempo, key, energy, and mood',
+      'Genre prediction and similarity scoring',
+      'Recommendation and playlist generation engine',
+      'Batch and real-time audio analysis workflows',
+      'Interactive analytics and visualization dashboard'
     ],
     challenges: [
-      'Training models on diverse musical styles',
-      'Optimizing real-time audio processing',
-      'Building scalable recommendation engine',
-      'Implementing collaborative features'
+      'Balancing model accuracy and processing speed',
+      'Managing heavy audio workloads reliably',
+      'Serving ML inference at scale'
     ]
   },
   {
     title: 'RESTful API Platform',
-    description: 'Comprehensive API-first platform with full documentation, authentication, rate limiting, and microservices architecture.',
-    fullDescription: 'A production-ready API platform designed for scalability and developer experience, featuring comprehensive documentation, testing tools, and monitoring capabilities.',
-    image: '/projects/erp-system.jpg', // Placeholder
-    technologies: ['Node.js', 'Express', 'OpenAPI', 'Swagger', 'Docker', 'PostgreSQL', 'Redis'],
-    category: 'Upcoming Projects',
-    date: 'Q3 2025',
+    description: 'Developer-centric API platform with OpenAPI docs, testing utilities, analytics, API keys, and rate limiting.',
+    fullDescription: 'A backend platform that accelerates API lifecycle management through standards-driven design, observability, and consumer onboarding tools.',
+    image: '/projects/erp-system.jpg',
+    technologies: ['Node.js', 'Express', 'TypeScript', 'OpenAPI', 'PostgreSQL', 'Redis'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/07-restful-api-platform',
+    category: 'Backend & Security',
+    date: '2025',
     features: [
-      'RESTful API design',
-      'Comprehensive OpenAPI documentation',
-      'Rate limiting and throttling',
-      'API versioning',
-      'Authentication and authorization',
-      'Request/response validation',
-      'Monitoring and analytics',
-      'SDK generation for multiple languages'
+      'Auto-generated OpenAPI documentation',
+      'Schema validation and standardized errors',
+      'API key management and access controls',
+      'Usage analytics and monitoring dashboards',
+      'Rate limiting and caching strategies'
     ],
     challenges: [
-      'Designing scalable API architecture',
-      'Implementing effective rate limiting',
-      'Building comprehensive documentation',
-      'Ensuring API security and performance'
+      'Designing extensible API governance',
+      'Combining performance with strict validation',
+      'Building developer-friendly platform UX'
     ]
   },
   {
     title: 'Dockerized Microservices Platform',
-    description: 'Production-ready microservices architecture with Docker, CI/CD pipelines, load balancing, and comprehensive monitoring.',
-    fullDescription: 'A complete microservices ecosystem demonstrating modern DevOps practices, featuring automated deployment, service discovery, and comprehensive monitoring solutions.',
-    image: '/projects/pos-crm.jpg', // Placeholder
-    technologies: ['Docker', 'Kubernetes', 'GitHub Actions', 'NGINX', 'Prometheus', 'Grafana', 'Microservices'],
-    category: 'Upcoming Projects',
-    date: 'Q4 2025',
+    description: 'Cloud-native microservices ecosystem with container orchestration, service mesh, observability, and CI/CD automation.',
+    fullDescription: 'An enterprise-grade architecture showcasing distributed services, resilient communication patterns, and production-level DevOps workflows.',
+    image: '/projects/erp-system.jpg',
+    technologies: ['Docker', 'Kubernetes', 'Terraform', 'Istio', 'Prometheus', 'Grafana'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/08-dockerized-microservices-platform',
+    category: 'DevOps',
+    date: '2025',
     features: [
-      'Containerized microservices',
-      'CI/CD with GitHub Actions',
-      'Service discovery and load balancing',
-      'Centralized logging',
-      'Monitoring and alerting',
-      'Auto-scaling capabilities',
-      'Health checks and circuit breakers',
-      'Blue-green deployments'
+      'Containerized multi-service architecture',
+      'Kubernetes orchestration and autoscaling',
+      'Service mesh traffic and resilience controls',
+      'Observability with logs, metrics, and tracing',
+      'Automated CI/CD and GitOps-ready delivery'
     ],
     challenges: [
-      'Orchestrating service communication',
-      'Implementing distributed tracing',
-      'Managing service dependencies',
-      'Building robust deployment pipelines'
+      'Operating distributed services reliably',
+      'Managing multi-environment configuration securely',
+      'Reducing deployment risk with zero-downtime rollout'
     ]
   },
   {
     title: 'Streaming Platform Clone',
-    description: 'Full-featured streaming platform inspired by Spotify, with music streaming, playlists, social features, and recommendation engine.',
-    fullDescription: 'A comprehensive music streaming platform featuring advanced audio streaming, social interactions, and AI-powered music discovery to demonstrate full-stack capabilities.',
-    image: '/projects/harmonix.jpg', // Related to music
-    technologies: ['React', 'Node.js', 'MongoDB', 'Redis', 'WebRTC', 'Audio Streaming', 'ML Recommendations'],
-    category: 'Upcoming Projects',
-    date: 'Q4 2025',
+    description: 'Feature-rich streaming platform with adaptive video delivery, creator tools, subscription models, and personalized recommendations.',
+    fullDescription: 'A full-stack media platform inspired by modern streaming ecosystems, including video processing pipelines, social interactions, and monetization flows.',
+    image: '/projects/cryptokers.jpg',
+    technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'FFmpeg', 'AWS'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/09-streaming-platform-clone',
+    category: 'Media & Streaming',
+    date: '2025',
     features: [
-      'High-quality audio streaming',
-      'Playlist creation and sharing',
-      'Social features and following',
-      'AI-powered recommendations',
-      'Offline playback capability',
-      'Artist dashboard and analytics',
-      'Search and discovery',
-      'Mobile-responsive design'
+      'Adaptive streaming with multi-resolution processing',
+      'Custom player with subtitles and accessibility options',
+      'Watch history, personalization, and recommendations',
+      'Creator dashboard with analytics and monetization',
+      'Subscription and premium content workflows'
     ],
     challenges: [
-      'Implementing efficient audio streaming',
-      'Building recommendation algorithms',
-      'Managing large media files',
-      'Creating smooth user experience'
+      'Building efficient transcoding pipelines',
+      'Delivering low-latency playback across networks',
+      'Scaling storage and CDN distribution strategy'
     ]
   },
   {
     title: 'Business Analytics Dashboard',
-    description: 'Advanced analytics platform with interactive charts, real-time data visualization, role-based access, and comprehensive reporting tools.',
-    fullDescription: 'A powerful business intelligence platform featuring interactive dashboards, real-time analytics, and comprehensive reporting capabilities for data-driven decision making.',
-    image: '/projects/pos-crm.jpg', // Business-related
-    technologies: ['React', 'D3.js', 'Chart.js', 'NestJS', 'PostgreSQL', 'Redis', 'WebSocket'],
-    category: 'Upcoming Projects',
-    date: 'Q4 2025',
+    description: 'Business intelligence suite with interactive dashboards, real-time analytics, ETL pipelines, and advanced reporting.',
+    fullDescription: 'A data-driven platform that transforms operational data into actionable business insights through custom visualizations and automated reporting.',
+    image: '/projects/saudi-dates.jpg',
+    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'D3.js', 'Redis'],
+    github: 'https://github.com/stephanelkhoury/stephanelkhoury/tree/main/upcoming-projects/10-business-analytics-dashboard',
+    category: 'Analytics',
+    date: '2025',
     features: [
-      'Interactive data visualizations',
-      'Real-time analytics updates',
-      'Custom dashboard creation',
-      'Role-based access control',
-      'Export and reporting tools',
-      'Data filtering and drilling',
-      'Performance monitoring',
-      'Integration with multiple data sources'
+      'Interactive dashboards and drill-down analytics',
+      'Custom KPI tracking and metric definitions',
+      'Automated report generation and exports',
+      'Real-time data ingestion and processing',
+      'Advanced filtering and ad-hoc analysis tools'
     ],
     challenges: [
-      'Optimizing large dataset visualization',
-      'Building flexible charting system',
-      'Implementing real-time data updates',
-      'Creating intuitive user interface'
+      'Unifying heterogeneous data sources',
+      'Maintaining responsive charts on large datasets',
+      'Designing reliable analytics pipelines'
     ]
-  },
+  }
 ];
 
 const Projects: React.FC = () => {
