@@ -45,7 +45,7 @@ const CertificateCarousel: React.FC<CertificateCarouselProps> = ({ certificates 
   const handleCertificateClick = (certificate: Certificate) => {
     setSelectedCertificate(certificate);
     setIsPopupVisible(true);
-    setCountdown(5);
+    setCountdown(30); // More time to view the PDF
   };
 
   const closePopup = () => {
@@ -104,14 +104,14 @@ const CertificateCarousel: React.FC<CertificateCarouselProps> = ({ certificates 
 
   const handleViewCertificate = () => {
     if (selectedCertificate) {
-      window.open(selectedCertificate.path, '_blank');
+      window.open(encodeURI(selectedCertificate.path), '_blank');
     }
   };
 
   const handleDownloadCertificate = () => {
     if (selectedCertificate) {
       const link = document.createElement('a');
-      link.href = selectedCertificate.path;
+      link.href = encodeURI(selectedCertificate.path);
       link.download = selectedCertificate.filename;
       document.body.appendChild(link);
       link.click();
@@ -261,25 +261,14 @@ const CertificateCarousel: React.FC<CertificateCarouselProps> = ({ certificates 
 
               {/* Certificate Preview */}
               <div className="mb-6">
-                {/* PDF Preview */}
-                <div className="bg-gray-800 rounded-lg p-4 mb-4">
-                  <div className="w-full h-96 rounded-lg bg-gradient-to-br from-white/90 to-gray-100 flex items-center justify-center border-2 border-gray-300 shadow-inner">
-                    <div className="text-center p-8">
-                      <div className="text-6xl mb-4">📜</div>
-                      <h4 className="text-gray-800 font-bold text-lg mb-2">
-                        {selectedCertificate.title}
-                      </h4>
-                      <p className="text-gray-600 mb-4">
-                        {selectedCertificate.organization}
-                      </p>
-                      <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium inline-block">
-                        {selectedCertificate.type}
-                      </div>
-                      <div className="mt-4 text-gray-500 text-sm">
-                        Click &quot;View Certificate&quot; to open the full PDF
-                      </div>
-                    </div>
-                  </div>
+                {/* PDF Embedded Viewer */}
+                <div className="bg-gray-800 rounded-lg p-2 mb-4">
+                  <iframe
+                    src={encodeURI(selectedCertificate.path)}
+                    title={selectedCertificate.title}
+                    className="w-full h-[500px] rounded-lg bg-white"
+                    style={{ border: 'none' }}
+                  />
                 </div>
                 
                 {/* Certificate Info */}
@@ -304,7 +293,7 @@ const CertificateCarousel: React.FC<CertificateCarouselProps> = ({ certificates 
                 <div className="w-full bg-white/10 rounded-full h-1">
                   <div 
                     className="bg-gradient-to-r from-blue-500 to-purple-500 h-1 rounded-full transition-all duration-1000 ease-linear"
-                    style={{ width: `${(countdown / 5) * 100}%` }}
+                    style={{ width: `${(countdown / 30) * 100}%` }}
                   />
                 </div>
               </div>

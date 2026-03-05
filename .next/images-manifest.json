@@ -12,7 +12,6 @@
       3840
     ],
     "imageSizes": [
-      16,
       32,
       48,
       64,
@@ -24,18 +23,34 @@
     "path": "/_next/image",
     "loader": "default",
     "loaderFile": "",
-    "domains": [
-      "res.cloudinary.com"
-    ],
+    "domains": [],
     "disableStaticImages": false,
-    "minimumCacheTTL": 60,
+    "minimumCacheTTL": 14400,
     "formats": [
       "image/webp"
     ],
+    "maximumRedirects": 3,
+    "maximumResponseBody": 50000000,
+    "dangerouslyAllowLocalIP": false,
     "dangerouslyAllowSVG": false,
     "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;",
     "contentDispositionType": "attachment",
-    "remotePatterns": [],
+    "localPatterns": [
+      {
+        "pathname": "^(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)\\/?)$",
+        "search": ""
+      }
+    ],
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "^(?:^(?:res\\.cloudinary\\.com)$)$",
+        "pathname": "^(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)\\/?)$"
+      }
+    ],
+    "qualities": [
+      75
+    ],
     "unoptimized": false,
     "sizes": [
       640,
@@ -46,7 +61,6 @@
       1920,
       2048,
       3840,
-      16,
       32,
       48,
       64,
