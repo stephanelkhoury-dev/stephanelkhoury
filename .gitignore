@@ -2,3 +2,4 @@
 # Ignore .node files
 *.node
 node_modules
+.env*.local
