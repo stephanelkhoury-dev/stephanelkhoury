@@ -105,16 +105,27 @@ Visitor question: ${message}`;
 
   const ai = new GoogleGenAI({ apiKey });
 
-  let answer = 'I could not generate a response right now.';
-  try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
-      contents: prompt,
-    });
-    answer = response.text || answer;
-  } catch {
+  // Try primary model first, fall back to a lighter model on quota/error
+  const MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.0-pro'];
+  let answer = '';
+
+  for (const model of MODELS) {
+    try {
+      const response = await ai.models.generateContent({ model, contents: prompt });
+      answer = response.text || '';
+      if (answer) break;
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error(`[chat] model ${model} failed:`, msg);
+      // On quota (429) or overload (503), try next model; on other errors, stop
+      const isRetryable = msg.includes('429') || msg.includes('quota') || msg.includes('503') || msg.includes('overloaded');
+      if (!isRetryable) break;
+    }
+  }
+
+  if (!answer) {
     answer =
-      'I can share profile details, but the AI provider is temporarily unavailable. Please try again in a moment.';
+      'Our AI assistant is temporarily at capacity right now. In the meantime, feel free to reach Stephan directly at **multigraphic.lb@gmail.com** or use the contact form below — he typically responds within a few hours.';
   }
 
   await prisma.chatMessage.create({
