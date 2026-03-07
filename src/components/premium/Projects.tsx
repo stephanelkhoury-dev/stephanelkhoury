@@ -18,7 +18,7 @@ type ProjectRecord = {
 
 export default function PremiumProjects({ projects }: { projects: ProjectRecord[] }) {
   return (
-    <section id="projects" className="py-24 bg-zinc-950 border-t border-zinc-900/50">
+    <section id="projects" className="py-24 bg-white dark:bg-zinc-950 border-t border-zinc-200/50 dark:border-zinc-900/50">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="max-w-2xl">

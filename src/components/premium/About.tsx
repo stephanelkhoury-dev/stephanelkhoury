@@ -15,7 +15,7 @@ export default function PremiumAbout({
   const stats = content.stats ?? [];
 
   return (
-    <section id="about" className="py-24 bg-zinc-950 relative overflow-hidden border-t border-zinc-900/50">
+    <section id="about" className="py-24 bg-white dark:bg-zinc-950 relative overflow-hidden border-t border-zinc-200/50 dark:border-zinc-900/50">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="space-y-8">

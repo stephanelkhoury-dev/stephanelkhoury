@@ -6,7 +6,7 @@ import type { ContactContent } from './types';
 
 export default function PremiumContact({ content }: { content: ContactContent }) {
   return (
-    <section id="contact" className="py-24 bg-zinc-950 relative border-t border-zinc-900/50">
+    <section id="contact" className="py-24 bg-white dark:bg-zinc-950 relative border-t border-zinc-200/50 dark:border-zinc-900/50">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-1/2 -right-1/4 w-[1000px] h-[1000px] bg-blue-600/5 rounded-full blur-[120px]" />
       </div>
@@ -75,23 +75,23 @@ export default function PremiumContact({ content }: { content: ContactContent })
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-zinc-400">Full Name</label>
-                  <input id="name" className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="John Doe" />
+                  <label htmlFor="name" className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Full Name</label>
+                  <input id="name" className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="John Doe" />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-zinc-400">Email Address</label>
-                  <input id="email" type="email" className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="john@example.com" />
+                  <label htmlFor="email" className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Email Address</label>
+                  <input id="email" type="email" className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="john@example.com" />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium text-zinc-400">Subject</label>
-                <input id="subject" className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="Project Inquiry" />
+                <label htmlFor="subject" className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Subject</label>
+                <input id="subject" className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="Project Inquiry" />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-zinc-400">Message</label>
-                <textarea id="message" rows={6} className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-zinc-100 focus:outline-none focus:border-blue-500 resize-none" placeholder="Tell me about your project, goals, or technical needs..." />
+                <label htmlFor="message" className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Message</label>
+                <textarea id="message" rows={6} className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-blue-500 resize-none" placeholder="Tell me about your project, goals, or technical needs..." />
               </div>
 
               <button type="button" className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-medium transition-all">

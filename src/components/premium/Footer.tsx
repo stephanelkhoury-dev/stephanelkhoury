@@ -8,7 +8,7 @@ export default function PremiumFooter() {
   };
 
   return (
-    <footer className="bg-zinc-950 border-t border-zinc-900 py-12 relative">
+    <footer className="bg-zinc-100 dark:bg-zinc-950 border-t border-zinc-300 dark:border-zinc-900 py-12 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">

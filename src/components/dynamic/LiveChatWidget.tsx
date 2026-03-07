@@ -144,16 +144,16 @@ export default function LiveChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-            className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl border border-zinc-700/60 bg-zinc-950 shadow-2xl shadow-black/50 overflow-hidden flex flex-col"
+            className="fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] rounded-2xl border border-zinc-300 dark:border-zinc-700/60 bg-white dark:bg-zinc-950 shadow-2xl shadow-black/20 dark:shadow-black/50 overflow-hidden flex flex-col"
             style={{ maxHeight: '580px' }}
           >
             {/* Header */}
-            <div className="flex items-center gap-3 px-4 py-3 bg-zinc-900/80 border-b border-zinc-800">
+            <div className="flex items-center gap-3 px-4 py-3 bg-zinc-100/80 dark:bg-zinc-900/80 border-b border-zinc-300 dark:border-zinc-800">
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
                 SE
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-white">Stephan&apos;s Assistant</p>
+                <p className="text-sm font-semibold text-zinc-900 dark:text-white">Stephan&apos;s Assistant</p>
                 <div className="flex items-center gap-1 text-xs text-green-400">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -162,7 +162,7 @@ export default function LiveChatWidget() {
                   Online — usually replies instantly
                 </div>
               </div>
-              <button onClick={() => setOpen(false)} className="text-zinc-500 hover:text-zinc-300 transition-colors">
+              <button onClick={() => setOpen(false)} className="text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">
                 <X size={16} />
               </button>
             </div>
@@ -171,7 +171,7 @@ export default function LiveChatWidget() {
             <div className="flex-1 overflow-y-auto p-4 space-y-3 no-scrollbar" style={{ minHeight: 240 }}>
               {messages.length === 0 && (
                 <div className="space-y-3">
-                  <p className="text-sm text-zinc-400 text-center">
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 text-center">
                     👋 Hi! Ask me anything about Stephan — projects, experience, availability, or how to get in touch.
                   </p>
                   <div className="grid grid-cols-1 gap-2 mt-2">
@@ -179,10 +179,10 @@ export default function LiveChatWidget() {
                       <button
                         key={prompt}
                         onClick={() => void send(prompt)}
-                        className="flex items-center justify-between w-full text-left text-xs px-3 py-2.5 rounded-lg border border-zinc-700/60 bg-zinc-900/50 hover:bg-zinc-800 hover:border-blue-500/40 text-zinc-300 transition-all group"
+                        className="flex items-center justify-between w-full text-left text-xs px-3 py-2.5 rounded-lg border border-zinc-300 dark:border-zinc-700/60 bg-zinc-100 dark:bg-zinc-900/50 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:border-blue-500/40 text-zinc-700 dark:text-zinc-300 transition-all group"
                       >
                         {prompt}
-                        <ArrowRight size={12} className="text-zinc-600 group-hover:text-blue-400 transition-colors shrink-0 ml-2" />
+                        <ArrowRight size={12} className="text-zinc-400 dark:text-zinc-600 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors shrink-0 ml-2" />
                       </button>
                     ))}
                   </div>
@@ -198,7 +198,7 @@ export default function LiveChatWidget() {
                     className={`text-sm px-3 py-2 rounded-xl max-w-[85%] leading-relaxed whitespace-pre-wrap ${
                       message.role === 'user'
                         ? 'bg-blue-600 text-white rounded-br-sm'
-                        : 'bg-zinc-800 text-zinc-200 rounded-bl-sm'
+                        : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-200 rounded-bl-sm'
                     }`}
                   >
                     {message.content}
@@ -208,7 +208,7 @@ export default function LiveChatWidget() {
 
               {loading && (
                 <div className="flex justify-start">
-                  <div className="bg-zinc-800 rounded-xl rounded-bl-sm">
+                  <div className="bg-zinc-200 dark:bg-zinc-800 rounded-xl rounded-bl-sm">
                     <TypingDots />
                   </div>
                 </div>
@@ -217,13 +217,13 @@ export default function LiveChatWidget() {
             </div>
 
             {/* Input */}
-            <div className="p-3 border-t border-zinc-800 bg-zinc-900/50 flex gap-2">
+            <div className="p-3 border-t border-zinc-300 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/50 flex gap-2">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void send(); } }}
                 placeholder="Ask about projects, availability…"
-                className="flex-1 bg-zinc-800/60 border border-zinc-700/60 rounded-xl px-3 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:border-blue-500/50 transition-colors"
+                className="flex-1 bg-zinc-200/60 dark:bg-zinc-800/60 border border-zinc-300 dark:border-zinc-700/60 rounded-xl px-3 py-2 text-sm text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-500 outline-none focus:border-blue-500/50 transition-colors"
               />
               <button
                 onClick={() => void send()}
@@ -235,7 +235,7 @@ export default function LiveChatWidget() {
             </div>
 
             {/* Footer hint */}
-            <p className="text-center text-[10px] text-zinc-600 pb-2">
+            <p className="text-center text-[10px] text-zinc-500 dark:text-zinc-600 pb-2">
               Powered by Gemini AI · All chats are logged
             </p>
           </motion.div>

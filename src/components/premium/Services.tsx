@@ -21,7 +21,7 @@ export default function PremiumServices({ content }: { content: ServicesContent 
   const fallbackPalette = ['#60a5fa', '#fbbf24', '#34d399', '#c084fc', '#f472b6', '#818cf8', '#fb7185', '#22d3ee'];
 
   return (
-    <section id="services" className="py-24 bg-zinc-950 relative border-t border-zinc-900/50">
+    <section id="services" className="py-24 bg-zinc-50 dark:bg-zinc-950 relative border-t border-zinc-200/50 dark:border-zinc-900/50">
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>

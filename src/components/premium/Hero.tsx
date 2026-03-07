@@ -19,7 +19,7 @@ export default function PremiumHero({ content }: { content: HeroContent }) {
   const highlights = content.highlights ?? [];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-zinc-950">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-zinc-50 dark:bg-zinc-950">
       <div
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
         style={{

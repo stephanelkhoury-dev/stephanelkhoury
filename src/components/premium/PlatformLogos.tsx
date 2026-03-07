@@ -15,7 +15,7 @@ export default function PlatformLogos({ items }: { items: LogoItem[] }) {
   const repeated = [...items, ...items, ...items];
 
   return (
-    <section id="platforms" className="py-24 bg-zinc-950 border-t border-zinc-900/50">
+    <section id="platforms" className="py-24 bg-white dark:bg-zinc-950 border-t border-zinc-200/50 dark:border-zinc-900/50">
       <div className="max-w-7xl mx-auto px-6 md:px-12 overflow-hidden">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <motion.div

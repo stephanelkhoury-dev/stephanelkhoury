@@ -75,16 +75,16 @@ export default function PremiumNavbar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-zinc-950/85 backdrop-blur-md border-b border-zinc-800/60 py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md border-b border-zinc-300/60 dark:border-zinc-800/60 py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold tracking-tighter text-zinc-100">
+        <a href="#" className="text-xl font-bold tracking-tighter text-zinc-900 dark:text-zinc-100">
           STEPHAN<span className="text-blue-500">.</span>EK
         </a>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm font-medium text-zinc-400 hover:text-blue-400 transition-colors">
+            <a key={link.name} href={link.href} className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
               {link.name}
             </a>
           ))}
@@ -97,7 +97,7 @@ export default function PremiumNavbar() {
         {/* Mobile */}
         <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
-          <button className="text-zinc-300" onClick={() => setIsOpen((v) => !v)}>
+          <button className="text-zinc-700 dark:text-zinc-300" onClick={() => setIsOpen((v) => !v)}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
