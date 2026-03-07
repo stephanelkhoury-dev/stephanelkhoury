@@ -34,14 +34,14 @@ export default async function PlatformDetailPage({ params }: PageProps) {
   return (
     <>
       <PremiumNavbar />
-      <main className="min-h-screen pt-28 px-6 md:px-12 bg-zinc-950 text-zinc-50">
+      <main className="min-h-screen pt-28 px-6 md:px-12 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
         <section className="max-w-5xl mx-auto">
           <Link href="/#platforms" className="text-blue-400 text-sm hover:text-blue-300">
             ← Back to Platforms
           </Link>
 
           <div className="mt-5 grid lg:grid-cols-[1.2fr_1fr] gap-8 items-start">
-            <article className="rounded-3xl border border-zinc-800 bg-zinc-900/60 p-8">
+            <article className="rounded-3xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/60 p-8">
               <div className="flex items-center gap-4 mb-6">
                 <img src={platform.logoUrl} alt={platform.name} className="h-14 w-14 object-contain" />
                 <div>
@@ -50,19 +50,19 @@ export default async function PlatformDetailPage({ params }: PageProps) {
                 </div>
               </div>
 
-              <p className="text-zinc-300 text-lg mb-6">{platform.shortDescription}</p>
+              <p className="text-zinc-700 dark:text-zinc-300 text-lg mb-6">{platform.shortDescription}</p>
 
-              <div className="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-6">
+              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-950/60 p-6">
                 <h2 className="text-2xl font-semibold mb-3">My Experience</h2>
-                <p className="text-zinc-300 whitespace-pre-wrap leading-relaxed">{platform.experience}</p>
+                <p className="text-zinc-700 dark:text-zinc-300 whitespace-pre-wrap leading-relaxed">{platform.experience}</p>
               </div>
             </article>
 
             <aside className="space-y-5">
-              <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
                 <h2 className="text-xl font-semibold mb-3">Related Projects</h2>
                 {projectLinks.length === 0 ? (
-                  <p className="text-zinc-400 text-sm">No project links added yet.</p>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm">No project links added yet.</p>
                 ) : (
                   <ul className="space-y-2">
                     {projectLinks.map((link) => (
@@ -76,10 +76,10 @@ export default async function PlatformDetailPage({ params }: PageProps) {
                 )}
               </div>
 
-              <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
                 <h2 className="text-xl font-semibold mb-3">Certificates</h2>
                 {certificateLinks.length === 0 ? (
-                  <p className="text-zinc-400 text-sm">No certificate links added yet.</p>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm">No certificate links added yet.</p>
                 ) : (
                   <ul className="space-y-2">
                     {certificateLinks.map((link) => (
@@ -93,15 +93,15 @@ export default async function PlatformDetailPage({ params }: PageProps) {
                 )}
               </div>
 
-              <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
                 <h2 className="text-xl font-semibold mb-3">Resources</h2>
                 {resourceLinks.length === 0 ? (
-                  <p className="text-zinc-400 text-sm">No resources added yet.</p>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm">No resources added yet.</p>
                 ) : (
                   <ul className="space-y-2">
                     {resourceLinks.map((link) => (
                       <li key={link}>
-                        <a href={link} target="_blank" rel="noreferrer" className="text-zinc-200 hover:text-white break-all text-sm">
+                        <a href={link} target="_blank" rel="noreferrer" className="text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white break-all text-sm">
                           {link}
                         </a>
                       </li>

@@ -21,13 +21,13 @@ export default function PremiumAbout({
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="space-y-8">
             <div>
               <h2 className="text-sm font-semibold text-blue-500 uppercase tracking-widest mb-2">{content.kicker}</h2>
-              <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">
+              <h3 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
                 {content.headline}{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">{content.headlineAccent}</span>
               </h3>
             </div>
 
-            <div className="space-y-6 text-zinc-400 text-lg leading-relaxed">
+            <div className="space-y-6 text-zinc-700 dark:text-zinc-400 text-lg leading-relaxed">
               {paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -35,9 +35,9 @@ export default function PremiumAbout({
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
               {stats.map((stat) => (
-                <div key={stat.label} className="border border-zinc-800 bg-zinc-900/50 p-4 rounded-xl">
-                  <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-xs text-zinc-500 uppercase tracking-wider">{stat.label}</div>
+                <div key={stat.label} className="border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-4 rounded-xl">
+                  <div className="text-3xl font-bold text-zinc-900 dark:text-white mb-1">{stat.value}</div>
+                  <div className="text-xs text-zinc-600 dark:text-zinc-500 uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -47,35 +47,35 @@ export default function PremiumAbout({
             <div className="relative w-full max-w-md aspect-square">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-blue-600/20 rounded-full blur-2xl animate-pulse" />
 
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-zinc-900 border border-zinc-700 rounded-2xl flex flex-col items-center justify-center shadow-2xl z-20">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-2xl flex flex-col items-center justify-center shadow-2xl z-20">
                 <Award className="w-8 h-8 text-amber-400 mb-1" />
-                <span className="text-xs font-bold text-white">{certificationsCount} CERTS</span>
+                <span className="text-xs font-bold text-zinc-900 dark:text-white">{certificationsCount} CERTS</span>
               </div>
 
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 border border-zinc-800 rounded-full"
+                className="absolute inset-0 border border-zinc-300 dark:border-zinc-800 rounded-full"
               >
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-zinc-900 border border-zinc-700 rounded-full flex items-center justify-center -rotate-90 group cursor-pointer">
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-full flex items-center justify-center -rotate-90 group cursor-pointer">
                   <Database className="w-5 h-5 text-emerald-400" />
-                  <span className="absolute -top-8 bg-zinc-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Control Data</span>
+                  <span className="absolute -top-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Control Data</span>
                 </div>
 
-                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-zinc-900 border border-zinc-700 rounded-full flex items-center justify-center -rotate-90 group cursor-pointer">
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-full flex items-center justify-center -rotate-90 group cursor-pointer">
                   <ShieldCheck className="w-5 h-5 text-purple-400" />
-                  <span className="absolute -bottom-8 bg-zinc-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">QA Base</span>
+                  <span className="absolute -bottom-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">QA Base</span>
                 </div>
               </motion.div>
 
               <motion.div
                 animate={{ rotate: -360 }}
                 transition={{ duration: 26, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-12 border border-zinc-800/60 rounded-full"
+                className="absolute inset-12 border border-zinc-300/60 dark:border-zinc-800/60 rounded-full"
               >
-                <div className="absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 bg-zinc-900 border border-zinc-700 rounded-full flex items-center justify-center rotate-90 group cursor-pointer">
+                <div className="absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-full flex items-center justify-center rotate-90 group cursor-pointer">
                   <Zap className="w-5 h-5 text-amber-400" />
-                  <span className="absolute -left-24 bg-zinc-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Screening UI</span>
+                  <span className="absolute -left-24 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Screening UI</span>
                 </div>
               </motion.div>
 

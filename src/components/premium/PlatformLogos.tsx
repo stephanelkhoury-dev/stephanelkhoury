@@ -25,8 +25,8 @@ export default function PlatformLogos({ items }: { items: LogoItem[] }) {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-sm font-semibold text-cyan-400 uppercase tracking-widest mb-2">Stack & Platforms</h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">Platforms I Work On</h3>
-            <p className="text-zinc-400 text-lg">Hover to pause. Click any logo to view my experience with that platform.</p>
+            <h3 className="text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-4">Platforms I Work On</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-lg">Hover to pause. Click any logo to view my experience with that platform.</p>
           </motion.div>
         </div>
 

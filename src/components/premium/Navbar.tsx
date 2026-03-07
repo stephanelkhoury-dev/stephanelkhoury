@@ -41,7 +41,7 @@ function ThemeToggle() {
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
         aria-label={`Switch to ${next.label} mode`}
-        className="flex items-center justify-center w-9 h-9 rounded-full border border-zinc-700/60 bg-zinc-900/60 hover:border-blue-500/50 hover:bg-zinc-800 transition-all duration-200 text-zinc-400 hover:text-blue-400"
+        className="flex items-center justify-center w-9 h-9 rounded-full border border-zinc-300 dark:border-zinc-700/60 bg-zinc-100 dark:bg-zinc-900/60 hover:border-blue-500/50 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-all duration-200 text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400"
       >
         <Icon size={15} />
       </button>
@@ -53,10 +53,10 @@ function ThemeToggle() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 4 }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 rounded text-[10px] font-medium bg-zinc-800 text-zinc-300 border border-zinc-700 whitespace-nowrap z-50 pointer-events-none"
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-2 py-1 rounded text-[10px] font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 whitespace-nowrap z-50 pointer-events-none"
           >
             {next.label} mode
-            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-zinc-800 border-l border-t border-zinc-700 rotate-45" />
+            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-zinc-100 dark:bg-zinc-800 border-l border-t border-zinc-300 dark:border-zinc-700 rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -110,10 +110,10 @@ export default function PremiumNavbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 w-full bg-zinc-950 border-b border-zinc-800 p-6 flex flex-col gap-4"
+            className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-zinc-950 border-b border-zinc-300 dark:border-zinc-800 p-6 flex flex-col gap-4"
           >
             {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="text-lg font-medium text-zinc-300 hover:text-blue-400" onClick={() => setIsOpen(false)}>
+              <a key={link.name} href={link.href} className="text-lg font-medium text-zinc-700 dark:text-zinc-300 hover:text-blue-500 dark:hover:text-blue-400" onClick={() => setIsOpen(false)}>
                 {link.name}
               </a>
             ))}

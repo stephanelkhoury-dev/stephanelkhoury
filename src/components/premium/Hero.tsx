@@ -39,14 +39,14 @@ export default function PremiumHero({ content }: { content: HeroContent }) {
             <span className="text-xs font-semibold tracking-wide uppercase">{content.badge}</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white mb-6 leading-[1.1]">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-zinc-900 dark:text-white mb-6 leading-[1.1]">
             {content.headingPrimary}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400">{content.headingAccent}</span>
             <br className="hidden md:block" />
             {content.headingSuffix}
           </h1>
 
-          <p className="text-lg md:text-2xl text-zinc-400 mb-12 font-light max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-2xl text-zinc-600 dark:text-zinc-400 mb-12 font-light max-w-3xl mx-auto leading-relaxed">
             {content.description}
           </p>
 
@@ -60,8 +60,8 @@ export default function PremiumHero({ content }: { content: HeroContent }) {
               </a>
             )}
             {content.ctaSecondaryLabel && content.ctaSecondaryHref && (
-              <a href={content.ctaSecondaryHref} className="px-8 py-4 bg-zinc-900 border border-zinc-800 hover:border-blue-500/50 text-zinc-300 hover:text-white rounded-full font-medium transition-all w-full sm:w-auto flex items-center justify-center gap-2 group">
-                <Layers size={18} className="text-zinc-500 group-hover:text-blue-400 transition-colors" />
+              <a href={content.ctaSecondaryHref} className="px-8 py-4 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 hover:border-blue-500/50 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white rounded-full font-medium transition-all w-full sm:w-auto flex items-center justify-center gap-2 group">
+                <Layers size={18} className="text-zinc-600 dark:text-zinc-500 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
                 {content.ctaSecondaryLabel}
               </a>
             )}
@@ -77,11 +77,11 @@ export default function PremiumHero({ content }: { content: HeroContent }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-              className="bg-zinc-900/50 backdrop-blur-md border border-zinc-800/80 p-5 rounded-2xl hover:bg-zinc-800/50 hover:border-zinc-700 transition-colors group"
+              className="bg-zinc-100/80 dark:bg-zinc-900/50 backdrop-blur-md border border-zinc-300/80 dark:border-zinc-800/80 p-5 rounded-2xl hover:bg-zinc-200/70 dark:hover:bg-zinc-800/50 hover:border-zinc-400 dark:hover:border-zinc-700 transition-colors group"
             >
               <div className="text-blue-400 mb-3 group-hover:scale-110 transition-transform origin-left"><Icon /></div>
-              <h3 className="text-white font-semibold text-sm mb-1">{highlight.title}</h3>
-              <p className="text-zinc-500 text-xs">{highlight.desc}</p>
+              <h3 className="text-zinc-900 dark:text-white font-semibold text-sm mb-1">{highlight.title}</h3>
+              <p className="text-zinc-600 dark:text-zinc-500 text-xs">{highlight.desc}</p>
             </motion.div>
             );
           })}
