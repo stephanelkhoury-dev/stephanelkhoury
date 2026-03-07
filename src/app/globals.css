@@ -10,6 +10,24 @@
     --accent-primary: #3b82f6;
     --accent-secondary: #06b6d4;
     --accent-success: #10b981;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --muted: #94a3b8;
+    --surface: #111827;
+  }
+
+  /* ── Light mode ───────────────────────────────────── */
+  .light {
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --hover-color: #2563eb;
+    --accent-primary: #2563eb;
+    --accent-secondary: #0891b2;
+    --accent-success: #059669;
+    --card-bg: rgba(0,0,0,0.03);
+    --card-border: rgba(0,0,0,0.08);
+    --muted: #64748b;
+    --surface: #ffffff;
   }
 }
 
@@ -108,6 +126,46 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Sora', sans-serif;
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 12%, rgba(6, 182, 212, 0.06), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.05), transparent 35%);
+  animation: bodyAurora 28s ease-in-out infinite;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Light mode body overrides */
+.light body,
+.light {
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 12%, rgba(6, 182, 212, 0.04), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.03), transparent 35%);
+}
+
+@keyframes bodyAurora {
+  0%,
+  100% {
+    background-position: 0% 0%, 100% 0%, 50% 100%;
+  }
+  50% {
+    background-position: 10% 8%, 90% 12%, 50% 92%;
+  }
+}
+
+section {
+  animation: fadeInSection 0.7s ease both;
+}
+
+@keyframes fadeInSection {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Line clamp utilities */
@@ -248,5 +306,76 @@ body {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes logoMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.3333%);
+  }
+}
+
+.logo-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.logo-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+  animation: logoMarquee 42s linear infinite;
+  padding-block: 0.5rem;
+}
+
+.logo-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 92px;
+  width: 92px;
+  border-radius: 9999px;
+  border: 1px solid rgba(63, 63, 70, 0.9);
+  background: radial-gradient(circle at 30% 25%, rgba(39, 39, 42, 0.9), rgba(24, 24, 27, 0.7));
+  box-shadow: inset 0 0 0 1px rgba(24, 24, 27, 0.45);
+  transition: all 0.28s ease;
+}
+
+.logo-pill:hover {
+  border-color: rgba(96, 165, 250, 0.85);
+  transform: translateY(-4px) scale(1.04);
+  background: radial-gradient(circle at 30% 25%, rgba(63, 63, 70, 0.95), rgba(39, 39, 42, 0.85));
+  box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.2), 0 12px 24px rgba(2, 6, 23, 0.45);
+}
+
+.logo-pill-image {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.95);
+  opacity: 0.72;
+  transition: filter 0.28s ease, opacity 0.28s ease, transform 0.28s ease;
+}
+
+.logo-pill:hover .logo-pill-image {
+  filter: grayscale(0) brightness(1.08);
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+@keyframes loadingPulse {
+  0% {
+    transform: translateX(-130%);
+  }
+  50% {
+    transform: translateX(110%);
+  }
+  100% {
+    transform: translateX(240%);
   }
 }

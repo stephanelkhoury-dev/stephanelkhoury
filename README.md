@@ -1,24 +1,24 @@
-# Stephan El Khoury - Portfolio Website
+# Stephan El Khoury - Dynamic Portfolio Platform
 
-A modern, responsive portfolio website built with Next.js 13+ App Router, showcasing my professional experience, projects, and skills as a Computer Engineer and Full Stack Developer.
+A fully dynamic, block-based portfolio platform built with Next.js App Router, Prisma, and PostgreSQL. Content is managed from an admin dashboard (no code edits needed for normal updates).
 
 ## 🚀 Features
 
-- **Modern Tech Stack**: Next.js 13+ with App Router, TypeScript, TailwindCSS
-- **Responsive Design**: Mobile-first approach with smooth animations
-- **Interactive Components**: Framer Motion animations and Lenis smooth scrolling  
-- **Professional Content**: Real work experience, projects, and certifications
-- **Category Filtering**: Projects organized by technology and category
-- **Contact Integration**: Direct email and social media links
+- **Block-based content system**: Hero/About/Experience/Contact managed in DB
+- **Dynamic projects**: DB-backed list (currently intentionally empty)
+- **Supported systems showcase**: Clickable logos to detailed stack/platform pages
+- **Admin dashboard**: JSON-powered CMS at `/admin`
+- **Live chatbot**: Gemini-powered assistant trained from your live DB content
+- **Chat persistence**: Every chat session/message saved and visible in admin
+- **Vercel ready**: Uses environment variables and server APIs
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: Next.js 13+, React 18, TypeScript
-- **Styling**: TailwindCSS, PostCSS
-- **Animations**: Framer Motion, Lenis (smooth scroll)
-- **Icons**: Font Awesome
-- **Development**: ESLint, Turbopack
-- **Smooth Scroll**: Lenis
+- **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS
+- **Backend**: Next.js Route Handlers
+- **Database**: PostgreSQL + Prisma ORM
+- **AI**: Gemini (`gemini-2.0-flash`) via `@google/genai`
+- **Deployment**: Vercel
 
 ## Local Development
 
@@ -34,29 +34,57 @@ A modern, responsive portfolio website built with Next.js 13+ App Router, showca
    ```
 
 3. Set up environment variables:
-   Create a `.env.local` file in the root directory and add:
+   Create both `.env` and `.env.local` in the root directory (or copy `.env.example`) and add:
    ```env
-   # Add your environment variables here
+   DATABASE_URL="postgresql://..."
+   DATABASE_URL_UNPOOLED="postgresql://..."
+   ADMIN_DASHBOARD_TOKEN="your-secure-token"
+   GEMINI_API_KEY="your-gemini-key"
    ```
 
-4. Start the development server:
+4. Generate Prisma client, push schema, and seed full dataset:
+   ```bash
+   npm run prisma:generate
+   npm run prisma:push
+   npm run prisma:seed
+   ```
+
+5. Start the development server:
    ```bash
    npm run dev
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+6. Open [http://localhost:3333](http://localhost:3333) in your browser.
+7. Open `/admin`, paste `ADMIN_DASHBOARD_TOKEN`, then load/save content.
+
+## Database Operations
+
+- Seed data only:
+   ```bash
+   npm run prisma:seed
+   ```
+- Full destructive reset + reseed:
+   ```bash
+   npm run prisma:reset
+   ```
+
+## Full Documentation
+
+- Detailed DB/Vercel/local runbook: [docs/DB-VERCEL-LOCAL-SETUP.md](docs/DB-VERCEL-LOCAL-SETUP.md)
 
 ## Project Structure
 
 ```
 src/
-  ├── app/                # App router pages and layout
-  ├── components/         # React components
-  │   ├── animations/    # Animation components and hooks
-  │   └── ...           # Other components
-  ├── styles/            # Global styles
-  └── utils/            # Utility functions
-public/                 # Static assets
+   ├── app/
+   │   ├── admin/                  # Admin dashboard
+   │   ├── api/admin/content/      # Admin CRUD API
+   │   ├── api/chat/               # Gemini chat API + persistence
+   │   └── systems/[slug]/         # Supported system detail pages
+   ├── components/dynamic/         # Block renderer + dynamic sections
+   └── lib/                        # Prisma + bootstrap + auth
+prisma/
+   └── schema.prisma               # DB models
 ```
 
 ## Deployment

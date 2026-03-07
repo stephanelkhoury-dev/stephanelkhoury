@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Sora } from 'next/font/google';
 import { AnimationProvider } from '@/components/animations';
+import SiteAura from '@/components/premium/SiteAura';
+import LiveChatWidget from '@/components/dynamic/LiveChatWidget';
+import ThemeProvider from '@/components/ThemeProvider';
 import "./globals.css";
 
 // Import the FontAwesome CSS
@@ -27,12 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sora.variable}`}>
-      <body className={`${sora.className} bg-[#0a0f1a] text-[#f1f5f9]`}>
-        <AnimationProvider>
-          {children}
-        </AnimationProvider>
+    <html lang="en" className={`${sora.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${sora.className} bg-[var(--background)] text-[var(--foreground)]`}>
+        <ThemeProvider>
+          <AnimationProvider>
+            <SiteAura />
+            {children}
+            <LiveChatWidget />
+          </AnimationProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+

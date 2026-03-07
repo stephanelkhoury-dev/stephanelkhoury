@@ -1,1 +1,17 @@
-cd /Users/stephanelkhoury/Documents/GitHub/stephan-portfolio && npm run dev
+cd /Users/stephanelkhoury/Documents/Github/stephanelkhoury
+
+# one-time setup (installs zsh aliases: start, stop, build, vercel)
+npm run cmd:install
+source ~/.zshrc
+
+# daily usage
+start
+stop
+build
+vercel
+
+# optional single launcher
+cmd start
+cmd stop
+cmd build
+cmd vercel

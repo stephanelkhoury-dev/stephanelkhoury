@@ -37,6 +37,7 @@
   ],
   "exclude": [
     "node_modules",
-    "upcoming-projects"
+    "upcoming-projects",
+    "stephan-fig3"
   ]
 }

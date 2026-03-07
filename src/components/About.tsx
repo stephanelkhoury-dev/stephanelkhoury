@@ -109,9 +109,9 @@ const About: React.FC = () => {
             className="text-4xl font-bold mb-16 text-center"
           />
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 max-w-7xl mx-auto">
             {/* Profile Image Column */}
-            <ScrollReveal direction="up" delay={0.2}>
+            {false && (
               <div className="lg:col-span-1 text-center">
                 <div className="relative w-80 h-80 mx-auto mb-8">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#06b6d4] to-[#3b82f6] rounded-full blur-xl opacity-30"></div>
@@ -156,10 +156,10 @@ const About: React.FC = () => {
                   </motion.div>
                 </div>
               </div>
-            </ScrollReveal>
+            )}
 
             {/* Content Columns */}
-            <div className="lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Column - About & Education */}
               <ScrollReveal direction="left" delay={0.3}>
                 <div className="glass rounded-2xl p-8 hover-glow h-full">

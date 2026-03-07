@@ -41,9 +41,12 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex space-x-8">
             <AnimatedLink href="#about">About</AnimatedLink>
             <AnimatedLink href="#projects">Projects</AnimatedLink>
+            <AnimatedLink href="#certificates">Certificates</AnimatedLink>
             <AnimatedLink href="#experience">Experience</AnimatedLink>
+            <AnimatedLink href="#systems">Systems</AnimatedLink>
             <AnimatedLink href="#blog">Blog</AnimatedLink>
             <AnimatedLink href="#contact">Contact</AnimatedLink>
+            <AnimatedLink href="/admin">Admin</AnimatedLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -81,9 +84,12 @@ const Navbar: React.FC = () => {
                 <div className="flex flex-col items-center space-y-4 py-6">
                   <AnimatedLink href="#about">About</AnimatedLink>
                   <AnimatedLink href="#projects">Projects</AnimatedLink>
+                  <AnimatedLink href="#certificates">Certificates</AnimatedLink>
                   <AnimatedLink href="#experience">Experience</AnimatedLink>
+                  <AnimatedLink href="#systems">Systems</AnimatedLink>
                   <AnimatedLink href="#blog">Blog</AnimatedLink>
                   <AnimatedLink href="#contact">Contact</AnimatedLink>
+                  <AnimatedLink href="/admin">Admin</AnimatedLink>
                 </div>
               </motion.div>
             )}
