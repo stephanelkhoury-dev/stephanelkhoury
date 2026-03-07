@@ -30,8 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sora.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${sora.className} bg-[var(--background)] text-[var(--foreground)]`}>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning className={`${sora.variable} ${sora.className} bg-background text-foreground`}>
         <ThemeProvider>
           <AnimationProvider>
             <SiteAura />
