@@ -75,7 +75,7 @@ export default function PremiumNavbar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md border-b border-zinc-300/60 dark:border-zinc-800/60 py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 dark:bg-zinc-950/85 backdrop-blur-md border-b border-zinc-300/70 dark:border-zinc-800/60 py-4' : 'bg-white/85 dark:bg-transparent backdrop-blur-sm border-b border-zinc-300/60 dark:border-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         <a href="#" className="text-xl font-bold tracking-tighter text-zinc-900 dark:text-zinc-100">
           STEPHAN<span className="text-blue-500">.</span>EK
