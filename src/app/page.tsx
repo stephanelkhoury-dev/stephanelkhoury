@@ -8,11 +8,11 @@ import PremiumSeoExpertise from '@/components/premium/SeoExpertise';
 import PremiumSkills from '@/components/premium/Skills';
 import PremiumExperience from '@/components/premium/Experience';
 import PremiumArchitecture from '@/components/premium/Architecture';
-import PremiumTestimonials from '@/components/premium/Testimonials';
 import PremiumContact from '@/components/premium/Contact';
 import PremiumFooter from '@/components/premium/Footer';
 import { getPublicContent } from '@/lib/bootstrap';
 import { defaultProjects, defaultSystems } from '@/lib/default-content';
+import { featuredProjectCopy, featuredProjectSlugs } from '@/lib/featured-projects';
 import type { Metadata } from 'next';
 import type {
   HeroContent,
@@ -21,7 +21,6 @@ import type {
   SkillsContent,
   ExperienceContent,
   ArchitectureContent,
-  TestimonialsContent,
   ContactContent,
 } from '@/components/premium/types';
 
@@ -74,13 +73,8 @@ function asRecord(value: unknown): Record<string, unknown> {
   return {};
 }
 
-function asStringArray(value: unknown): string[] {
-  if (!Array.isArray(value)) return [];
-  return value.filter((item): item is string => typeof item === 'string');
-}
-
 export default async function Home() {
-  const { blocks, projects, systems, certificates } = await getPublicContent();
+  const { blocks, projects, systems } = await getPublicContent();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.stephanelkhoury.com';
   const bySlug = Object.fromEntries(blocks.map((block) => [block.slug, block]));
 
@@ -90,7 +84,6 @@ export default async function Home() {
   const skillsBlock = bySlug['skills-main'];
   const experienceBlock = bySlug['experience-main'];
   const architectureBlock = bySlug['architecture-main'];
-  const testimonialsBlock = bySlug['testimonials-main'];
   const contactBlock = bySlug['contact-main'];
 
   const hero = {
@@ -102,6 +95,11 @@ export default async function Home() {
     ...asRecord(aboutBlock?.content),
     title: aboutBlock?.title,
     subtitle: aboutBlock?.subtitle,
+    paragraphs: [
+      'My experience spans frontend development, full-stack engineering, and quality assurance.',
+      'I bring technical SEO into product delivery so search requirements are considered alongside implementation and testing.',
+    ],
+    stats: [],
   } as AboutContent;
   const services = {
     ...asRecord(servicesBlock?.content),
@@ -123,11 +121,6 @@ export default async function Home() {
     title: architectureBlock?.title,
     subtitle: architectureBlock?.subtitle,
   } as ArchitectureContent;
-  const testimonials = {
-    ...asRecord(testimonialsBlock?.content),
-    title: testimonialsBlock?.title,
-    subtitle: testimonialsBlock?.subtitle,
-  } as TestimonialsContent;
   const contact = {
     ...asRecord(contactBlock?.content),
     title: contactBlock?.title,
@@ -147,8 +140,11 @@ export default async function Home() {
     imageUrl: project.imageUrl || defaultProjectImageBySlug.get(project.slug) || null,
     liveUrl: project.liveUrl,
     githubUrl: project.githubUrl,
-    technologies: asStringArray(project.technologies),
   }));
+  const featuredProjects = mappedProjects.filter(
+    (project) => featuredProjectSlugs.has(project.slug) && Boolean(project.liveUrl)
+  ).map((project) => ({ ...project, ...featuredProjectCopy[project.slug] }))
+    .sort((first, second) => Number(second.slug === 'style-os') - Number(first.slug === 'style-os'));
 
   const hiddenPlatformSlugs = new Set(['sitecore', 'sitefinity']);
 
@@ -186,29 +182,6 @@ export default async function Home() {
       logoUrl: system.logoUrl,
     }));
 
-  const seoFaqs = [
-    {
-      question: 'What SEO services does Stephan El Khoury provide?',
-      answer:
-        'I deliver technical SEO audits, structured data implementation, crawl and indexation fixes, internal linking improvements, Core Web Vitals optimization, and on-page search enhancements for modern websites and applications.',
-    },
-    {
-      question: 'What is AI search optimization?',
-      answer:
-        'AI search optimization improves how your brand, pages, and expertise are understood by answer engines and AI-powered results such as Google AI Overviews, ChatGPT, Gemini, and Perplexity through stronger structure, authority signals, and semantic clarity.',
-    },
-    {
-      question: 'Do you handle AEO and GEO strategies?',
-      answer:
-        'Yes. I work on Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO) by improving schema coverage, entity clarity, page usefulness, content structure, and technical performance so content is easier for AI systems to extract and cite.',
-    },
-    {
-      question: 'Can technical SEO be combined with product engineering?',
-      answer:
-        'Yes. My approach combines code-level implementation with SEO strategy so rendering, metadata, structured data, internal linking, page speed, accessibility, and analytics work together rather than as separate checklists.',
-    },
-  ];
-
   const structuredData = [
     {
       '@context': 'https://schema.org',
@@ -220,8 +193,8 @@ export default async function Home() {
         'Full-stack developer with expertise in technical SEO, AI search optimization, QA, and high-performance digital product delivery.',
       url: siteUrl,
       image: `${siteUrl}/images/profile/stephan-profile.jpg`,
-      email: 'mailto:stephanelkhoury2000@gmail.com',
-      telephone: '+961391906',
+      email: contact.email ? `mailto:${contact.email}` : undefined,
+      telephone: contact.phone || undefined,
       sameAs: [
         'https://github.com/stephanelkhoury',
         'https://www.linkedin.com/in/stephanelkhoury',
@@ -277,23 +250,10 @@ export default async function Home() {
     },
     {
       '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      '@id': `${siteUrl}/#faq`,
-      mainEntity: seoFaqs.map((item) => ({
-        '@type': 'Question',
-        name: item.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: item.answer,
-        },
-      })),
-    },
-    {
-      '@context': 'https://schema.org',
       '@type': 'ItemList',
       '@id': `${siteUrl}/#projects`,
       name: 'Featured Projects',
-      itemListElement: mappedProjects.slice(0, 10).map((project, index) => ({
+      itemListElement: featuredProjects.map((project, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         url: `${siteUrl}/projects/${project.slug}`,
@@ -309,17 +269,16 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <PremiumNavbar />
-      <main className="min-h-screen pt-16 bg-zinc-950 text-zinc-50">
+      <main id="main-content" className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
         <PremiumHero content={hero} />
-        <PremiumAbout content={about} certificationsCount={certificates.length} />
+        <PremiumProjects projects={featuredProjects} />
+        <PremiumExperience content={experience} />
+        <PremiumAbout content={about} />
         <PremiumServices content={services} />
-        <PremiumSeoExpertise faqs={seoFaqs} />
-        <PremiumProjects projects={mappedProjects} />
+        <PremiumSeoExpertise />
+        <PremiumArchitecture content={architecture} />
         <PlatformLogos items={platformLogos} />
         <PremiumSkills content={skills} />
-        <PremiumExperience content={experience} />
-        <PremiumArchitecture content={architecture} />
-        <PremiumTestimonials content={testimonials} />
         <PremiumContact content={contact} />
       </main>
       <PremiumFooter />

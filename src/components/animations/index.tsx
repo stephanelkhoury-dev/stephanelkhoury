@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, MotionConfig, useAnimation } from 'framer-motion';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import useSmoothScroll from './useSmoothScroll';
@@ -79,7 +79,7 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({ onClick, children }) =>
 const AnimationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   useSmoothScroll();
 
-  return <>{children}</>;
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 };
 
 export { AnimationProvider, AnimatedSection, AnimatedLink, AnimatedButton };

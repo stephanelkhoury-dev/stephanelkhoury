@@ -1,11 +1,10 @@
 'use client';
 
-import type { ComponentType } from 'react';
 import { motion } from 'framer-motion';
-import { Layers, Database, Globe, Search, Play, FileCode2 } from 'lucide-react';
+import { Layers, Database, Globe, Search, Play, FileCode2, type LucideIcon } from 'lucide-react';
 import type { SkillsContent } from './types';
 
-const iconMap: Record<string, ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, LucideIcon> = {
   frontend: FileCode2,
   backend: Database,
   cms: Globe,
@@ -18,17 +17,17 @@ export default function PremiumSkills({ content }: { content: SkillsContent }) {
   const categories = content.categories ?? [];
 
   return (
-    <section id="skills" className="py-16 md:py-24 bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200/50 dark:border-zinc-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
+    <section id="skills" className="editorial-section">
+      <div className="editorial-section-inner">
+        <div className="editorial-section-heading">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <h2 className="text-sm font-semibold text-emerald-500 uppercase tracking-widest mb-2">Technical Proficiency</h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-4">{content.title}</h3>
-            <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg">{content.subtitle}</p>
+            <h2 className="editorial-eyebrow">Technical Proficiency</h2>
+            <h3 className="editorial-display font-display">{content.title}</h3>
+            <p className="editorial-subtitle">{content.subtitle}</p>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="skills-grid">
           {categories.map((category, index) => {
             const Icon = iconMap[category.icon] || FileCode2;
             return (
@@ -38,19 +37,17 @@ export default function PremiumSkills({ content }: { content: SkillsContent }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-zinc-100/70 dark:bg-zinc-900/30 border border-zinc-300/80 dark:border-zinc-800/80 rounded-2xl p-6 sm:p-8 hover:bg-zinc-200/70 dark:hover:bg-zinc-900/50 hover:border-zinc-400 dark:hover:border-zinc-700 transition-colors"
+                className="skills-category"
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-zinc-200/70 dark:bg-zinc-800/50">
-                    <Icon className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h4 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">{category.title}</h4>
+                <div className="skills-category-heading">
+                  <Icon size={19} aria-hidden="true" />
+                  <h4 className="font-display">{category.title}</h4>
                 </div>
 
-                <ul className="space-y-3">
+                <ul>
                   {category.skills.map((skill) => (
-                    <li key={`${category.title}-${skill}`} className="flex items-center gap-3 text-zinc-700 dark:text-zinc-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-zinc-500 dark:bg-zinc-700" />
+                    <li key={`${category.title}-${skill}`}>
+                      <span aria-hidden="true" />
                       <span className="text-sm font-medium">{skill}</span>
                     </li>
                   ))}

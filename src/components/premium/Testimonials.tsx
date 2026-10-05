@@ -28,7 +28,7 @@ export default function PremiumTestimonials({ content }: { content: Testimonials
               className="bg-zinc-100/70 dark:bg-zinc-900/40 border border-zinc-300/80 dark:border-zinc-800/80 p-6 sm:p-8 rounded-2xl relative hover:border-zinc-400 dark:hover:border-zinc-700 transition-colors"
             >
               <Quote className="absolute top-6 right-6 w-12 h-12 text-zinc-500/40 dark:text-zinc-800/50" />
-              <p className="text-zinc-700 dark:text-zinc-300 italic mb-8 leading-relaxed">"{item.quote}"</p>
+              <p className="text-zinc-700 dark:text-zinc-300 italic mb-8 leading-relaxed">&ldquo;{item.quote}&rdquo;</p>
               <div>
                 <h5 className="text-zinc-900 dark:text-white font-bold text-sm">{item.author}</h5>
                 <p className="text-zinc-600 dark:text-zinc-500 text-xs">{item.role}</p>

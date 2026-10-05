@@ -2,99 +2,89 @@
 
 import { motion } from 'framer-motion';
 import { Mail, Linkedin, Github, Send, MapPin, Phone } from 'lucide-react';
+import type { FormEvent } from 'react';
 import type { ContactContent } from './types';
 
 export default function PremiumContact({ content }: { content: ContactContent }) {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!content.email) return;
+
+    const formData = new FormData(event.currentTarget);
+    const subject = String(formData.get('subject') || 'Portfolio inquiry');
+    const body = [
+      `Name: ${String(formData.get('name') || '')}`,
+      `Email: ${String(formData.get('email') || '')}`,
+      '',
+      String(formData.get('message') || ''),
+    ].join('\n');
+
+    window.location.href = `mailto:${content.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
-    <section id="contact" className="py-16 md:py-24 bg-white dark:bg-zinc-950 relative border-t border-zinc-200/50 dark:border-zinc-900/50">
+    <section id="contact" className="contact-finale relative overflow-hidden border-t border-[#191a18]/15 bg-[#e9e8e1] py-20 dark:border-white/15 dark:bg-zinc-950 md:py-32">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-10 md:gap-16">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="space-y-8 md:space-y-12">
-            <div>
-              <h2 className="text-sm font-semibold text-blue-500 uppercase tracking-widest mb-2">Get in Touch</h2>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-5 md:mb-6">
-                {content.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-amber-200">exceptional.</span>
-              </h3>
-              <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg max-w-md">{content.subtitle}</p>
+      <div className="relative z-10 mx-auto max-w-[1600px] px-5 sm:px-8 md:px-12">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }} className="lg:col-span-5">
+            <div className="space-y-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-secondary)]">Get in touch <span className="ml-2 font-mono text-[var(--accent-primary)]">/ 06</span></p>
+              <h2 className="max-w-[10ch] font-display text-5xl leading-[0.94] text-[var(--foreground)] sm:text-6xl md:text-7xl">
+                {content.title}
+              </h2>
+              <p className="max-w-md text-base leading-7 text-zinc-700 dark:text-zinc-300 sm:text-lg">{content.subtitle}</p>
             </div>
 
-            <div className="space-y-6">
+            <div className="mt-10 grid gap-5 border-t border-[#191a18]/20 pt-7 dark:border-white/20 sm:grid-cols-2 lg:grid-cols-1">
               {content.email && (
-              <a href={`mailto:${content.email}`} className="flex items-center gap-4 text-zinc-700 dark:text-zinc-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors group">
-                <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 group-hover:border-blue-500/50 flex items-center justify-center text-zinc-500 dark:text-zinc-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-all">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium text-zinc-600 dark:text-zinc-500">Email Me</h4>
-                  <p className="font-medium text-base sm:text-lg break-all">{content.email}</p>
-                </div>
-              </a>
-              )}
-
-              {content.phone && (
-                <a href={`tel:${content.phone}`} className="flex items-center gap-4 text-zinc-700 dark:text-zinc-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors group">
-                  <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 group-hover:border-blue-500/50 flex items-center justify-center text-zinc-500 dark:text-zinc-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-all">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-medium text-zinc-600 dark:text-zinc-500">Phone</h4>
-                    <p className="font-medium text-base sm:text-lg break-all">{content.phone}</p>
-                  </div>
+                <a href={`mailto:${content.email}`} className="contact-detail group">
+                  <Mail className="h-4 w-4 text-[var(--accent-primary)]" />
+                  <span><span className="contact-detail-label">Email</span><span className="contact-detail-value">{content.email}</span></span>
                 </a>
               )}
-
-              <div className="flex items-center gap-4 text-zinc-700 dark:text-zinc-300">
-                <div className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 flex items-center justify-center text-zinc-500 dark:text-zinc-400">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium text-zinc-600 dark:text-zinc-500">Location</h4>
-                  <p className="font-medium text-base sm:text-lg">{content.location}</p>
-                </div>
+              {content.phone && (
+                <a href={`tel:${content.phone}`} className="contact-detail group">
+                  <Phone className="h-4 w-4 text-[var(--accent-primary)]" />
+                  <span><span className="contact-detail-label">Phone</span><span className="contact-detail-value">{content.phone}</span></span>
+                </a>
+              )}
+              <div className="contact-detail">
+                <MapPin className="h-4 w-4 text-[var(--accent-primary)]" />
+                <span><span className="contact-detail-label">Location</span><span className="contact-detail-value">{content.location}</span></span>
               </div>
             </div>
 
-            <div className="pt-8 border-t border-zinc-300 dark:border-zinc-800">
-              <h4 className="text-sm font-medium text-zinc-600 dark:text-zinc-500 mb-6">Connect across platforms</h4>
-              <div className="flex gap-4">
-                <a href={content.linkedin || '#'} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 hover:border-blue-500 hover:bg-blue-600/10 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 transition-all" aria-label="Open LinkedIn profile" title="LinkedIn">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a href={content.github || '#'} target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 hover:border-zinc-500 hover:bg-zinc-200 dark:hover:bg-zinc-800 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all" aria-label="Open GitHub profile" title="GitHub">
-                  <Github className="w-5 h-5" />
-                </a>
-              </div>
+            <div className="mt-8 flex gap-3">
+              {content.linkedin && <a href={content.linkedin} target="_blank" rel="noreferrer" className="contact-social" aria-label="Open LinkedIn profile"><Linkedin className="h-4 w-4" /></a>}
+              {content.github && <a href={content.github} target="_blank" rel="noreferrer" className="contact-social" aria-label="Open GitHub profile"><Github className="h-4 w-4" /></a>}
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="bg-zinc-100/70 dark:bg-zinc-900/50 border border-zinc-300/80 dark:border-zinc-800/80 p-5 sm:p-8 md:p-10 rounded-3xl backdrop-blur-sm">
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Full Name</label>
-                  <input id="name" className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="John Doe" />
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.08 }} className="lg:col-span-6 lg:col-start-7">
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div className="contact-field">
+                  <label htmlFor="name">Full name</label>
+                  <input id="name" name="name" required autoComplete="name" placeholder="Your name" />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Email Address</label>
-                  <input id="email" type="email" className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="john@example.com" />
+                <div className="contact-field">
+                  <label htmlFor="email">Email address</label>
+                  <input id="email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" />
                 </div>
               </div>
-
-              <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Subject</label>
-                <input id="subject" className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-blue-500" placeholder="Project Inquiry" />
+              <div className="contact-field">
+                <label htmlFor="subject">Subject</label>
+                <input id="subject" name="subject" required placeholder="Project inquiry" />
               </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Message</label>
-                <textarea id="message" rows={6} className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 rounded-xl px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-blue-500 resize-none" placeholder="Tell me about your project, goals, or technical needs..." />
+              <div className="contact-field">
+                <label htmlFor="message">Message</label>
+                <textarea id="message" name="message" rows={5} required placeholder="Tell me about your project, goals, or technical needs..." />
               </div>
-
-              <button type="button" className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-medium transition-all">
-                Send Message
-                <Send className="w-5 h-5" />
+              <button type="submit" disabled={!content.email} className="contact-submit">
+                Continue by email <Send className="h-4 w-4" />
               </button>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">Your email app will open with the message ready to send.</p>
             </form>
           </motion.div>
         </div>

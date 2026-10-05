@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 type SystemsShowcaseProps = {
   systems: {
@@ -24,7 +25,7 @@ export default function SystemsShowcase({ systems }: SystemsShowcaseProps) {
             className="group bg-white/5 border border-white/10 rounded-xl p-4 hover:border-[#3b82f6]/50 transition-colors"
           >
             <div className="h-16 mb-3 flex items-center justify-center">
-              <img src={system.logoUrl} alt={system.name} className="max-h-14 object-contain" />
+              <Image src={system.logoUrl} alt={system.name} width={56} height={56} unoptimized className="max-h-14 object-contain" />
             </div>
             <h3 className="text-lg font-semibold group-hover:text-[#3b82f6] transition-colors">{system.name}</h3>
             <p className="text-sm text-gray-400 mt-1">{system.shortDescription}</p>

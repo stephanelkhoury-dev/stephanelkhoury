@@ -1,29 +1,22 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, Database, ShieldCheck, Zap } from 'lucide-react';
+import Image from 'next/image';
 import type { AboutContent } from './types';
 
-export default function PremiumAbout({
-  content,
-  certificationsCount,
-}: {
-  content: AboutContent;
-  certificationsCount: number;
-}) {
-  const paragraphs = content.paragraphs ?? [];
-  const stats = content.stats ?? [];
+export default function PremiumAbout({ content }: { content: AboutContent }) {
+  const paragraphs = (content.paragraphs ?? []).slice(0, 2);
 
   return (
-    <section id="about" className="py-16 md:py-24 bg-white dark:bg-zinc-950 relative overflow-hidden border-t border-zinc-200/50 dark:border-zinc-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="space-y-8">
+    <section id="about" className="about-section">
+      <div className="about-section-inner">
+        <div className="about-grid">
+          <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.75 }} className="about-copy space-y-8">
             <div>
-              <h2 className="text-sm font-semibold text-blue-500 uppercase tracking-widest mb-2">{content.kicker}</h2>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-5 md:mb-6">
+                <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-secondary)]">{content.kicker}</h2>
+                <h3 className="font-display text-4xl sm:text-5xl text-zinc-900 dark:text-white mb-5 md:mb-6">
                 {content.headline}{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">{content.headlineAccent}</span>
+                  <span className="text-[var(--accent-primary)]">{content.headlineAccent}</span>
               </h3>
             </div>
 
@@ -33,57 +26,46 @@ export default function PremiumAbout({
               ))}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 pt-2 md:pt-4">
-              {stats.map((stat) => (
-                <div key={stat.label} className="border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-4 rounded-xl">
-                  <div className="text-3xl font-bold text-zinc-900 dark:text-white mb-1">{stat.value}</div>
-                  <div className="text-xs text-zinc-600 dark:text-zinc-500 uppercase tracking-wider">{stat.label}</div>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="relative h-full min-h-[340px] sm:min-h-[420px] md:min-h-[500px] flex items-center justify-center lg:justify-end">
-            <div className="relative w-full max-w-md aspect-square">
+          <div className="about-aside">
+            <figure className="about-portrait">
+              <Image
+                src="/images/profile/stephan-profile.jpg"
+                alt="Portrait of Stephan El Khoury"
+                fill
+                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 55vw, 34vw"
+                className="object-cover"
+              />
+            </figure>
 
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-2xl flex flex-col items-center justify-center shadow-2xl z-20">
-                <Award className="w-8 h-8 text-amber-400 mb-1" />
-                <span className="text-xs font-bold text-zinc-900 dark:text-white">{certificationsCount} CERTS</span>
-              </div>
-
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-0 border border-zinc-300 dark:border-zinc-800 rounded-full"
-              >
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-full flex items-center justify-center -rotate-90 group cursor-pointer">
-                  <Database className="w-5 h-5 text-emerald-400" />
-                  <span className="absolute -top-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Control Data</span>
+            <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.12 }} className="about-process">
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent-secondary)]">How I work</p>
+            <ol className="divide-y divide-[var(--card-border)]">
+              <li className="grid grid-cols-[2.5rem_1fr] gap-3 py-5 first:pt-0">
+                <span className="font-mono text-sm text-[var(--accent-primary)]">01</span>
+                <div>
+                  <h4 className="font-semibold text-zinc-900 dark:text-white">Build</h4>
+                  <p className="mt-1 text-sm leading-6 text-zinc-600 dark:text-zinc-400">Frontend and full-stack development.</p>
                 </div>
-
-                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-full flex items-center justify-center -rotate-90 group cursor-pointer">
-                  <ShieldCheck className="w-5 h-5 text-purple-400" />
-                  <span className="absolute -bottom-8 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">QA Base</span>
+              </li>
+              <li className="grid grid-cols-[2.5rem_1fr] gap-3 py-5">
+                <span className="font-mono text-sm text-[var(--accent-primary)]">02</span>
+                <div>
+                  <h4 className="font-semibold text-zinc-900 dark:text-white">Validate</h4>
+                  <p className="mt-1 text-sm leading-6 text-zinc-600 dark:text-zinc-400">Quality assurance through functional and regression testing.</p>
                 </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 26, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-12 border border-zinc-300/60 dark:border-zinc-800/60 rounded-full"
-              >
-                <div className="absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-full flex items-center justify-center rotate-90 group cursor-pointer">
-                  <Zap className="w-5 h-5 text-amber-400" />
-                  <span className="absolute -left-24 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Screening UI</span>
+              </li>
+              <li className="grid grid-cols-[2.5rem_1fr] gap-3 py-5 last:pb-0">
+                <span className="font-mono text-sm text-[var(--accent-primary)]">03</span>
+                <div>
+                  <h4 className="font-semibold text-zinc-900 dark:text-white">Improve</h4>
+                  <p className="mt-1 text-sm leading-6 text-zinc-600 dark:text-zinc-400">Technical SEO and performance considerations.</p>
                 </div>
-              </motion.div>
-
-              <svg className="absolute inset-0 w-full h-full z-10 opacity-30 pointer-events-none" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="45" fill="none" stroke="#3f3f46" strokeWidth="0.5" strokeDasharray="2 4" />
-                <circle cx="50" cy="50" r="30" fill="none" stroke="#3f3f46" strokeWidth="0.5" strokeDasharray="2 4" />
-              </svg>
-            </div>
-          </motion.div>
+              </li>
+            </ol>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

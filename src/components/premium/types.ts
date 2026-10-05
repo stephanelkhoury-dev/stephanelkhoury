@@ -1,4 +1,5 @@
 export type HeroContent = {
+  title?: string;
   badge?: string;
   headingPrimary?: string;
   headingAccent?: string;
@@ -35,11 +36,15 @@ export type ExperienceContent = {
   title?: string;
   subtitle?: string;
   items?: Array<{
+    slug?: string;
     year: string;
     title: string;
     company: string;
     description: string;
     metrics: string[];
+    achievements?: string[];
+    tools?: string[];
+    deliverables?: string[];
   }>;
 };
 

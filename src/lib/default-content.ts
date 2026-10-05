@@ -234,6 +234,19 @@ export const defaultBlocks = [
 
 export const defaultProjects = [
   {
+    title: 'StyleOS',
+    slug: 'style-os',
+    summary: 'Beauty & wellness business platform',
+    description:
+      'Built the platform architecture and software for StyleOS, bringing booking, client records, team management, finance, and marketing into one multilingual system for beauty and wellness businesses.',
+    imageUrl: '/projects/style-os-site.jpg',
+    githubUrl: null,
+    liveUrl: 'https://style-os.app',
+    technologies: ['Next.js', 'PostgreSQL', 'Role-Based Access', 'Arabic RTL'],
+    sortOrder: -1,
+    isActive: true,
+  },
+  {
     title: 'Haven Medical Beauty Clinic',
     slug: 'haven-medical-beauty-clinic',
     summary: 'Medical Aesthetics Clinic Website',

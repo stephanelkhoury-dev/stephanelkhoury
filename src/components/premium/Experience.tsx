@@ -1,49 +1,50 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { Briefcase, ChevronRight, Activity, Cpu } from 'lucide-react';
+import { experienceItems, experienceSlug } from '@/lib/experiences';
 import type { ExperienceContent } from './types';
 export default function PremiumExperience({ content }: { content: ExperienceContent }) {
-  const items = content.items ?? [];
+  const items = experienceItems(content);
 
   return (
-    <section id="experience" className="py-16 md:py-24 bg-white dark:bg-zinc-950 border-t border-zinc-200/50 dark:border-zinc-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-        <div className="text-center max-w-2xl mx-auto mb-10 md:mb-16">
+    <section id="experience" className="border-t border-zinc-300/80 bg-[var(--background)] py-20 dark:border-zinc-800 md:py-28">
+      <div className="mx-auto max-w-[1600px] px-5 sm:px-8 md:px-12">
+        <div className="mb-12 max-w-3xl md:mb-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <h2 className="text-sm font-semibold text-purple-500 uppercase tracking-widest mb-2 flex items-center justify-center gap-2">
-              <Cpu size={16} />
-              Career Trajectory
+            <h2 className="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-secondary)]">
+              <Cpu size={15} /> Career trajectory
             </h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-4">{content.title}</h3>
-            <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg">{content.subtitle}</p>
+            <h3 className="font-display text-5xl leading-[0.95] text-zinc-900 dark:text-white sm:text-6xl">{content.title}</h3>
+            <p className="mt-5 max-w-2xl text-zinc-600 dark:text-zinc-400 sm:text-lg">{content.subtitle}</p>
           </motion.div>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-5xl">
           {items.map((item, index) => (
             <motion.article
               key={`${item.title}-${index}`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="group flex flex-col md:flex-row gap-6 bg-zinc-100/70 dark:bg-zinc-900/40 border border-zinc-300/80 dark:border-zinc-800/80 rounded-2xl p-6 md:p-8 hover:bg-zinc-200/70 dark:hover:bg-zinc-900 hover:border-zinc-400 dark:hover:border-zinc-700 transition-all"
+              viewport={{ once: true, amount: 0.18 }}
+              transition={{ duration: 0.45, delay: index * 0.035 }}
+              className="group grid grid-cols-1 gap-3 border-t border-zinc-300 py-7 dark:border-zinc-800 md:grid-cols-[180px_1fr] md:gap-10 md:py-9"
             >
-              <div className="md:w-1/4 shrink-0">
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 text-xs font-mono text-zinc-700 dark:text-zinc-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors">
-                  <Activity size={12} className={index === 0 ? 'text-emerald-500' : 'text-zinc-500'} />
-                  {item.year}
-                </span>
+              <div className="flex items-start gap-3 pt-1">
+                <Activity size={13} className={`mt-0.5 ${index === 0 ? 'text-[var(--accent-primary)]' : 'text-zinc-400'}`} />
+                <span className="text-xs font-mono leading-5 text-zinc-500 dark:text-zinc-400">{item.year}</span>
               </div>
 
-              <div className="md:w-3/4 space-y-4">
+              <div className="space-y-4">
                 <div>
-                  <h4 className="text-xl md:text-2xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors flex items-center gap-2">
-                    {item.title}
-                    <ChevronRight className="w-5 h-5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-blue-500" />
+                  <h4 className="flex items-center gap-2 text-xl font-semibold text-zinc-900 transition-colors group-hover:text-[var(--accent-primary)] dark:text-white md:text-2xl">
+                    <Link href={`/experience/${experienceSlug(item)}`} className="inline-flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent-primary)]">
+                      {item.title}
+                      <ChevronRight className="h-4 w-4 shrink-0 text-[var(--accent-primary)]" aria-hidden="true" />
+                    </Link>
                   </h4>
-                  <div className="flex items-center gap-2 mt-2 text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                  <div className="mt-2 flex items-center gap-2 text-sm font-medium text-zinc-600 dark:text-zinc-400">
                     <Briefcase size={14} />
                     {item.company}
                   </div>
@@ -51,13 +52,16 @@ export default function PremiumExperience({ content }: { content: ExperienceCont
 
                 <p className="text-zinc-700 dark:text-zinc-400 leading-relaxed">{item.description}</p>
 
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="flex flex-wrap gap-x-4 gap-y-2 border-t border-zinc-200 pt-4 dark:border-zinc-800">
                   {item.metrics.map((metric) => (
-                    <span key={`${item.title}-${metric}`} className="text-[10px] font-mono uppercase tracking-wider bg-zinc-200/70 dark:bg-zinc-800/50 text-zinc-700 dark:text-zinc-300 px-2.5 py-1 rounded-md border border-zinc-300/60 dark:border-zinc-700/50">
+                    <span key={`${item.title}-${metric}`} className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                       {metric}
                     </span>
                   ))}
                 </div>
+                <Link href={`/experience/${experienceSlug(item)}`} className="project-link" aria-label={`View my work as ${item.title} at ${item.company}`}>
+                  View my work <ChevronRight size={15} aria-hidden="true" />
+                </Link>
               </div>
             </motion.article>
           ))}

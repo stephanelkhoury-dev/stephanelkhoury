@@ -73,14 +73,14 @@ export default async function PlatformDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const projectLinks = asArray(platform.projectLinks);
+  const projectLinks = asArray(platform.projectLinks).filter((link) => !link.includes('upcoming-projects'));
   const certificateLinks = asArray(platform.certificateLinks);
   const resourceLinks = asArray(platform.resourceLinks);
 
   return (
     <>
       <PremiumNavbar />
-      <main className="min-h-screen pt-28 px-6 md:px-12 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
+      <main id="main-content" className="min-h-screen pt-28 px-6 md:px-12 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
         <section className="max-w-5xl mx-auto">
           <Link href="/#platforms" className="text-blue-400 text-sm hover:text-blue-300">
             ← Back to Platforms
@@ -105,11 +105,9 @@ export default async function PlatformDetailPage({ params }: PageProps) {
             </article>
 
             <aside className="space-y-5">
-              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
-                <h2 className="text-xl font-semibold mb-3">Related Projects</h2>
-                {projectLinks.length === 0 ? (
-                  <p className="text-zinc-600 dark:text-zinc-400 text-sm">No project links added yet.</p>
-                ) : (
+              {projectLinks.length > 0 && (
+                <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
+                  <h2 className="text-xl font-semibold mb-3">Related Projects</h2>
                   <ul className="space-y-2">
                     {projectLinks.map((link) => (
                       <li key={link}>
@@ -119,14 +117,12 @@ export default async function PlatformDetailPage({ params }: PageProps) {
                       </li>
                     ))}
                   </ul>
-                )}
-              </div>
+                </div>
+              )}
 
-              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
-                <h2 className="text-xl font-semibold mb-3">Certificates</h2>
-                {certificateLinks.length === 0 ? (
-                  <p className="text-zinc-600 dark:text-zinc-400 text-sm">No certificate links added yet.</p>
-                ) : (
+              {certificateLinks.length > 0 && (
+                <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
+                  <h2 className="text-xl font-semibold mb-3">Certificates</h2>
                   <ul className="space-y-2">
                     {certificateLinks.map((link) => (
                       <li key={link}>
@@ -136,14 +132,12 @@ export default async function PlatformDetailPage({ params }: PageProps) {
                       </li>
                     ))}
                   </ul>
-                )}
-              </div>
+                </div>
+              )}
 
-              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
-                <h2 className="text-xl font-semibold mb-3">Resources</h2>
-                {resourceLinks.length === 0 ? (
-                  <p className="text-zinc-600 dark:text-zinc-400 text-sm">No resources added yet.</p>
-                ) : (
+              {resourceLinks.length > 0 && (
+                <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
+                  <h2 className="text-xl font-semibold mb-3">Resources</h2>
                   <ul className="space-y-2">
                     {resourceLinks.map((link) => (
                       <li key={link}>
@@ -153,8 +147,8 @@ export default async function PlatformDetailPage({ params }: PageProps) {
                       </li>
                     ))}
                   </ul>
-                )}
-              </div>
+                </div>
+              )}
             </aside>
           </div>
         </section>

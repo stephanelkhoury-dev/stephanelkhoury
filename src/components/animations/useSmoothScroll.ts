@@ -9,23 +9,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function useSmoothScroll() {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      wheelMultiplier: 1,
-      orientation: 'vertical',
-    });
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let lenis: Lenis | null = null;
 
-    function raf(time: number) {
-      lenis.raf(time);
-      ScrollTrigger.update();
-      requestAnimationFrame(raf);
-    }
+    const updateScrollTrigger = () => ScrollTrigger.update();
+    const tickLenis = (time: number) => lenis?.raf(time * 1000);
 
-    requestAnimationFrame(raf);
+    const stopLenis = () => {
+      if (!lenis) return;
+      gsap.ticker.remove(tickLenis);
+      lenis.off('scroll', updateScrollTrigger);
+      lenis.destroy();
+      lenis = null;
+    };
+
+    const syncMotionPreference = () => {
+      if (motionPreference.matches) {
+        stopLenis();
+        return;
+      }
+      if (lenis) return;
+
+      lenis = new Lenis({
+        duration: 1.1,
+        smoothWheel: true,
+        syncTouch: false,
+      });
+      lenis.on('scroll', updateScrollTrigger);
+      gsap.ticker.add(tickLenis);
+      ScrollTrigger.refresh();
+    };
+
+    syncMotionPreference();
+    motionPreference.addEventListener('change', syncMotionPreference);
 
     return () => {
-      lenis.destroy();
+      motionPreference.removeEventListener('change', syncMotionPreference);
+      stopLenis();
     };
   }, []);
 }

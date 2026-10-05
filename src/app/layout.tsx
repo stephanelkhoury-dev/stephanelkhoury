@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Sora } from 'next/font/google';
 import { AnimationProvider } from '@/components/animations';
 import LiveChatWidget from '@/components/dynamic/LiveChatWidget';
+import CustomCursor from '@/components/premium/CustomCursor';
+import ScrollProgress from '@/components/premium/ScrollProgress';
 import ThemeProvider from '@/components/ThemeProvider';
 import "./globals.css";
 
@@ -101,6 +103,8 @@ export default function RootLayout({
       <body suppressHydrationWarning className={`${sora.variable} ${sora.className} bg-background text-foreground`}>
         <ThemeProvider>
           <AnimationProvider>
+            <ScrollProgress />
+            <CustomCursor />
             {children}
             <LiveChatWidget />
           </AnimationProvider>

@@ -70,7 +70,6 @@ const experiences: Experience[] = [
     location: 'Qatar',
     description: [
       'Developed and launched a modern event management website for Qatar market',
-      'Implemented SEO strategies resulting in first-page rankings for key event industry terms',
       'Built responsive UI with modern animations and cross-browser compatibility',
       'Completed 6-month contract delivering all project objectives on schedule',
     ],

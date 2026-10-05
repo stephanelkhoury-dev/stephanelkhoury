@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenAI } from '@google/genai';
 import { prisma } from '@/lib/prisma';
 import { getPublicContent } from '@/lib/bootstrap';
+import { featuredProjectCopy, featuredProjectSlugs } from '@/lib/featured-projects';
 
 export const runtime = 'nodejs';
 
@@ -59,10 +60,18 @@ export async function POST(request: NextRequest) {
     .map((system: { name: string; experience: string }) => `${system.name}: ${system.experience}`)
     .join('\n');
 
+  const contactBlock = content.blocks.find((block) => block.slug === 'contact-main');
+  const contactDetails = contactBlock?.content as { email?: string } | undefined;
+  const contactEmail = contactDetails?.email || 'stephanelkhoury2000@gmail.com';
+
   const projectsList = content.projects
-    .map((p: { title: string; description?: string; technologiesUsed?: string[] }) =>
-      `- ${p.title}${p.description ? ': ' + p.description : ''}${p.technologiesUsed?.length ? ' [' + p.technologiesUsed.join(', ') + ']' : ''}`
-    )
+    .filter((project) => featuredProjectSlugs.has(project.slug) && Boolean(project.liveUrl))
+    .map((project) => `- ${project.title}: ${featuredProjectCopy[project.slug].description}`)
+    .join('\n');
+  const profileBlockSlugs = new Set(['experience-main', 'skills-main', 'contact-main']);
+  const profileBlocks = content.blocks
+    .filter((block) => profileBlockSlugs.has(block.slug))
+    .map((block) => `${block.title}: ${JSON.stringify(block.content)}`)
     .join('\n');
 
   const prompt = `You are the AI assistant for Stephan El Khoury's portfolio website.
@@ -72,22 +81,21 @@ Your job is to answer visitor questions clearly and honestly based on the profil
 1. For project/work inquiries (e.g. "can you build X for me?", "can we collaborate on Y?", "do you do freelance?"):
    - Start with a clear YES or NO based on whether the request matches Stephan's tech stack (listed below).
    - Briefly explain WHY — mention the specific technologies from his stack that apply.
-   - Then ALWAYS say: "To move forward, the next step is to book a consultation appointment. You can reach Stephan via email at multigraphic.lb@gmail.com, through the contact form at the bottom of this page, or by connecting on LinkedIn. In your message, briefly describe your project and he will get back to you to schedule a call."
-2. For availability/rates questions: explain appointments are required to discuss project scope and pricing — direct them to multigraphic.lb@gmail.com.
+  - Then direct the visitor to the contact section or email at ${contactEmail} to discuss next steps.
+2. For availability/rates questions: explain that current availability and pricing should be discussed directly, and provide ${contactEmail}.
 3. For general questions, answer concisely from the profile data only.
 4. Never make up information not in the data.
 5. Keep answers friendly, professional, and to the point.
+6. Reply in plain text without Markdown markers or formatting.
 
 ## Contact & Appointment Information
-- Email (preferred): multigraphic.lb@gmail.com
-- Contact form: bottom of this page (#contact section)
+- Email (preferred): ${contactEmail}
+- Contact form: bottom of this page (#contact section), which opens an email draft
 - LinkedIn: available via the social links on this site
-- Process: visitor emails → Stephan reviews → schedules a discovery call
+- Next steps and scheduling are discussed directly by email.
 
 ## Profile Blocks
-${content.blocks
-  .map((block: { title: string; content: unknown }) => `${block.title}: ${JSON.stringify(block.content)}`)
-  .join('\n')}
+${profileBlocks}
 
 ## Current Projects
 ${projectsList}
@@ -95,19 +103,14 @@ ${projectsList}
 ## Supported Systems / Tech Stack
 ${systemsText}
 
-## Certificates
-${content.certificates
-  .map((cert: { title: string; issuer: string; fileUrl: string }) => `${cert.title} (${cert.issuer}) -> ${cert.fileUrl}`)
-  .join('\n')}
-
 ---
 Visitor question: ${message}`;
 
   const ai = new GoogleGenAI({ apiKey });
 
-  // Try primary model first, fall back to a lighter model on quota/error
-  const MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.0-pro'];
+  const MODELS = ['gemini-3.8-flash', 'gemini-flash-latest', 'gemini-3.1-flash-lite'];
   let answer = '';
+  let degraded = false;
 
   for (const model of MODELS) {
     try {
@@ -117,15 +120,20 @@ Visitor question: ${message}`;
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       console.error(`[chat] model ${model} failed:`, msg);
-      // On quota (429) or overload (503), try next model; on other errors, stop
-      const isRetryable = msg.includes('429') || msg.includes('quota') || msg.includes('503') || msg.includes('overloaded');
-      if (!isRetryable) break;
+      const shouldTryFallback =
+        msg.includes('429') ||
+        msg.includes('quota') ||
+        msg.includes('503') ||
+        msg.includes('overloaded') ||
+        msg.includes('404') ||
+        msg.includes('NOT_FOUND');
+      if (!shouldTryFallback) break;
     }
   }
 
   if (!answer) {
-    answer =
-      'Our AI assistant is temporarily at capacity right now. In the meantime, feel free to reach Stephan directly at **multigraphic.lb@gmail.com** or use the contact form below — he typically responds within a few hours.';
+    degraded = true;
+    answer = `The AI assistant is temporarily unavailable. You can reach Stephan directly at ${contactEmail} or use the contact form below.`;
   }
 
   await prisma.chatMessage.create({
@@ -139,5 +147,6 @@ Visitor question: ${message}`;
   return NextResponse.json({
     sessionId: actualSession.id,
     answer,
+    degraded,
   });
 }

@@ -59,6 +59,23 @@ A fully dynamic, block-based portfolio platform built with Next.js App Router, P
 
 ## Database Operations
 
+### Professional Experience Pages
+
+Each published item in the `experience-main` block gets a detail page at
+`/experience/<company-and-role>`, linked from the timeline and included in the sitemap.
+The role, company, period, description, and focus areas use the same CMS content as the homepage.
+
+Experience items also support these optional JSON fields:
+
+- `slug`: a unique lowercase, hyphenated URL identifier. Set this to keep a URL stable when renaming a role or company.
+- `achievements`: an array of responsibility or accomplishment descriptions shown under "My work".
+- `tools`: an array of tool and technology names.
+- `deliverables`: an array of specific outputs or completed work.
+
+CMS detail fields override the existing role-specific content in `src/lib/experience-details.ts`.
+New roles without detail fields still show their description and focus areas. Omit optional fields
+to use existing details; use an empty array to hide a detail list. Use only verified, publicly shareable work.
+
 - Seed data only:
    ```bash
    npm run prisma:seed

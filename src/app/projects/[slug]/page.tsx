@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import PremiumNavbar from '@/components/premium/Navbar';
 import PremiumFooter from '@/components/premium/Footer';
+import ProjectLogo from '@/components/premium/ProjectLogo';
+import { featuredProjectCopy, featuredProjectSlugs, projectBrandNames, projectLogos } from '@/lib/featured-projects';
 import { prisma } from '@/lib/prisma';
 import { defaultProjects } from '@/lib/default-content';
 
@@ -19,35 +21,29 @@ async function getProjectBySlug(slug: string) {
     : defaultProjects.find((item) => item.slug === slug);
 }
 
-function resolveProjectImageUrl(slug: string, imageUrl: string | null | undefined) {
-  if (imageUrl) return imageUrl;
-  const fallback = defaultProjects.find((item) => item.slug === slug);
-  return fallback?.imageUrl ?? null;
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.stephanelkhoury.com';
 
-  if (!project || !project.isActive) {
+  if (!project || !project.isActive || !featuredProjectSlugs.has(slug) || !project.liveUrl) {
     return {
       title: 'Project Not Found',
     };
   }
 
   const projectUrl = `${siteUrl}/projects/${project.slug}`;
-  const imageUrl = resolveProjectImageUrl(project.slug, project.imageUrl);
+  const imageUrl = projectLogos[slug];
 
   return {
     title: `${project.title}`,
-    description: project.description,
+    description: featuredProjectCopy[slug].description,
     alternates: {
       canonical: projectUrl,
     },
     openGraph: {
       title: project.title,
-      description: project.description,
+      description: featuredProjectCopy[slug].description,
       url: projectUrl,
       type: 'article',
       images: imageUrl ? [{ url: imageUrl, alt: project.title }] : [],
@@ -55,15 +51,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: 'summary_large_image',
       title: project.title,
-      description: project.description,
+      description: featuredProjectCopy[slug].description,
       images: imageUrl ? [imageUrl] : [],
     },
   };
-}
-
-function asStringArray(value: unknown): string[] {
-  if (!Array.isArray(value)) return [];
-  return value.filter((item): item is string => typeof item === 'string');
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {
@@ -71,75 +62,50 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
   const project = await getProjectBySlug(slug);
 
-  if (!project || !project.isActive) {
+  if (!project || !project.isActive || !featuredProjectSlugs.has(slug) || !project.liveUrl) {
     notFound();
   }
 
-  const technologies = asStringArray(project.technologies);
-  const imageUrl = resolveProjectImageUrl(project.slug, project.imageUrl);
+  const featuredCopy = featuredProjectCopy[slug];
 
   return (
     <>
       <PremiumNavbar />
-      <main className="min-h-screen pt-28 px-6 md:px-12 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
-        <section className="max-w-5xl mx-auto">
-          <Link href="/#projects" className="text-blue-400 text-sm hover:text-blue-300">
-            ← Back to Featured Work
+      <main id="main-content" className="project-detail-page min-h-screen bg-[var(--background)] px-5 pb-20 pt-28 text-[var(--foreground)] sm:px-8 md:px-12 md:pb-28">
+        <section className="mx-auto max-w-[1400px]">
+          <Link href="/#projects" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[var(--accent-primary)] transition-colors hover:opacity-75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent-primary)]">
+            <ArrowLeft size={16} /> Back to selected work
           </Link>
 
-          <div className="mt-5 grid lg:grid-cols-[1.2fr_1fr] gap-8 items-start">
-            <article className="rounded-3xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/60 overflow-hidden">
-              <div className="h-72 md:h-96 bg-zinc-200 dark:bg-zinc-800">
-                {imageUrl ? (
-                  <Image
-                    src={imageUrl}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                    width={1400}
-                    height={900}
-                    sizes="(max-width: 768px) 100vw, 70vw"
-                    priority
-                  />
-                ) : null}
-              </div>
-              <div className="p-8">
-                <p className="text-xs uppercase tracking-widest text-blue-400 mb-2">Portfolio Project</p>
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{project.title}</h1>
-                <p className="text-zinc-700 dark:text-zinc-300 text-lg leading-relaxed">{project.description}</p>
-              </div>
-            </article>
+          <header className="mb-10 mt-8 max-w-4xl md:mb-14">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-secondary)]">{featuredCopy.summary}</p>
+            <h1 className="max-w-[14ch] font-display text-5xl leading-[0.95] text-[var(--foreground)] sm:text-6xl md:text-7xl">{project.title}</h1>
+            <p className="mt-6 max-w-3xl text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">{featuredCopy.description}</p>
+          </header>
 
-            <aside className="space-y-5">
-              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
-                <h2 className="text-xl font-semibold mb-3">Overview</h2>
-                <p className="text-zinc-700 dark:text-zinc-300">{project.summary}</p>
-              </div>
+          <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-14">
+            <div className="lg:col-span-8">
+              <ProjectLogo
+                src={projectLogos[slug]}
+                title={projectBrandNames[slug] ?? project.title}
+                featured
+              />
+            </div>
 
-              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6">
-                <h2 className="text-xl font-semibold mb-3">Technologies</h2>
-                <div className="flex flex-wrap gap-2">
-                  {technologies.map((technology) => (
-                    <span key={technology} className="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300">
-                      {technology}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-zinc-100/70 dark:bg-zinc-900/50 p-6 space-y-3">
-                <h2 className="text-xl font-semibold">Links</h2>
+            <aside className="border-t border-zinc-300 pt-6 dark:border-zinc-700 lg:col-span-3 lg:col-start-10 lg:border-t-0 lg:pt-0">
+              <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-secondary)]">Explore</h2>
+              <div className="flex flex-col items-start gap-4">
                 {project.liveUrl && (
-                  <a href={project.liveUrl} target="_blank" rel="noreferrer" className="block text-emerald-400 hover:text-emerald-300">
-                    Live Project
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 border-b border-[var(--accent-primary)]/50 pb-1 text-sm font-semibold text-[var(--accent-primary)] hover:opacity-75">
+                    Visit live site
+                    <ArrowUpRight size={15} />
                   </a>
                 )}
                 {project.githubUrl && (
-                  <a href={project.githubUrl} target="_blank" rel="noreferrer" className="block text-blue-400 hover:text-blue-300">
-                    Source Code
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">
+                    Source code
+                    <ArrowUpRight size={15} />
                   </a>
-                )}
-                {!project.liveUrl && !project.githubUrl && (
-                  <p className="text-zinc-600 dark:text-zinc-400 text-sm">Project links can be added from the CMS dashboard.</p>
                 )}
               </div>
             </aside>

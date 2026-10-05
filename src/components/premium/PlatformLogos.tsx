@@ -1,7 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useState } from 'react';
 
 type LogoItem = {
   name: string;
@@ -9,10 +11,46 @@ type LogoItem = {
   logoUrl: string;
 };
 
+function PlatformLogo({ item, duplicate }: { item: LogoItem; duplicate: boolean }) {
+  const [imageFailed, setImageFailed] = useState(!item.logoUrl);
+
+  return (
+    <Link
+      href={`/platforms/${item.slug}`}
+      className="logo-pill bg-white/95 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 shadow-sm hover:shadow-md"
+      aria-label={duplicate ? undefined : `Open ${item.name} platform page`}
+      aria-hidden={duplicate || undefined}
+      tabIndex={duplicate ? -1 : undefined}
+      title={item.name}
+    >
+      <span className="flex min-h-full w-full flex-col items-center justify-center gap-1">
+        {!imageFailed && item.logoUrl && (
+          <Image
+            src={item.logoUrl}
+            alt=""
+            width={48}
+            height={48}
+            unoptimized
+            onError={() => setImageFailed(true)}
+            className="logo-pill-image"
+          />
+        )}
+        <span aria-hidden="true" className="max-w-[4.5rem] px-1 text-center text-[9px] font-semibold leading-tight text-zinc-700 dark:text-zinc-200">
+          {item.name}
+        </span>
+      </span>
+    </Link>
+  );
+}
+
 export default function PlatformLogos({ items }: { items: LogoItem[] }) {
   if (items.length === 0) return null;
 
-  const repeated = [...items, ...items, ...items];
+  const repeated = [...items, ...items, ...items].map((item, index) => ({
+    item,
+    index,
+    duplicate: index >= items.length,
+  }));
 
   return (
     <section id="platforms" className="py-16 md:py-24 bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-950 dark:to-zinc-950 border-t border-zinc-200/60 dark:border-zinc-900/60">
@@ -24,29 +62,16 @@ export default function PlatformLogos({ items }: { items: LogoItem[] }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2">Stack & Platforms</h2>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 dark:text-white tracking-tight mb-4">Platforms I Work On</h3>
-            <p className="text-zinc-600 dark:text-zinc-300 text-base sm:text-lg">Hover to pause. Click any logo to view my experience with that platform.</p>
+            <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--accent-secondary)]">Stack & Platforms</h2>
+            <h3 className="font-display text-4xl font-medium leading-[1] text-zinc-900 dark:text-white sm:text-5xl md:text-6xl">Platforms I Work On</h3>
+            <p className="mt-5 text-zinc-600 dark:text-zinc-300 text-base sm:text-lg">Hover to pause. Click any logo to view my experience with that platform.</p>
           </motion.div>
         </div>
 
         <div className="logo-marquee group rounded-2xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-100/70 dark:bg-zinc-900/40 py-4">
           <div className="logo-marquee-track group-hover:[animation-play-state:paused]">
-            {repeated.map((item, index) => (
-              <Link
-                key={`${item.slug}-${index}`}
-                href={`/platforms/${item.slug}`}
-                className="logo-pill bg-white/95 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 shadow-sm hover:shadow-md"
-                aria-label={`Open ${item.name} platform page`}
-                title={item.name}
-              >
-                <img
-                  src={item.logoUrl}
-                  alt={item.name}
-                  className="logo-pill-image"
-                  loading="lazy"
-                />
-              </Link>
+            {repeated.map(({ item, index, duplicate }) => (
+              <PlatformLogo key={`${item.slug}-${index}`} item={item} duplicate={duplicate} />
             ))}
           </div>
         </div>

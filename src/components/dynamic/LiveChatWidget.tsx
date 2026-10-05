@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, MessageSquare, ArrowRight } from 'lucide-react';
@@ -8,6 +8,7 @@ import { X, Send, MessageSquare, ArrowRight } from 'lucide-react';
 type Message = {
   role: 'user' | 'assistant';
   content: string;
+  degraded?: boolean;
 };
 
 const QUICK_PROMPTS = [
@@ -16,6 +17,18 @@ const QUICK_PROMPTS = [
   'What SEO services do you offer?',
   'How do I reach Stephan?',
 ];
+
+function getVisitorId() {
+  try {
+    const existing = window.localStorage.getItem('visitor-id');
+    if (existing) return existing;
+    const generated = `visitor-${window.crypto.randomUUID()}`;
+    window.localStorage.setItem('visitor-id', generated);
+    return generated;
+  } catch {
+    return 'anonymous';
+  }
+}
 
 function TypingDots() {
   return (
@@ -40,24 +53,44 @@ export default function LiveChatWidget() {
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [unread, setUnread] = useState(0);
-  const bottomRef = useRef<HTMLDivElement>(null);
-
-  const visitorId = useMemo(() => {
-    if (typeof window === 'undefined') return 'visitor';
-    const existing = window.localStorage.getItem('visitor-id');
-    if (existing) return existing;
-    const generated = `visitor-${crypto.randomUUID()}`;
-    window.localStorage.setItem('visitor-id', generated);
-    return generated;
-  }, []);
+  const messagesRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const launcherRef = useRef<HTMLButtonElement>(null);
+  const wasOpenRef = useRef(false);
 
   // Auto-scroll to bottom on new message
   useEffect(() => {
     if (open) {
-      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+      const messageList = messagesRef.current;
+      messageList?.scrollTo({
+        top: messageList.scrollHeight,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
       setUnread(0);
     }
   }, [messages, open]);
+
+  useEffect(() => {
+    let focusTimer: number | undefined;
+    if (open) {
+      focusTimer = window.setTimeout(() => inputRef.current?.focus(), 80);
+    } else if (wasOpenRef.current) {
+      launcherRef.current?.focus({ preventScroll: true });
+    }
+    wasOpenRef.current = open;
+    return () => {
+      if (focusTimer !== undefined) window.clearTimeout(focusTimer);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [open]);
 
   // Increment unread badge when a new assistant message arrives while closed
   useEffect(() => {
@@ -83,23 +116,37 @@ export default function LiveChatWidget() {
     setMessages((prev) => [...prev, { role: 'user', content }]);
     setInput('');
     setLoading(true);
+    let timeout: number | undefined;
 
     try {
+      const controller = new AbortController();
+      timeout = window.setTimeout(() => controller.abort(), 30000);
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: content, sessionId, visitorId }),
+        body: JSON.stringify({ message: content, sessionId, visitorId: getVisitorId() }),
+        signal: controller.signal,
       });
+      window.clearTimeout(timeout);
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || 'Chat request failed');
+      const data = await response.json().catch(() => null) as { error?: string; sessionId?: string; answer?: string; degraded?: boolean } | null;
+      if (!response.ok) throw new Error('The assistant is temporarily unavailable. Please use the contact links below.');
+      if (!data || typeof data.answer !== 'string' || !data.answer.trim()) {
+        throw new Error('I could not prepare a reply. Please use the contact links below.');
+      }
 
-      setSessionId(data.sessionId);
-      setMessages((prev) => [...prev, { role: 'assistant', content: data.answer }]);
+      const answer = data.answer.trim();
+      setSessionId(data.sessionId ?? null);
+      setMessages((prev) => [...prev, { role: 'assistant', content: answer, degraded: data.degraded }]);
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unexpected error';
-      setMessages((prev) => [...prev, { role: 'assistant', content: `Sorry, something went wrong: ${message}` }]);
+      const message = error instanceof DOMException && error.name === 'AbortError'
+        ? 'The assistant took too long to respond. Please try again or use the contact links below.'
+        : error instanceof Error && error.message.startsWith('The assistant')
+          ? error.message
+          : 'I could not reach the assistant. Please try again or use the contact links below.';
+      setMessages((prev) => [...prev, { role: 'assistant', content: message }]);
     } finally {
+      if (timeout !== undefined) window.clearTimeout(timeout);
       setLoading(false);
     }
   };
@@ -108,25 +155,21 @@ export default function LiveChatWidget() {
     <>
       {/* ── Floating Launcher Button ────────────────── */}
       <motion.button
+        ref={launcherRef}
         onClick={open ? () => setOpen(false) : handleOpen}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2.5 px-3 sm:px-4 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow min-h-11"
+        aria-label={open ? 'Close portfolio assistant' : 'Open portfolio assistant'}
+        aria-expanded={open}
+        aria-controls="portfolio-assistant-dialog"
+        title={open ? 'Close portfolio assistant' : 'Open portfolio assistant'}
+        className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[70] flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-primary)] text-white shadow-lg shadow-black/25 transition-colors hover:brightness-90"
       >
         {open ? (
           <X size={18} />
         ) : (
           <>
-            <MessageSquare size={18} />
-            <span className="text-xs sm:text-sm">Chat with me</span>
-            {/* Online indicator */}
-            <span className="flex items-center gap-1 ml-1 text-xs font-normal text-green-200">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
-              </span>
-              Online
-            </span>
+            <MessageSquare size={19} aria-hidden="true" />
             {unread > 0 && (
               <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-500 text-[10px] font-bold flex items-center justify-center">
                 {unread}
@@ -141,12 +184,16 @@ export default function LiveChatWidget() {
         {open && (
           <motion.div
             key="chat-popup"
+            id="portfolio-assistant-dialog"
+            role="dialog"
+            aria-modal="false"
+            aria-labelledby="portfolio-assistant-title"
             initial={{ opacity: 0, y: 24, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-            className="fixed bottom-20 right-2 left-2 sm:left-auto sm:bottom-24 sm:right-6 z-50 sm:w-[380px] rounded-2xl border border-zinc-300 dark:border-zinc-700/60 bg-white dark:bg-zinc-950 shadow-2xl shadow-black/20 dark:shadow-black/50 overflow-hidden flex flex-col"
-            style={{ maxHeight: 'min(580px, calc(100dvh - 110px))' }}
+            className="fixed bottom-[calc(max(1rem,env(safe-area-inset-bottom))+3.75rem)] left-3 right-3 z-[70] flex flex-col overflow-hidden rounded-xl border border-[var(--card-border)] bg-[var(--background)] shadow-2xl shadow-black/30 sm:bottom-24 sm:left-auto sm:right-6 sm:w-[380px]"
+            style={{ maxHeight: 'min(580px, calc(100dvh - 7rem - env(safe-area-inset-bottom)))' }}
           >
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-3 bg-zinc-100/80 dark:bg-zinc-900/80 border-b border-zinc-300 dark:border-zinc-800">
@@ -154,14 +201,8 @@ export default function LiveChatWidget() {
                 SE
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-zinc-900 dark:text-white">Stephan&apos;s Assistant</p>
-                <div className="flex items-center gap-1 text-xs text-green-400">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
-                  </span>
-                  Online — usually replies instantly
-                </div>
+                <p id="portfolio-assistant-title" className="text-sm font-semibold text-[var(--foreground)]">Portfolio assistant</p>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400">AI-powered project information</p>
               </div>
               <button onClick={() => setOpen(false)} className="text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors" aria-label="Close chat" title="Close chat">
                 <X size={16} />
@@ -169,7 +210,7 @@ export default function LiveChatWidget() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 no-scrollbar min-h-[220px]">
+            <div ref={messagesRef} role="log" aria-live="polite" aria-relevant="additions text" aria-busy={loading} className="min-h-[220px] flex-1 space-y-3 overflow-y-auto p-3 sm:p-4 no-scrollbar">
               {messages.length === 0 && (
                 <div className="space-y-3">
                   <p className="text-sm text-zinc-600 dark:text-zinc-400 text-center">
@@ -196,7 +237,7 @@ export default function LiveChatWidget() {
                   className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`text-sm px-3 py-2 rounded-xl max-w-[85%] leading-relaxed whitespace-pre-wrap ${
+                    className={`text-sm px-3 py-2 rounded-xl max-w-[85%] leading-relaxed whitespace-pre-wrap break-words ${
                       message.role === 'user'
                         ? 'bg-blue-600 text-white rounded-br-sm'
                         : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-200 rounded-bl-sm'
@@ -208,23 +249,23 @@ export default function LiveChatWidget() {
               ))}
 
               {loading && (
-                <div className="flex justify-start">
+                <div role="status" aria-label="Assistant is typing" className="flex justify-start">
                   <div className="bg-zinc-200 dark:bg-zinc-800 rounded-xl rounded-bl-sm">
                     <TypingDots />
                   </div>
                 </div>
               )}
-              <div ref={bottomRef} />
             </div>
 
             {/* Input */}
             <div className="p-3 border-t border-zinc-300 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/50 flex gap-2">
               <input
+                ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); void send(); } }}
                 placeholder="Ask about projects, availability…"
-                className="flex-1 bg-zinc-200/60 dark:bg-zinc-800/60 border border-zinc-300 dark:border-zinc-700/60 rounded-xl px-3 py-2 text-sm text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-500 outline-none focus:border-blue-500/50 transition-colors"
+                className="flex-1 bg-zinc-200/60 dark:bg-zinc-800/60 border border-zinc-300 dark:border-zinc-700/60 rounded-xl px-3 py-2 text-base sm:text-sm text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-500 outline-none focus:border-blue-500/50 transition-colors"
               />
               <button
                 onClick={() => void send()}
@@ -238,7 +279,7 @@ export default function LiveChatWidget() {
             </div>
 
             {/* Footer hint */}
-            <p className="text-center text-[10px] text-zinc-500 dark:text-zinc-600 pb-2">
+            <p className="pb-2 text-center text-[10px] text-zinc-500 dark:text-zinc-400">
               Powered by Gemini AI · All chats are logged
             </p>
           </motion.div>
